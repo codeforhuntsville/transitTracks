@@ -1,0 +1,5 @@
+{
+	"name": "transitTracks",
+	"description": "An API for public transit tracking",
+	"keywords": ["node", "express", "ejs"]
+}
