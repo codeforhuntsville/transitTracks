@@ -18,6 +18,41 @@ app.get('/', function(req, res) {
 	res.render('pages/index');
 });
 
+//Adds account
+app.post('/api/v1/account', function(req, res) {
+	res.send('Hello world!');
+});
+
+//Updates account
+app.post('/api/v1/account/:id', function(req, res) {
+	res.send('Hello world!');
+});
+
+//Reads account
+app.get('/api/v1/account/:id', function(req, res) {
+	res.send('Hello world!');
+});
+
+//Adds location
+app.post('/api/v1/trolly/:id/location', function(req, res) {
+	res.send('Hello world!');
+});
+
+//Reads location
+app.get('/api/v1/trolly/:id/location', function(req, res) {
+	res.send('Hello world!');
+});
+
+//Gets status of trollies
+app.get('/api/v1/trollies', function(req, re) {
+	res.send('Hello world!');
+});
+
+//Gets stops for a single trolley
+app.get('/api/v1/trollies/:id/stops', function(req, res) {
+	res.send('Hello world!');
+});
+
 app.listen(app.get('port'), function() {
 	console.log('Node app is running on port ', app.get('port'));
 });
