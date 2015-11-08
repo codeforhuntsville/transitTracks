@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var app = express();
 
 
-app.set('port', (process.env.PORT || 5000));
+app.set('port', (process.env.PORT || 80));
 
 //Setting directory structure
 app.set('views', __dirname + '/views');
