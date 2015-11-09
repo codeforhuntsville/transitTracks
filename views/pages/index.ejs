@@ -3,24 +3,44 @@
   <head>
     <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
-      #map { height: 100%; }
+      #transtMap { height: 100%; }
     </style>
   </head>
   <body>
-    <div id="map"></div>
+    <div id="transitMap"></div>
+    <script src='/socket.io/socket.io.js'></script>
+    <script src='http://code.jquery.com/jquery-1.11.1.js'></script>
     <script type="text/javascript">
 
 var map;
+var marker;
+latLng = {lat: 34.73172, lng: -86.58979}
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: -34.397, lng: 150.644},
+  map = new google.maps.Map(document.getElementById('transitMap'), {
+    center: latLng,
     zoom: 8
   });
-}
 
-    </script>
+  marker = new google.maps.Marker({
+  	position: latLng,
+  	map: map,
+  	title: 'Huntsville Trolley'
+  });
+}
+	</script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap">
+    </script>
+    <script>
+socket.on('location update', function(data) {
+	latLng['lat'] = data[0];
+	latLng['lng'] = data[1];
+	marker.setPosition(latLng);
+});
+function getCorr() {
+	socket.emit('get location', []);
+}
+setInterval(getCorr, 1000);
     </script>
   </body>
 </html>
