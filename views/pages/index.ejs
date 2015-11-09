@@ -6,19 +6,20 @@
       #transitMap { height: 100%; }
     </style>
   </head>
-  <body>
-    <div id="transitMap"></div>
+  <body style='background: green;'>
+  	<div style='width: 100%; height: 100%; padding: 10px;'>
+      <div id="transitMap"></div>
+    </div>
     <script src="/socket.io/socket.io.js"></script>
-    <script type="text/javascript">
-
+    <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
 var map;
 var marker;
-var socket = io();
-latLng = {lat: 34.73172, lng: -86.58979};
+var latLng = {lat: 34.73172, lng: -86.58979};
 function initMap() {
   map = new google.maps.Map(document.getElementById('transitMap'), {
     center: latLng,
-    zoom: 8
+    zoom: 16
   });
   marker = new google.maps.Marker({
   	position: latLng,
@@ -26,20 +27,27 @@ function initMap() {
   	title: 'Huntsville Trolley'
   });
 }
+var socket = io.connect();
 socket.on('location update', function(data) {
 	latLng['lat'] = data[0];
 	latLng['lng'] = data[1];
 	marker.setPosition(latLng);
+	map.panTo(latLng);
+	console.log('Location updated.');
 });
-	</script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap">
-    </script>
-    <script>
 function getCorr() {
+	/*
+	latLng['lat'] += 0.0001;
+	latLng['lng'] += 0.0001;
+	marker.setPosition(latLng);
+	map.panTo(latLng);
+	*/
 	socket.emit('get location');
 }
 setInterval(getCorr, 3000);
+	</script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap">
     </script>
   </body>
 </html>
