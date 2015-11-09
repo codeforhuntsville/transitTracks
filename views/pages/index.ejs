@@ -1,27 +1,24 @@
 <!DOCTYPE html>
 <html>
 <head>
-<script src="http://maps.googleapis.com/maps/api/js"></script>
-<script>
-function initMap() {
-  // Create a map object and specify the DOM element for display.
-  var map = new google.maps.Map(document.getElementById('transitMap'), {
-    center: {lat: -34.397, lng: 150.644},
-    scrollwheel: false,
-    zoom: 8
-  });
-}
-</script>
 </head>
 <body onload="initMap()">
 <h1>Maps API!</h1>
 <div id='transitMap' style='width: 80%; height: 80%;'></div>
 <script type='text/javascript'>
+var map;
+function initMap() {
+	map = new google.maps.Map(document.getElementById('transitMap'), {
+		center: {lat: -34.397, lng: 150.644},
+		zoom: 8
+	});
+}
+<script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap"></script>
 socket.on('location update', function(data) {
 	xcorr = data[0];
 	ycorr = data[1];
 });
-socket.emit('get location'
+socket.emit('get location');
 </script>
 </body>
 </html>
