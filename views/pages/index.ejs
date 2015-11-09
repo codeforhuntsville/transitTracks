@@ -27,7 +27,7 @@ function initMap() {
   	title: 'Huntsville Trolley'
   });
 }
-var socket = io.connect();
+var socket = io.connect('http://transittracks.herokuapp.com/');
 socket.on('location update', function(data) {
 	console.log('Received location update.')
 	latLng['lat'] = data[0];
