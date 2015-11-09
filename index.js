@@ -64,6 +64,7 @@ var latLng = [34.73172, -86.58979];
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
+		console.log('location update requested')
 		io.emit('location update', latLng);
 		latLng[0] += 0.5;
 		latLng[1] += 0.5;
