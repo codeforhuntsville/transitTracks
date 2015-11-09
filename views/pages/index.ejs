@@ -3,22 +3,17 @@
 <head>
 <script src="http://maps.googleapis.com/maps/api/js"></script>
 <script>
-function initialize() {
-	var mapProp = {
-		center: new google.maps.LatLng(51.508742, -0.120850),
-		zoom: 5,
-		mapTypeId: google.maps.MapTypeId.ROADMAP
-	};
-	var map = new google.maps.Map(document.getElementById('transitMap', mapProp);
-	var busMarker = new google.maps.Marker({
-		position: myCenter,
-	});
-	marker.setMap(map)	
+function initMap() {
+  // Create a map object and specify the DOM element for display.
+  var map = new google.maps.Map(document.getElementById('transitMap'), {
+    center: {lat: -34.397, lng: 150.644},
+    scrollwheel: false,
+    zoom: 8
+  });
 }
-google.maps.event.addDomListener(window, 'load', initialize);
 </script>
 </head>
-<body>
+<body onload="initMap()">
 <h1>Maps API!</h1>
 <div id='transitMap' style='width: 80%; height: 80%;'></div>
 <script type='text/javascript'>
