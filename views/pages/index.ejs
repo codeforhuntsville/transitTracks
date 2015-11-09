@@ -13,6 +13,7 @@
 
 var map;
 var marker;
+var socket = io();
 latLng = {lat: 34.73172, lng: -86.58979}
 function initMap() {
   map = new google.maps.Map(document.getElementById('transitMap'), {
@@ -25,7 +26,7 @@ function initMap() {
   	title: 'Huntsville Trolley'
   });
 }
-io.socket.on('location update', function(data) {
+socket.on('location update', function(data) {
 	latLng['lat'] = data[0];
 	latLng['lng'] = data[1];
 	marker.setPosition(latLng);
@@ -38,7 +39,7 @@ io.socket.on('location update', function(data) {
 function getCorr() {
 	socket.emit('get location');
 }
-setInterval(getCorr, 1000);
+setInterval(getCorr, 3000);
     </script>
   </body>
 </html>
