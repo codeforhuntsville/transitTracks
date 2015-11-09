@@ -29,6 +29,7 @@ function initMap() {
 }
 var socket = io.connect();
 socket.on('location update', function(data) {
+	console.log('Received location update.')
 	latLng['lat'] = data[0];
 	latLng['lng'] = data[1];
 	marker.setPosition(latLng);
