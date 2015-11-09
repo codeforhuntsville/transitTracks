@@ -3,13 +3,12 @@
   <head>
     <style type="text/css">
       html, body { height: 100%; margin: 0; padding: 0; }
-      #transtMap { height: 100%; }
+      #transitMap { height: 100%; }
     </style>
   </head>
   <body>
     <div id="transitMap"></div>
-    <script src='/socket.io/socket.io.js'></script>
-    <script src='http://code.jquery.com/jquery-1.11.1.js'></script>
+    <script src="/socket.io/socket.io.js"></script>
     <script type="text/javascript">
 
 var map;
@@ -20,29 +19,26 @@ function initMap() {
     center: latLng,
     zoom: 8
   });
-
   marker = new google.maps.Marker({
   	position: latLng,
   	map: map,
   	title: 'Huntsville Trolley'
   });
 }
-	</script>
-    <script async defer
-      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap">
-    </script>
-<!--
-    <script>
-socket.on('location update', function(data) {
+io.socket.on('location update', function(data) {
 	latLng['lat'] = data[0];
 	latLng['lng'] = data[1];
 	marker.setPosition(latLng);
 });
+	</script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap">
+    </script>
+    <script>
 function getCorr() {
-	socket.emit('get location', []);
+	socket.emit('get location');
 }
 setInterval(getCorr, 1000);
     </script>
--->
   </body>
 </html>

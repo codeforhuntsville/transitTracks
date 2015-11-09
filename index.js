@@ -7,7 +7,7 @@ var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 
 
-app.set('port', (process.env.PORT || 80));
+app.set('port', (process.env.PORT || 5000));
 
 //Setting directory structure
 app.set('views', __dirname + '/views');
