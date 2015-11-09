@@ -1,7 +1,10 @@
 //Getting all dependencies
 var express = require('express.io');
-var bodyParser = require('body-parser');
 var app = express();
+
+var http = require('http').Server(app)
+var io = require('socket.io')(http);
+var bodyParser = require('body-parser');
 
 
 app.set('port', (process.env.PORT || 80));
@@ -51,6 +54,13 @@ app.get('/api/v1/trollies', function(req, re) {
 //Gets stops for a single trolley
 app.get('/api/v1/trollies/:id/stops', function(req, res) {
 	res.send('Hello world!');
+});
+
+//Everything socket.io related
+io.sockets.on('connection', function(socket) {
+	socket.on('get location', function( data ) {
+		io.emit('location update', [10.92, 83.21]);
+	});
 });
 
 app.listen(app.get('port'), function() {
