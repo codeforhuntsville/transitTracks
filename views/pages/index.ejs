@@ -13,11 +13,6 @@ function initMap() {
 		zoom: 8
 	});
 }
-socket.on('location update', function(data) {
-	xcorr = data[0];
-	ycorr = data[1];
-});
-socket.emit('get location');
 </script>
 <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap"></script>
 </body>
