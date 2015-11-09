@@ -56,10 +56,14 @@ app.get('/api/v1/trollies/:id/stops', function(req, res) {
 	res.send('Hello world!');
 });
 
+var latLng = [34.73172, -86.58979];
+
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
-		io.emit('location update', [10.92, 83.21]);
+		io.emit('location update', latLng);
+		latLng[0] += 0.5;
+		latLng[1] += 0.5;
 	});
 });
 
