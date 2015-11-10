@@ -1,11 +1,22 @@
 //Getting all dependencies
 var express = require('express.io');
 var app = express();
+var mongoose = require('mongoose');
 
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 
+//Setup DB
+mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '.mongolab.com:53164/hsvtransit');
+
+var transitSchema = new mongoose.Schema({
+	id: Number,
+	lat: Number,
+	lng: Number,
+	pass: String
+});
+var Transit = mongoose.model('Transit', transitSchema);
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -26,7 +37,15 @@ app.get('/', function(req, res) {
 
 //Adds account
 app.post('/api/v1/account', function(req, res) {
-	res.send('Hello world!');
+	Transit.find({id: transitId}, function( err, transit ) {
+		if( transit[0] ) {
+			res.send('Account already created');
+		} else {
+			newTransit = new Transit( {id: transitId, lat: 0, lng: 0, pass: process.env.PASS} ); 
+			newTransit.save();
+			res.send('Account created');
+		}
+	});
 });
 
 //Updates account
@@ -41,7 +60,24 @@ app.get('/api/v1/account/:id', function(req, res) {
 
 //Adds location
 app.post('/api/v1/trolly/:id/location', function(req, res) {
-	res.send('Hello world!');
+	var transitId = req.params.id;
+	Transit.find({id: transitId}, function( err, transit ) {
+		if( transit[0] ) {
+			Transit.find({user: request.body.user, pass: request.body.pass}, function( err, transit ) {
+				if( transit[0] ) {
+					transit[0].lat = req.body.lat;
+					transit[0].lng = req.body.lng;
+					transit[0].save();
+				} else {
+					res.send('Invalid credentials');
+				}
+			});
+		} else {
+			newTransit = new Transit( {id: transitId, lat: req.body.lat, lng: req.body.lng} ); 
+			newTransit.save();
+		}
+	});
+	res.send('Location added');
 });
 
 //Reads location
