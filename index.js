@@ -8,7 +8,7 @@ var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 
 //Setup DB
-mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '.mongolab.com:53164/hsvtransit');
+mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
 
 var transitSchema = new mongoose.Schema({
 	id: Number,
