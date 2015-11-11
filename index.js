@@ -63,7 +63,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var transitId = req.params.id;
 	Transit.find({id: transitId}, function( err, transit ) {
 		if( transit[0] ) {
-			Transit.find({pass: request.body.pass}, function( err, transit ) {
+			Transit.find({pass: req.body.pass}, function( err, transit ) {
 				if( transit[0] ) {
 					transit[0].lat = req.body.lat;
 					transit[0].lng = req.body.lng;
