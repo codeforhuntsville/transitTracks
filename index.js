@@ -12,7 +12,7 @@ mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.M
 
 var transitSchema = new mongoose.Schema({
 	id: Number,
-	lng: Number,
+	long: Number,
 	lat: Number,
 	pass: String
 });
@@ -41,7 +41,7 @@ app.post('/api/v1/account', function(req, res) {
 		if( transit[0] ) {
 			res.send('Account already created');
 		} else {
-			newTransit = new Transit( {id: transitId, lat: 0, lng: 0, pass: process.env.PASS} ); 
+			newTransit = new Transit( {id: transitId, lat: 0, long: 0, pass: process.env.PASS} ); 
 			newTransit.save();
 			res.send('Account created');
 		}
@@ -66,14 +66,14 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 			Transit.find({pass: req.body.pass}, function( err, transit ) {
 				if( transit[0] ) {
 					transit[0].lat = req.body.lat;
-					transit[0].lng = req.body.lng;
+					transit[0].long = req.body.lng;
 					transit[0].save();
 				} else {
 					res.send('Invalid credentials');
 				}
 			});
 		} else {
-			newTransit = new Transit( {id: transitId, lng: req.body.lng, lat: req.body.lat, pass: process.env.PASS } ); 
+			newTransit = new Transit( {id: transitId, long: req.body.lng, lat: req.body.lat, pass: process.env.PASS } ); 
 			newTransit.save();
 		}
 	});
