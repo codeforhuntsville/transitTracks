@@ -12,8 +12,8 @@ mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.M
 
 var transitSchema = new mongoose.Schema({
 	id: Number,
-	lat: Number,
 	lng: Number,
+	lat: Number,
 	pass: String
 });
 var Transit = mongoose.model('Transit', transitSchema);
