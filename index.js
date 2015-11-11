@@ -73,7 +73,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 				}
 			});
 		} else {
-			newTransit = new Transit( {id: transitId, long: 50/*req.body.lng*/, lat: req.body.lat, pass: process.env.PASS } ); 
+			newTransit = new Transit( {id: transitId, long: req.body.lon, lat: req.body.lat, pass: process.env.PASS } ); 
 			newTransit.save();
 		}
 	});
