@@ -10,7 +10,6 @@
   	<div style='width: 100%; height: 100%; padding: 10px;'>
       <div id="transitMap"></div>
     </div>
-    <script src="/socket.io/socket.io.js"></script>
     <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
     <script>
 var map;
@@ -27,26 +26,6 @@ function initMap() {
   	title: 'Huntsville Trolley'
   });
 }
-var socket = io.connect('http://transittracks.herokuapp.com/');
-socket.on('location update', function(data) {
-	console.log('Received location update.')
-	latLng['lat'] = data[0];
-	latLng['lng'] = data[1];
-	marker.setPosition(latLng);
-	map.panTo(latLng);
-	console.log('Location updated.');
-});
-function getCorr() {
-	/*
-	latLng['lat'] += 0.0001;
-	latLng['lng'] += 0.0001;
-	marker.setPosition(latLng);
-	map.panTo(latLng);
-	*/
-	socket.emit('get location');
-	console.log('Location request sent');
-}
-setInterval(getCorr, 3000);
 	</script>
     <script async defer
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAY2mL8NeipC3v2-Iyc32HsxlTV01FXs6Y&callback=initMap">
