@@ -66,7 +66,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 			Transit.find({pass: req.body.pass}, function( err, transit ) {
 				if( transit[0] ) {
 					transit[0].lat = req.body.lat;
-					transit[0].long = req.body.lng;
+					transit[0].long = req.body.lon;
 					transit[0].save();
 				} else {
 					res.send('Invalid credentials');
