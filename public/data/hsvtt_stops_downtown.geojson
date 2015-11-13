@@ -3,7 +3,7 @@ var dt_stops = {
    "features": [
      {
        "type": "Feature",
-       "geometry": {"type": "Point", "coordinates": [-86.58597, 34.73136]},
+       "geometry": {"type": "Point", "coordinates": [34.73136,-86.58597]},
        "properties": {
           "time_stop": "Yes",
           "routename": "Downtown",
