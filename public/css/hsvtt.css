@@ -49,10 +49,12 @@ a:hover, a:active {
   height: 100%;
   width: 100%; 
   color: #0f0;  
+  background: #f00;
 }
 
 #transitMap { 
   height: 180px; 
   color: #f00;
   margin: 10px;
+  background: #00f
 }
