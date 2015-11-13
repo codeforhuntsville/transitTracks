@@ -1,0 +1,50 @@
+tml {
+  height: 100%; 
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  /*height: 100%;*/ 
+  font-size: 75%;
+  font-family: Arial, verdana, Helvetica, Sans-serif;
+  /*font-family: "Comic Sans MS", cursive, sans-serif;*/
+  line-height: 1.88889;
+  color: #555753; 
+  background: #eee;	
+  margin: 0; 
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+p { 
+  margin-top: 0; 
+  text-align: justify;
+}
+
+h3 { 
+  font: italic normal 1.4em georgia, sans-serif;
+  letter-spacing: 1px; 
+  margin-bottom: 0; 
+  color: #7D775C;
+}
+
+a:link {  
+  text-decoration: none; 
+  color: #433a3a;
+}
+
+a:visited {  
+  text-decoration: none; 
+  color: #433a3a;
+}
+
+a:hover, a:active { 
+  text-decoration: underline; 
+  color: #433a3a;
+}
+
+#transitMap { 
+  height: 180px; 
+}
