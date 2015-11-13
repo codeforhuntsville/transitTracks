@@ -1,8 +1,6 @@
 HSV_TT = {};
 
-
-var map = L.map('transitMap').setView([51.505, -0.09], 13);
-
+var map = L.map('transitMap').setView([34.736227,, -86.733427], 13);
 
 $(document).ready(function(){
 	
@@ -12,7 +10,6 @@ $(document).ready(function(){
     id: 'pk.eyJ1IjoiaHN2dHJhbnNpdCIsImEiOiJjaWd4NXR5bDcwdWdiNjVtMHJqajByZ2FwIn0.MGnCx-SYksm4Ia8-4CoWMg',
     accessToken: 'pk.eyJ1IjoiaHN2dHJhbnNpdCIsImEiOiJjaWd4NXR5bDcwdWdiNjVtMHJqajByZ2FwIn0.MGnCx-SYksm4Ia8-4CoWMg'
   }).addTo(map);
-
-  // read text entries from xml file
+  
 }
  
