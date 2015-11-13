@@ -9,7 +9,8 @@ HSV_TT.map.init = function() {
     id: 'hsvtransit.cigx5tx9c0u474mm3jqvacywa',
     accessToken: 'pk.eyJ1IjoiaHN2dHJhbnNpdCIsImEiOiJjaWd4NXR5bDcwdWdiNjVtMHJqajByZ2FwIn0.MGnCx-SYksm4Ia8-4CoWMg'
   }).addTo(map);
-  
-  L.geoJson(dt_route).addTo(map);
+
   L.geoJson(dt_stops).addTo(map);
+  L.geoJson(dt_route).addTo(map);
+  
 }
