@@ -45,7 +45,14 @@ a:hover, a:active {
   color: #433a3a;
 }
 
+#container {
+  height: 100%;
+  width: 100%; 
+  color: #0f0;  
+}
+
 #transitMap { 
   height: 180px; 
   color: #f00;
+  margin: 10px;
 }

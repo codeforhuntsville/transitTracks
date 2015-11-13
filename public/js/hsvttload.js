@@ -1,6 +1,6 @@
 HSV_TT = {};
 
-var map = L.map('transitMap').setView([34.736227,, -86.733427], 13);
+var map = L.map('transitMap').setView([34.736227, -86.733427], 13);
 
 $(document).ready(function(){
 	
