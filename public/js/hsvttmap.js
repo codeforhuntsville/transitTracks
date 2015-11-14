@@ -2,7 +2,7 @@ HSV_TT.map = {};
 
 HSV_TT.map.init = function() {	  
   var map = L.map('transitMap').setView([34.731, -86.586], 15);
-  var stopIcon = L.Icon.extend({
+  var stopIcon = L.icon({
 	options: {
       iconSize: new L.Point(33, 38),
 	  iconAnchor: new L.Point(16, 19),
