@@ -25,7 +25,7 @@ HSV_TT.map.init = function() {
       return L.marker(latlng, {icon: smallIcon});
 	  },
    	onEachFeature: function (feature, layer) {
-		layer.bindPopup(feature.proerties.time);
+		layer.bindPopup(feature.properties.time);
 	}  
    });
    stops.addTo(map);
