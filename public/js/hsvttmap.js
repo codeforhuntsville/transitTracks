@@ -11,16 +11,17 @@ HSV_TT.map.init = function() {
   }).addTo(map);
 
   L.geoJson(dt_stops, { pointToLayer: function( feature, latlng ) {
-	  var smallIcon = L.Icon({
+	  var smallIcon = new L.Icon({
 		  options: {
 			  iconsize: [33, 38],
 			  iconAnchor: [16, 19],
 			  popupAnchor: [1, -38],
 			  iconUrl: '/images/stopIcon.png'
 		  }
-	    })
-	  }
-  }).addTo(map);
+	    });
+		return L.marker(latlng, {icon: smallIcon});
+	  }	  
+   }).addTo(map);
   
   
   L.geoJson(dt_route).addTo(map);
