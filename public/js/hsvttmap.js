@@ -20,7 +20,7 @@ HSV_TT.map.init = function() {
 		  }
 	    }
 	  })
-  }}).addTo(map);
+  }).addTo(map);
   
   
   L.geoJson(dt_route).addTo(map);
