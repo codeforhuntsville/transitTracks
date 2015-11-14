@@ -18,8 +18,8 @@ HSV_TT.map.init = function() {
 			  popupAnchor: [1, -38],
 			  iconUrl: '/images/stopIcon.png'
 		  }
-	    }
-	  })
+	    })
+	  }
   }).addTo(map);
   
   
