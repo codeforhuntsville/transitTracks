@@ -2,6 +2,14 @@ HSV_TT.map = {};
 
 HSV_TT.map.init = function() {	  
   var map = L.map('transitMap').setView([34.731, -86.586], 15);
+  var smallIcon = new L.Icon({
+	options: {
+      iconSize: [33, 38],
+	  iconAnchor: [16, 19],
+	  popupAnchor: [1, -38],
+	  iconUrl: '/images/stopIcon.png'
+	}
+  });
 
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -11,16 +19,14 @@ HSV_TT.map.init = function() {
   }).addTo(map);
   
   L.geoJson(dt_route).addTo(map);
-    L.geoJson(dt_stops, { pointToLayer: function( feature, latlng ) {
-	  var smallIcon = new L.Icon({
-		  options: {
-			  iconSize: [33, 38],
-			  iconAnchor: [16, 19],
-			  popupAnchor: [1, -38],
-			  iconUrl: '/images/stopIcon.png'
-		  }
-	    });
-		return L.marker(latlng, {icon: smallIcon});
-	  }	  
-   }).addTo(map);
+
+  stops = L.geoJson(dt_stops, { 
+    pointToLayer: function( feature, latlng ) {
+      return L.marker(latlng, {icon: smallIcon});
+	  },
+   	onEachFeature: fuction (feature, layer) {
+		layer.bindPopup(feature.proerties.time);
+	}  
+   });
+   stops.addTo(map);
 }
