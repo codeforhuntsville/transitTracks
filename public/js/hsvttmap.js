@@ -22,9 +22,11 @@ HSV_TT.map.init = function() {
 
   stops = L.geoJson(dt_stops, { 
     pointToLayer: function( feature, latlng ) {
+		console.log("feature: " + feature)
       return L.marker(latlng, {icon: stopIcon});
 	},
    	onEachFeature: function (feature, layer) {
+		console.log("time: " + feature.properties.time)
 		layer.bindPopup(feature.properties.time);
 	}  
    });
