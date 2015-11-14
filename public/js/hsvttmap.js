@@ -1,7 +1,7 @@
 HSV_TT.map = {};
 
 HSV_TT.map.init = function() {	  
-  var map = L.map('transitMap').setView([34.725, -86.586], 15);
+  var map = L.map('transitMap').setView([34.728, -86.586], 15);
 
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
