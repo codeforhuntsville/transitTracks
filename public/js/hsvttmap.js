@@ -10,7 +10,18 @@ HSV_TT.map.init = function() {
     accessToken: 'pk.eyJ1IjoiaHN2dHJhbnNpdCIsImEiOiJjaWd4NXR5bDcwdWdiNjVtMHJqajByZ2FwIn0.MGnCx-SYksm4Ia8-4CoWMg'
   }).addTo(map);
 
-  L.geoJson(dt_stops).addTo(map);
-  L.geoJson(dt_route).addTo(map);
+  L.geoJson(dt_stops, { pointToLayer: function( feature, latlng ) {
+	  var smallIcon = L.Icon({
+		  options: {
+			  iconsize: [33, 38],
+			  iconAnchor: [16, 19],
+			  popupAnchor: [1, -38],
+			  iconUrl: '/images/stopIcon.png'
+		  }
+	    }
+	  })
+  }}).addTo(map);
   
+  
+  L.geoJson(dt_route).addTo(map);
 }
