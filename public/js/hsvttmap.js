@@ -7,7 +7,7 @@ HSV_TT.map.init = function() {
       iconSize: new L.Point(33, 38),
 	  iconAnchor: new L.Point(16, 19),
 	  //popupAnchor: new L.Point(1, -38),
-	  iconUrl: '/images/stopIcon.png'
+	  iconUrl: './public/images/stopIcon.png'
 	}
   });
 
