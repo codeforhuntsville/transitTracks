@@ -2,11 +2,11 @@ HSV_TT.map = {};
 
 HSV_TT.map.init = function() {	  
   var map = L.map('transitMap').setView([34.731, -86.586], 15);
-  var stopIcon = new L.icon({
+  var stopIcon = L.Icon.Default.extend({
 	options: {
-      iconSize: new L.Point(33, 38),
-	  iconAnchor: new L.Point(16, 19),
-	  popupAnchor: new L.Point(1, 1),
+      iconSize: [33, 38],
+	  iconAnchor: [16, 19],
+	  popupAnchor: [-1, -40],
 	  iconUrl: './images/stopIcon.png'
 	}
   });
@@ -24,9 +24,9 @@ HSV_TT.map.init = function() {
     pointToLayer: function( feature, latlng ) {
       return L.marker(latlng, {icon: stopIcon});
 	  }
-   	//onEachFeature: function (feature, layer) {
-	//	layer.bindPopup(feature.properties.time);
-	//}  
+   	onEachFeature: function (feature, layer) {
+		layer.bindPopup(feature.properties.time);
+	}  
    });
    stops.addTo(map);
 }
