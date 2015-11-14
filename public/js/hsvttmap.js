@@ -9,11 +9,12 @@ HSV_TT.map.init = function() {
     id: 'hsvtransit.cigx5tx9c0u474mm3jqvacywa',
     accessToken: 'pk.eyJ1IjoiaHN2dHJhbnNpdCIsImEiOiJjaWd4NXR5bDcwdWdiNjVtMHJqajByZ2FwIn0.MGnCx-SYksm4Ia8-4CoWMg'
   }).addTo(map);
-
-  L.geoJson(dt_stops, { pointToLayer: function( feature, latlng ) {
+  
+  L.geoJson(dt_route).addTo(map);
+    L.geoJson(dt_stops, { pointToLayer: function( feature, latlng ) {
 	  var smallIcon = new L.Icon({
 		  options: {
-			  iconsize: [33, 38],
+			  iconSize: [33, 38],
 			  iconAnchor: [16, 19],
 			  popupAnchor: [1, -38],
 			  iconUrl: '/images/stopIcon.png'
@@ -22,7 +23,4 @@ HSV_TT.map.init = function() {
 		return L.marker(latlng, {icon: smallIcon});
 	  }	  
    }).addTo(map);
-  
-  
-  L.geoJson(dt_route).addTo(map);
 }
