@@ -7,7 +7,9 @@ HSV_TT.sockets.init = function() {
     console.log(location);
   };
   function receiveUpdates() {
+    console.log('Initializing location updates');
     socket.on('location update', function(data) {
+      console.log('New location received');
       location['lng'] = data[0];
       location['lat'] = data[1];
       updateMap();
@@ -16,6 +18,7 @@ HSV_TT.sockets.init = function() {
   receiveUpdates();
   function updateLocation() {
     socket.emit('get location');
+    console.log('Location request sent');
   };
   setInterval(updateLocation(), 3000);
 };
