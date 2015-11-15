@@ -1,4 +1,4 @@
 HSV_TT = {
-  var buses = [{route: 0, id: 0, marker: none}];
+  var buses = [{route: 0, id: 0, marker: none}]
 };
 
