@@ -6,8 +6,8 @@ HSV_TT.map.init = function() {
 	options: {
 	  iconUrl: '/images/stopIcon.png',
       iconSize: [16, 19],
-	  iconAnchor: [16, 19],
-	  popupAnchor: [-1, -40]
+	  iconAnchor: [8, 10],
+	  popupAnchor: [-1, -10]
 	  
 	}
   });
