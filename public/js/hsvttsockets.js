@@ -11,7 +11,7 @@ HSV_TT.sockets.init = function() {
       location['lng'] = data[0];
       location['lat'] = data[1];
       updateMap();
-    }
+    });
   }
   receiveUpdates();
   function updateLocation() {
