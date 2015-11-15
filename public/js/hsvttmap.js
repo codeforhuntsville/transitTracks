@@ -25,7 +25,7 @@ HSV_TT.map.init = function() {
     pointToLayer: function( feature, latlng ) {
 		console.log("feature: " + feature.iconSize);
 		console.log("icon ref: " + stopIcon.iconUrl);
-      return L.marker(latlng, {icon: stopIcon});
+      return L.marker(latlng, {icon: new stopIcon()});
 	},
    	onEachFeature: function (feature, layer) {
 		console.log("time: " + feature.properties.time);
