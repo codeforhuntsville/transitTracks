@@ -27,7 +27,7 @@ HSV_TT.map.init = function() {
 	},
    	onEachFeature: function (feature, layer) {
 		console.log("time: " + feature.properties.time)
-		layer.bindPopup(feature.properties.time);
+		//layer.bindPopup(feature.properties.time);
 	}  
    });
    stops.addTo(map);
