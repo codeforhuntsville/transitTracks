@@ -7,7 +7,7 @@ HSV_TT.map.init = function() {
 	  iconUrl: '/images/stopIcon.png',
       iconSize: [33, 38],
 	  iconAnchor: [16, 19],
-	  popupAnchor: new L.Point(-1, -40)
+	  popupAnchor: [-1, -40]
 	  
 	}
   });
@@ -23,7 +23,7 @@ HSV_TT.map.init = function() {
 
   stops = L.geoJson(dt_stops, { 
     pointToLayer: function( feature, latlng ) {
-		console.log("feature: " + feature);
+		console.log("feature: " + feature.iconSize);
 		console.log("icon ref: " + stopIcon.iconUrl);
       return L.marker(latlng, {icon: stopIcon});
 	},
