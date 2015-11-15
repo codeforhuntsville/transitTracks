@@ -98,6 +98,14 @@ app.get('/api/v1/trollies/:id/stops', function(req, res) {
 var latLng = [34.73172, -86.58979];
 
 //Everything socket.io related
+io.sockets.on('get location', function(data) {
+  console.log('location update requested');
+  io.emit('location update', latLng);
+  console.log('location update sent');
+  latLng[0] += 0.5;
+  latLng[1] += 0.5;
+});
+/*
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 		console.log('location update requested')
@@ -105,7 +113,10 @@ io.sockets.on('connection', function(socket) {
 		latLng[0] += 0.5;
 		latLng[1] += 0.5;
 	});
+    socket.on('disconnect', function() {
+      console.log('User disconnected');
 });
+*/
 
 app.listen(app.get('port'), function() {
 	console.log('Node app is running on port ', app.get('port'));
