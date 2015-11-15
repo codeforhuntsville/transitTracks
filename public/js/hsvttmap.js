@@ -32,3 +32,8 @@ HSV_TT.map.init = function() {
    });
    stops.addTo(map);
 }
+
+HSV_TT.map.updateLocation = function (vid, latlng) {
+	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lon)
+	marker.setLatLng([lat, lng]).update();
+}
