@@ -5,7 +5,7 @@ HSV_TT.map.init = function() {
   var stopIcon = L.Icon.Default.extend({
 	options: {
 	  iconUrl: '/images/stopIcon.png',
-      iconSize: [33, 38],
+      iconSize: [16, 19],
 	  iconAnchor: [16, 19],
 	  popupAnchor: [-1, -40]
 	  
