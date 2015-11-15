@@ -30,7 +30,9 @@ HSV_TT.map.init = function() {
    	onEachFeature: function (feature, layer) {
 		console.log("time: " + feature.properties.time);
 		console.log("icon ref: " + stopIcon.popupAnchor);
-		layer.bindPopup(feature.properties.time);
+		layer.bindPopup("Stop: " + feature.properties.stop_seque + 
+		              "\nScheduled Time: " + feature.properties.time +
+					  "\nLocation: " + feature.properties.stop_locat );
 	}  
    });
    stops.addTo(map);
