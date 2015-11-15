@@ -24,7 +24,7 @@ HSV_TT.map.init = function() {
   stops = L.geoJson(dt_stops, { 
     pointToLayer: function( feature, latlng ) {
 		console.log("feature: " + feature);
-		console.log("icon ref: " + stopIcon.icon.iconUrl);
+		console.log("icon ref: " + stopIcon.iconUrl);
       return L.marker(latlng, {icon: stopIcon});
 	},
    	onEachFeature: function (feature, layer) {
