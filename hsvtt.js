@@ -35,6 +35,11 @@ app.get('/', function(req, res) {
 	res.render('pages/index');
 });
 
+app.get('/test', function(req, res) {
+	io.emit('location update', latLng);
+    res.send('Success');
+});
+
 //Adds account
 app.post('/api/v1/account', function(req, res) {
 	Transit.find({id: transitId}, function( err, transit ) {
