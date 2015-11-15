@@ -36,7 +36,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/test', function(req, res) {
-	io.emit('location update', latLng);
+    io.emit('location update', [34.73172, -86.58979]);
     res.send('Success');
 });
 
@@ -123,6 +123,6 @@ io.sockets.on('connection', function(socket) {
 });
 */
 
-app.listen(app.get('port'), function() {
+http.listen(app.get('port'), function() {
 	console.log('Node app is running on port ', app.get('port'));
 });
