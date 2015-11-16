@@ -2,7 +2,7 @@ HSV_TT.sockets = {};
 
 HSV_TT.sockets.init = function() {
   var socket = io.connect();
-  var location = {'lng': 34.731, 'lat': -86.586};
+  var location = {'lat': 34.731, 'lng': -86.586}; // this was reversed... Western Hemisphere is negative...
   function updateMap() {
     console.log(location['lat'] + ':' + location['lng']);
     HSV_TT.map.updateLocation(0, location);

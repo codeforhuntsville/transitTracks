@@ -59,6 +59,7 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
       console.log("Have object");
+	  latlng.lat = latlng.lat + 0.001;
 	  mm.setLatLng(latlng).update();
 	} else {
 	  //mm = vid == 0 ? trolleyIcon : shuttleIcon();
