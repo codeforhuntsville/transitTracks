@@ -1,9 +1,9 @@
 HSV_TT.map = {};
 
-var map = L.map('transitMap').setView([34.731, -86.586], 15);
+var map;
 
 HSV_TT.map.init = function() {	  
-
+  map = L.map('transitMap').setView([34.731, -86.586], 15);
   var stopIcon = L.Icon.Default.extend({
 	options: {
 	  iconUrl: '/images/stopIcon.png',
