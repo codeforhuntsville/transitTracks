@@ -59,9 +59,8 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	if (mm) {
 	  mm.setLatLng(latlng).update();
 	} else {
-	  mm = vid == 0 ? trolleyIcon : shuttleIcon();
-      mm.addToMap;
-	  mm.setLatLng([latlng.lat, latlng.lng]).update();
+	  //mm = vid == 0 ? trolleyIcon : shuttleIcon();
+	  var mm = L.marker([latlng.lat,latlng.lng]).addTo(map);
       HSV_TT.putBusMapMarker(vid, mm); 	  
 	}
 }
