@@ -1,4 +1,4 @@
 HSV_TT = {};
 
-HSV_TT.buses = [{route: 0, id: 0, marker: none}];
+HSV_TT.buses = [{route: 0, id: 0, marker: null}];
 
