@@ -102,13 +102,24 @@ app.get('/api/v1/trollies/:id/stops', function(req, res) {
 
 var latLng = [34.73172, -86.58979];
 
+function findLocations() {
+	Transit.find({pass: process.env.PASS}, function(err, transit) {
+		if( transit[0] ) {
+			latLng[0] = transit[0].lat;
+			latLng[1] = transit[0].lng;
+		} else {
+			console.log('DB credentials supplied incorrect');
+		}
+	}
+}
+
+var interval = setInterval(function(){findLocations();},3000);
+
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 		console.log('location update requested')
 		io.emit('location update', latLng);
-		latLng[0] += 0.5;
-		latLng[1] += 0.5;
 	});
     socket.on('disconnect', function() {
       console.log('User disconnected');
