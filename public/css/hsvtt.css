@@ -61,6 +61,8 @@ a:hover, a:active {
 	}
 }
 
+/*
+
 @media all and (min-width: 500px) {
 	#container {
 		width: 300px;
@@ -86,6 +88,8 @@ a:hover, a:active {
 		width: 1200px;
 	}
 }
+
+*/
 
 #transitMap { 
 	width: 100%;
