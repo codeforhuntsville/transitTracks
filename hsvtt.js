@@ -67,6 +67,7 @@ app.get('/api/v1/account/:id', function(req, res) {
 app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var transitId = req.params.id;
 	Transit.find({id: transitId}, function( err, transit ) {
+		console.log('Finding if transit exists');
 		if( transit[0] ) {
 			Transit.find({pass: req.body.pass}, function( err, transit ) {
 				if( transit[0] ) {
@@ -75,12 +76,14 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 					transit[0].long = req.body.lon;
 					transit[0].save();
 				} else {
+					console.log('Invalid credentials in location update');
 					res.send('Invalid credentials');
 				}
 			});
 		} else {
 			newTransit = new Transit( {id: transitId, long: req.body.lon, lat: req.body.lat, pass: process.env.PASS } ); 
 			newTransit.save();
+			console.log('New bus added');
 		}
 	});
 	res.send('Location added');
