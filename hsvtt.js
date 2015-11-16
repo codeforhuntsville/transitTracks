@@ -103,6 +103,7 @@ app.get('/api/v1/trollies/:id/stops', function(req, res) {
 var latLng = [34.73172, -86.58979];
 
 function findLocations() {
+	console.log('Updating current location');
 	Transit.find({pass: process.env.PASS}, function(err, transit) {
 		if( transit[0] ) {
 			latLng[0] = transit[0].lat;
