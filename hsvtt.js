@@ -69,7 +69,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	Transit.find({id: transitId}, function( err, transit ) {
 		console.log('Finding if transit exists');
 		if( transit[0] ) {
-			Transit.find({pass: req.body.pass}, function( err, transit ) {
+			Transit.find({pass: process.env.PASS}, function( err, transit ) {
 				if( transit[0] ) {
 					console.log('Recording location to DB');
 					transit[0].lat = req.body.lat;
