@@ -15,7 +15,8 @@ HSV_TT = {};
     for (var i = 0; i < buses.length; i++) { 
       if (buses[i].id === vid) { 
         retObj = buses[i].marker;
-        break;
+		console.log("Returning map marker...")
+        return retObj;
       } 
     }
   };
