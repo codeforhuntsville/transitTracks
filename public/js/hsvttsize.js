@@ -1,5 +1,5 @@
 function setWidth() {
-	document.getElementById("containter").style.width = (screen.width / 3) * 2;
+	document.getElementById("containter").style.width = string( (screen.width / 3) * 2);
 }
 
 setWidth();
