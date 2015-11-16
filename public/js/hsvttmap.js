@@ -65,4 +65,3 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
       HSV_TT.putBusMapMarker(vid, mm); 	  
 	}
 }
-}
