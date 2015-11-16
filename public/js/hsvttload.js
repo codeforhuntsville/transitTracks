@@ -10,7 +10,7 @@ HSV_TT = {};
     {route: 2, id: 5, marker: "bus 5 marker"}
   ];
 
-  HSV_TT.getBusMapMarker : function(vid) {
+  HSV_TT.getBusMapMarker = function(vid) {
 	retObj = null;
     for (var i = 0; i < buses.length; i++) { 
       if (buses[i].id === vid) { 
@@ -20,7 +20,7 @@ HSV_TT = {};
     }
   };
 
-  HSV_TT.putBusMapMarker : function (vid, mapMarker) {
+  HSV_TT.putBusMapMarker = function (vid, mapMarker) {
     for (var i = 0; i < buses.length; i++) { 
       if (buses[i].id === vid) { 
         buses[i].marker = mapMarker;
@@ -29,6 +29,6 @@ HSV_TT = {};
     }
   };
   
-  HSV_TT.getBusesOnRoute : function (routeId) {
+  HSV_TT.getBusesOnRoute = function (routeId) {
   // TODO: implement	  
   };
