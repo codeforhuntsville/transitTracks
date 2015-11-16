@@ -55,9 +55,19 @@ a:hover, a:active {
 	float: right;
 }
 
-@media all and (min-width: 600px) {
+@media all and (min-width: 500px) {
 	#container {
-		width: 400px;
+		width: 300px;
+	}
+}
+@media all and (min-width: 1000px) {
+	#container {
+		width: 700px;
+	}
+}
+@media all and (min-width: 1500px) {
+	#container {
+		width: 1200px;
 	}
 }
 
