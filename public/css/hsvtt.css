@@ -48,16 +48,20 @@ a:hover, a:active {
 }
 
 #container {
+/*
   height: 100%;
   width: 100%; 
+*/
   color: #000;  
   background: #fff;
 }
 
 #transitMap { 
+/*
   height: 600px;
   width: 800px;  
   margin: 10px;
   float: right;
+*/
 }
 
