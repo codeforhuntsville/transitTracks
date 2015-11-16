@@ -1,4 +1,4 @@
-HSV_TT = {}
+HSV_TT = {};
   
   // TODO: make a bus prototype here	  
   var buses = [
@@ -8,7 +8,7 @@ HSV_TT = {}
     {route: 1, id: 3, marker: "bus 3 marker"},
     {route: 2, id: 4, marker: "bus 4 marker"},
     {route: 2, id: 5, marker: "bus 5 marker"}
-  ]
+  ];
 
   HSV_TT.getBusMapMarker : function(vid) {
 	retObj = null;
@@ -31,4 +31,4 @@ HSV_TT = {}
   
   HSV_TT.getBusesOnRoute : function (routeId) {
   // TODO: implement	  
-  }
+  };
