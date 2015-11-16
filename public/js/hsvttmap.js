@@ -11,15 +11,6 @@ HSV_TT.map.init = function() {
 	}
   });
   
-   var trolleyIcon = L.Icon.Default.extend({
-	options: {
-	  iconUrl: '/images/trolleyIcon.png',
-      iconSize: [33, 38],
-	  iconAnchor: [16, 19],
-	  popupAnchor: [1, 1]  
-	}
-  });
-
   //TODO: implement
   //var shuttleIcon = L.Icon.Default.extend({
   //  options: {
@@ -54,6 +45,15 @@ HSV_TT.map.init = function() {
 
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
+  var trolleyIcon = L.Icon.Default.extend({
+	options: {
+	  iconUrl: '/images/trolleyIcon.png',
+      iconSize: [33, 38],
+	  iconAnchor: [16, 19],
+	  popupAnchor: [1, 1]  
+	}
+  });
+
 	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lon);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
