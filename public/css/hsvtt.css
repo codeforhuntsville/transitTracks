@@ -52,6 +52,7 @@ a:hover, a:active {
   width: 100%; 
   color: #000;  
   background: #fff;
+	float: right;
 }
 
 @media all and (min-width: 600px) {
