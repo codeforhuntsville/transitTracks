@@ -1,11 +1,13 @@
-tml {
+html {
+	width: 100%;
   height: 100%; 
   margin: 0;
   padding: 0;
 }
 
 body {
-  /*height: 100%;*/ 
+  height: 100%; 
+	width: 100%;
   font-size: 75%;
   font-family: Arial, verdana, Helvetica, Sans-serif;
   /*font-family: "Comic Sans MS", cursive, sans-serif;*/
@@ -58,3 +60,4 @@ a:hover, a:active {
   margin: 10px;
   float: right;
 }
+
