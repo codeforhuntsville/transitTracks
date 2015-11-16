@@ -107,7 +107,7 @@ function findLocations() {
 	Transit.find({pass: process.env.PASS}, function(err, transit) {
 		if( transit[0] ) {
 			latLng[0] = transit[0].lat;
-			latLng[1] = transit[0].lng;
+			latLng[1] = transit[0].long;
 		} else {
 			console.log('DB credentials supplied incorrect');
 		}
