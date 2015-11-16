@@ -110,7 +110,7 @@ function findLocations() {
 		} else {
 			console.log('DB credentials supplied incorrect');
 		}
-	}
+	});
 }
 
 var interval = setInterval(function(){findLocations();},3000);
