@@ -10,7 +10,26 @@ HSV_TT.map.init = function() {
 	  popupAnchor: [1, 1]  
 	}
   });
+  
+   var trolleyIcon = L.Icon.Default.extend({
+	options: {
+	  iconUrl: '/images/trolleyIcon.png',
+      iconSize: [33, 38],
+	  iconAnchor: [16, 19],
+	  popupAnchor: [1, 1]  
+	}
+  });
 
+  //TODO: implement
+  //var shuttleIcon = L.Icon.Default.extend({
+  //  options: {
+  //	  iconUrl: '/images/stopIcon.png',
+  //    iconSize: [16, 19],
+  //	  iconAnchor: [8, 10],
+  //	  popupAnchor: [1, 1]  
+  //	}
+  //});
+  
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     maxZoom: 18,
@@ -33,7 +52,16 @@ HSV_TT.map.init = function() {
    stops.addTo(map);
 }
 
+
 HSV_TT.map.updateLocation = function (vid, latlng) {
-	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lon)
-	//marker.setLatLng([lat, lng]).update();
+	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lon);
+	var mm = HSV_TT.getBusMapMarker(vid); 
+	if (mm) {
+	  mm.setLatLng(latlng).update();
+	} else {
+	  mm = vid == 0 ? new trolleyIcon() : new shuttleIcon()
+      mm.setLatLng(latlng).addToMap;
+      HSV_TT.putBusMapMarker(vid, mm); 	  
+	}
+}
 }
