@@ -1,7 +1,9 @@
 HSV_TT.map = {};
 
+var map = L.map('transitMap').setView([34.731, -86.586], 15);
+
 HSV_TT.map.init = function() {	  
-  var map = L.map('transitMap').setView([34.731, -86.586], 15);
+
   var stopIcon = L.Icon.Default.extend({
 	options: {
 	  iconUrl: '/images/stopIcon.png',
@@ -60,7 +62,7 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	  mm.setLatLng(latlng).update();
 	} else {
 	  //mm = vid == 0 ? trolleyIcon : shuttleIcon();
-	  var mm = L.marker([latlng.lat,latlng.lng]).addTo(map);
+	  var mm = L.marker(latlng, {icon: new trolleyIcon()}).addTo(map);
       HSV_TT.putBusMapMarker(vid, mm); 	  
 	}
 }
