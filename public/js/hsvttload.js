@@ -2,12 +2,12 @@ HSV_TT = {};
   
   // TODO: make a bus prototype here	  
   var buses = [
-    {route: 0, id: 0, marker: "trolley"},
-	{route: 1, id: 1, marker: "bus 1 marker"},
-    {route: 1, id: 2, marker: "bus 2 marker"},
-    {route: 1, id: 3, marker: "bus 3 marker"},
-    {route: 2, id: 4, marker: "bus 4 marker"},
-    {route: 2, id: 5, marker: "bus 5 marker"}
+    {route: 0, id: 0, marker: null},
+	{route: 1, id: 1, marker: null},
+    {route: 1, id: 2, marker: null},
+    {route: 1, id: 3, marker: null},
+    {route: 2, id: 4, marker: null},
+    {route: 2, id: 5, marker: null}
   ];
 
   HSV_TT.getBusMapMarker = function(vid) {
