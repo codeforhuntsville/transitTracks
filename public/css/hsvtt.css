@@ -1,5 +1,5 @@
 html {
-	width: 100%;
+  width: 100%;
   height: 100%; 
   margin: 0;
   padding: 0;
@@ -7,12 +7,12 @@ html {
 
 body {
   height: 100%; 
-	width: 100%;
+  width: 100%;
   font-size: 75%;
   font-family: Arial, verdana, Helvetica, Sans-serif;
   /*font-family: "Comic Sans MS", cursive, sans-serif;*/
   line-height: 1.88889;
-  color: #f00; 
+  color: #555; 
   background: #eee;	
   margin: 0; 
   padding: 0;
@@ -47,13 +47,38 @@ a:hover, a:active {
   color: #433a3a;
 }
 
+#content {
+	width: 400px;
+}
+
+#contentHead {
+  background: #fff;
+  text-align: center;
+}
+
+#contentBody {	
+  height: 200px;
+  width: 400px; 
+  background: #555;
+  padding: 75px;  
+}
+
+#hours {
+  width: 250px;
+  color: #fff;
+  background: #d9201b;
+  margin: 15px;  
+  text-align: center;
+}
+
 #container {
   height: 100%;
   width: 100%; 
   color: #000;  
   background: #fff;
-	float: right;
+  float: right;
 }
+
 
 @media all and (max-width: 499px) {
 	#container {
@@ -88,8 +113,8 @@ a:hover, a:active {
 }
 
 #transitMap { 
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
   margin: 10px;
   float: right;
 }
