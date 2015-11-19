@@ -56,12 +56,12 @@ a:hover, a:active {
   text-align: center;
 }
 
-#contentBody {	
-  height: 200px;
-  width: 400px; 
+/*#contentBody {	
+  height: 100px;
+  width: 270px; 
   background: #555;
   padding: 75px;  
-}
+}*/
 
 #hours {
   width: 250px;
@@ -69,6 +69,7 @@ a:hover, a:active {
   background: #d9201b;
   margin: 15px;  
   text-align: center;
+  margin-left: 75px;
 }
 
 #container {
