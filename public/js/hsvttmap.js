@@ -1,15 +1,18 @@
 HSV_TT.map = {};
 
 var map = null;
+var trolleyHomeLocation = {latlng: {lat: 34.73689, lng: -86.59192} };
+var locationOfQuery = null;
 
 HSV_TT.map.init = function() {	  
   map = L.map('transitMap').setView([34.731, -86.586], 15);
   var stopIcon = L.Icon.Default.extend({
 	options: {
-	  iconUrl: '/images/stopIcon.png',
-      iconSize: [16, 19],
-	  iconAnchor: [8, 10],
-	  popupAnchor: [1, 1]  
+	  iconUrl: '/images/stopIcon4.png',
+      iconSize: [13, 15],
+	  iconAnchor: [0, 10],
+	  popupAnchor: [1, 1],
+      shadowSize: [0,0]	  
 	}
   });
   
@@ -33,15 +36,29 @@ HSV_TT.map.init = function() {
 	}  
    });
    stops.addTo(map);
+   L.control.locate().addTo(map);
+   
+   // experiment ---  TODO
+   map.locate();
+   
+   map.on('locationfound', function(e) {
+     for(var k in e) {
+       console.log(k + " = " + e[k] + "\n");
+	 }
+	 locationOfQuery = e.latlng;
+	 console.log("location of query = " + locationOfQuery.lat + ", " + locationOfQuery.lng);
+	 // TODO when we have sessions set up save this location with the session ID.
+   });
+   //----------------  
 }
 
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
   var trolleyIcon = L.Icon.Default.extend({
 	options: {
-	  iconUrl: '/images/trolleyIcon.png',
+	  iconUrl: '/images/trolleyIcon2.png',
       iconSize: [33, 38],
-	  iconAnchor: [16, 19],
+	  iconAnchor: [0, 19],
 	  popupAnchor: [1, 1]  
 	}
   });

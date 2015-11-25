@@ -67,7 +67,7 @@ app.get('/api/v1/account/:id', function(req, res) {
 app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var transitId = req.params.id;
 	Transit.find({id: transitId}, function( err, transit ) {
-		console.log('Finding if transit exists');
+		console.log('Finding if transit exists: id = ' + transitId);
 		if( transit[0] ) {
 			Transit.find({pass: process.env.PASS}, function( err, transit ) {
 				if( transit[0] ) {
@@ -104,7 +104,7 @@ app.get('/api/v1/trollies/:id/stops', function(req, res) {
 	res.send('Hello world!');
 });
 
-var latLng = [34.73172, -86.58979];
+var latLng = [34.73689, -86.592192];
 
 function findLocations() {
 	console.log('Updating current location');
@@ -133,4 +133,6 @@ io.sockets.on('connection', function(socket) {
 
 http.listen(app.get('port'), function() {
 	console.log('Node app is running on port ', app.get('port'));
+	var d = new Date();
+	console.log('Time: ', + d.getTime() + ', Day:' + d.getDay() + ', Hour:' + d.getHours());
 });
