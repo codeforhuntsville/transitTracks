@@ -57,7 +57,7 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
   var trolleyIcon = L.Icon.Default.extend({
 	options: {
 	  iconUrl: '/images/trolleyIcon2.png',
-      iconSize: [33, 38],
+      iconSize: [25, 30],
 	  iconAnchor: [16, 19],
 	  popupAnchor: [1, 1]  
 	}
