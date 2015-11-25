@@ -58,7 +58,7 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	options: {
 	  iconUrl: '/images/trolleyIcon2.png',
       iconSize: [33, 38],
-	  iconAnchor: [0, 19],
+	  iconAnchor: [16, 19],
 	  popupAnchor: [1, 1]  
 	}
   });
