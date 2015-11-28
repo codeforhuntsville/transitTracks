@@ -67,11 +67,11 @@ app.get('/api/v1/account/:id', function(req, res) {
 app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var transitId = req.params.id;
 	Transit.find({id: transitId}, function( err, transit ) {
-		console.log('Finding if transit exists: id = ' + transitId);
+		console.log('Finding if transit exists: id = ' + transitId + ": " + transit[0]);
 		if( transit[0] ) {
-			Transit.find({pass: process.env.PASS}, function( err, transit ) {
+			Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
-					console.log('Recording location to DB');
+					console.log('Recording location to DB: ' + transit[0].id);
 					transit[0].lat = req.body.lat;
 					transit[0].long = req.body.lon;
 					transit[0].save();
@@ -104,11 +104,14 @@ app.get('/api/v1/trollies/:id/stops', function(req, res) {
 	res.send('Hello world!');
 });
 
-var latLng = [34.73689, -86.592192];
+var latLng = [];
+
+var homeLatLng = [34.73689, -86.592192];
 
 function findLocations() {
-	//console.log('Updating current location');
+	console.log('Updating current location');
 	Transit.find({pass: process.env.PASS}, function(err, transit) {
+		console.log("Getting coords for " + transit.length)
 		if( transit[0] ) {
 			latLng[0] = transit[0].lat;
 			latLng[1] = transit[0].long;
@@ -123,7 +126,7 @@ var interval = setInterval(function(){findLocations();},3000);
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
-		//console.log('location update requested')
+		//console.log('location update requested ')
 		io.emit('location update', latLng);
 	});
     socket.on('disconnect', function() {

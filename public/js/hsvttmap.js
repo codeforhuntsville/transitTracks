@@ -10,8 +10,8 @@ HSV_TT.map.init = function() {
 	options: {
 	  iconUrl: '/images/stopIcon4.png',
       iconSize: [13, 15],
-	  iconAnchor: [0, 10],
-	  popupAnchor: [1, 1],
+	  iconAnchor: [6, 15],
+	  popupAnchor: [0, -15],
       shadowSize: [0,0]	  
 	}
   });
@@ -58,32 +58,41 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	options: {
 	  iconUrl: '/images/trolleyIcon2.png',
       iconSize: [25, 30],
-	  iconAnchor: [16, 19],
+	  iconAnchor: [12, 30],
 	  popupAnchor: [1, 1]  
 	}
   });
-  //  TODO: implement
-  //var shuttleIcon = L.Icon.Default.extend({
-  //  options: {
-  //	  iconUrl: '/images/stopIcon.png',
-  //    iconSize: [16, 19],
-  //	  iconAnchor: [8, 10],
-  //	  popupAnchor: [1, 1]  
-  //	}
-  //});
+  var testIcon = L.Icon.Default.extend({
+	options: {
+	  iconUrl: '/images/testIcon.png',
+      iconSize: [25, 30],
+	  iconAnchor: [12, 30],
+	  popupAnchor: [1, 1]  
+	}
+  });
+  var shuttleIcon = L.Icon.Default.extend({
+	options: {
+	  iconUrl: '/images/shuttleIcon.png',
+      iconSize: [25, 30],
+	  iconAnchor: [12, 30],
+	  popupAnchor: [1, 1]  
+	}
+  });
 
 	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
-      console.log("Have object");
+	  console.log("Have object");
 	  //latlng.lat = latlng.lat + 0.001;  // COOL the marker moves....
 	  mm.setLatLng(latlng).update();
 	} else {
 	  if (vid === 0) {
-	    var mm = L.marker([latlng.lat,latlng.lng], {icon: new trolleyIcon()}).addTo(map);
+		var mm = L.marker([latlng.lat,latlng.lng], {icon: new trolleyIcon()}).addTo(map);
+	  } else if (vid === 999) {
+		var mm = L.marker([latlng.lat,latlng.lng], {icon: new testIcon()}).addTo(map);
 	  } else {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new shuttleIcon()}).addTo(map);
 	  }
-      HSV_TT.putBusMapMarker(vid, mm); 	  
+	  HSV_TT.putBusMapMarker(vid, mm); 	  
 	}
 }
