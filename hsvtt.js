@@ -47,7 +47,7 @@ app.post('/api/v1/account', function(req, res) {
 		if( transit[0] ) {
 			res.send('Account already created');
 		} else {
-			newTransit = new Transit( {id: transitId, lat: 0, long: 0, pass: process.env.PASS} ); 
+			newTransit = new Transit( {id: transitId, lat: 0, long: 0, pass: "pass"} ); 
 			newTransit.save();
 			res.send('Account created');
 		}
@@ -114,7 +114,7 @@ var homeLatLng = [34.73689, -86.592192];
 
 function findLocations() {
 	console.log('Updating current location');
-	Transit.find({pass: process.env.PASS}, function(err, transit) {
+	Transit.find({pass: "pass"}, function(err, transit) {
 		console.log("Getting coords for " + transit.length)
 		if( transit.length > 0 ) {
 			allLocations = transit;

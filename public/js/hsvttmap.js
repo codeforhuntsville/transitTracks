@@ -14,8 +14,8 @@ var trolleyIcon = L.Icon.Default.extend({
 var testIcon = L.Icon.Default.extend({
 	options: {
 	  iconUrl: '/images/testIcon.png',
-      iconSize: [25, 30],
-	  iconAnchor: [12, 30],
+      iconSize: [15, 20],
+	  iconAnchor: [0, -20],
 	  popupAnchor: [1, 1]  
 	}
   });
