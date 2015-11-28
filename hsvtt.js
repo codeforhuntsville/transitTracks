@@ -83,7 +83,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 				}
 			});
 		} else {
-			newTransit = new Transit( {id: transitId, long: req.body.lon, lat: req.body.lat, pass: process.env.PASS } ); 
+			newTransit = new Transit( {id: transitId, long: req.body.lon, lat: req.body.lat, pass: "pass" } ); 
 			newTransit.save();
 			console.log('New bus added');
 		}
