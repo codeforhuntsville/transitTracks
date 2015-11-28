@@ -1,26 +1,27 @@
 HSV_TT = {};
   
-  // TODO: make a bus prototype here	  
-  var buses = [];
+  // TODO: make a bus prototype here
+function bus (id, marker) {
+	this.id = id;
+	this.marker = maker;
+};
+ 
+var buses = [];
 
   HSV_TT.getBusMapMarker = function(vid) {
 	retObj = null;
     for (var i = 0; i < buses.length; i++) { 
       if (buses[i].id === vid) { 
-        retObj = buses[i].marker;
+        rt = buses[i].marker;
 		console.log("Returning map marker...")
-        return retObj;
+        retObj = rt;
       } 
     }
+	return retObj
   };
 
   HSV_TT.putBusMapMarker = function (vid, mapMarker) {
-    for (var i = 0; i < buses.length; i++) { 
-      if (buses[i].id === vid) { 
-        buses[i].marker = mapMarker;
-        break;
-      } 
-    }
+	buses.push(new bus(vid, mapMaker));
   };
   
   HSV_TT.getBusesOnRoute = function (routeId) {
