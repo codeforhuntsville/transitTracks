@@ -17,6 +17,7 @@ var transitSchema = new mongoose.Schema({
 	pass: String
 });
 var Transit = mongoose.model('Transit', transitSchema);
+var allLocations;
 
 app.set('port', (process.env.PORT || 5000));
 
@@ -116,6 +117,7 @@ function findLocations() {
 	Transit.find({pass: process.env.PASS}, function(err, transit) {
 		console.log("Getting coords for " + transit.length)
 		if( transit.length > 0 ) {
+			allLocations = transit;
 			for (var i = 0, len = transit.length; i < len; i++) {
 			  latLng[0] = transit[i].lat;
 			  latLng[1] = transit[i].long;	
@@ -132,7 +134,7 @@ var interval = setInterval(function(){findLocations();},3000);
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 		console.log('location update requested ');
-		io.emit('location update', latLng);
+		io.emit('location update', allLocations;
 	});
     socket.on('disconnect', function() {
       console.log('User disconnected');
