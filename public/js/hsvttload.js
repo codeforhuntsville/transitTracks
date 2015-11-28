@@ -21,7 +21,7 @@ var buses = [];
   };
 
   HSV_TT.putBusMapMarker = function (vid, mapMarker) {
-	buses.push(new bus(vid, mapMaker));
+	buses.push(new bus(vid, mapMarker));
 	console.log("added a bus...");
   };
   
