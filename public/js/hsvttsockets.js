@@ -6,7 +6,7 @@ HSV_TT.sockets.init = function() {
   
   function updateMap() {
     console.log(location['lat'] + ':' + location['lng']);
-    HSV_TT.map.updateLocation(0, location);
+    HSV_TT.map.updateLocation(1, location);
   };
   function receiveUpdates() {
     console.log('Initializing location updates');

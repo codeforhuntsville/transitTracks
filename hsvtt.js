@@ -117,8 +117,8 @@ function findLocations() {
 		console.log("Getting coords for " + transit.length)
 		if( transit.length > 0 ) {
 			for (var i = 0, len = transit.length; i < len; i++) {
-			  latLng[0] = transit[0].lat;
-			  latLng[1] = transit[0].long;	
+			  latLng[0] = transit[i].lat;
+			  latLng[1] = transit[i].long;	
 			}
 		} else {
 			console.log('DB credentials supplied incorrect');
@@ -131,7 +131,7 @@ var interval = setInterval(function(){findLocations();},3000);
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
-		console.log('location update requested ' + JSON.stringify(data));
+		console.log('location update requested ');
 		io.emit('location update', latLng);
 	});
     socket.on('disconnect', function() {
