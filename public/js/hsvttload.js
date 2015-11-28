@@ -3,7 +3,7 @@ HSV_TT = {};
   // TODO: make a bus prototype here
 function bus (id, marker) {
 	this.id = id;
-	this.marker = maker;
+	this.marker = marker;
 };
  
 var buses = [];
@@ -13,15 +13,16 @@ var buses = [];
     for (var i = 0; i < buses.length; i++) { 
       if (buses[i].id === vid) { 
         rt = buses[i].marker;
-		console.log("Returning map marker...")
+		console.log("Returning map marker...");
         retObj = rt;
       } 
     }
-	return retObj
+	return retObj;
   };
 
   HSV_TT.putBusMapMarker = function (vid, mapMarker) {
 	buses.push(new bus(vid, mapMaker));
+	console.log("added a bus...");
   };
   
   HSV_TT.getBusesOnRoute = function (routeId) {
