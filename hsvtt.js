@@ -118,10 +118,6 @@ function findLocations() {
 		console.log("Getting coords for " + transit.length)
 		if( transit.length > 0 ) {
 			allLocations = transit;
-			for (var i = 0, len = transit.length; i < len; i++) {
-			  latLng[0] = transit[i].lat;
-			  latLng[1] = transit[i].long;	
-			}
 		} else {
 			console.log('DB credentials supplied incorrect');
 		}
