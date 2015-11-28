@@ -3,7 +3,31 @@ HSV_TT.map = {};
 var map = null;
 var trolleyHomeLocation = {latlng: {lat: 34.73689, lng: -86.59192} };
 var locationOfQuery = null;
-
+var trolleyIcon = L.Icon.Default.extend({
+	options: {
+	  iconUrl: '/images/trolleyIcon2.png',
+      iconSize: [25, 30],
+	  iconAnchor: [12, 30],
+	  popupAnchor: [1, 1]  
+	}
+  });
+var testIcon = L.Icon.Default.extend({
+	options: {
+	  iconUrl: '/images/testIcon.png',
+      iconSize: [25, 30],
+	  iconAnchor: [12, 30],
+	  popupAnchor: [1, 1]  
+	}
+  });
+var shuttleIcon = L.Icon.Default.extend({
+	options: {
+	  iconUrl: '/images/shuttleIcon.png',
+      iconSize: [25, 30],
+	  iconAnchor: [12, 30],
+	  popupAnchor: [1, 1]  
+	}
+  });
+  
 HSV_TT.map.init = function() {	  
   map = L.map('transitMap').setView([34.731, -86.586], 15);
   var stopIcon = L.Icon.Default.extend({
@@ -54,31 +78,6 @@ HSV_TT.map.init = function() {
 
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
-  var trolleyIcon = L.Icon.Default.extend({
-	options: {
-	  iconUrl: '/images/trolleyIcon2.png',
-      iconSize: [25, 30],
-	  iconAnchor: [12, 30],
-	  popupAnchor: [1, 1]  
-	}
-  });
-  var testIcon = L.Icon.Default.extend({
-	options: {
-	  iconUrl: '/images/testIcon.png',
-      iconSize: [25, 30],
-	  iconAnchor: [12, 30],
-	  popupAnchor: [1, 1]  
-	}
-  });
-  var shuttleIcon = L.Icon.Default.extend({
-	options: {
-	  iconUrl: '/images/shuttleIcon.png',
-      iconSize: [25, 30],
-	  iconAnchor: [12, 30],
-	  popupAnchor: [1, 1]  
-	}
-  });
-
 	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
