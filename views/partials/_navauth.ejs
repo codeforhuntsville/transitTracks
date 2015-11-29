@@ -1,0 +1,42 @@
+<style type='text/css'>
+.main-nav {
+  position: fixed;
+  z-index: 10;
+  top: 0px;
+}
+</style>
+<div>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+        <script>
+                $(function() {
+                        var pull                = $('#pull');
+                                menu            = $('nav ul');
+                                menuHeight      = menu.height();
+
+                        $(pull).on('click', function(e) {
+                                e.preventDefault();
+                                menu.slideToggle();
+                        });
+
+                        $(window).resize(function(){
+                        var w = $(window).width();
+                        if(w > 320 && menu.is(':hidden')) {
+                                menu.removeAttr('style');
+                        }
+                });
+                });
+        </script>
+        <nav class="clearfix main-nav">
+                <ul class="clearfix">
+                        <li class='home'><a href='/'>Home</a></li>
+		    <li><a href="/bylaws">Bylaws</a></li>
+                    <li><a href="/minutes">Minutes</a></li>
+                    <li><a href="/chat">Chat</a></li>
+                    <li><a href="/vote">Vote</a></li>
+		    <li><a href="/auth/logout">Logout</a></li>
+                </ul>
+                <a href="#" id="pull">Menu</a>
+        </nav>
+</div>
+
