@@ -113,7 +113,7 @@ var homeLatLng = [34.73689, -86.592192];
 
 function findLocations() {
 	//console.log('Updating current location');
-	Transit.find({},{id:1,lat:1,long:1,_id:0}, function(err, transit) {
+	Transit.find({__v: 0},{id:1,lat:1,long:1,_id:0}, function(err, transit) {
 		//console.log("Getting coords for " + transit.length)
 		if( transit.length > 0 ) {
 			allLocations = transit;
