@@ -152,7 +152,8 @@ io.sockets.on('connection', function(socket) {
 *Admin Functionality
 *************************************************/
 app.get('/admin', function(req, res) {
-	res.render('pages/admin');
+	var updates = [];
+	res.render('pages/admin', {messages: updates});
 });
 
 app.get('/admin/addevent', function(req, res) {
