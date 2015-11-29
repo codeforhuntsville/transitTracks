@@ -18,6 +18,18 @@ var transitSchema = new mongoose.Schema({
 var Transit = mongoose.model('Transit', transitSchema);
 var allLocations = [];
 
+//Event DB structure
+var eventSchema = new mongoose.Schema({
+	id: Number,
+	time: String,
+	date: String,
+	name: String,
+	desciption: String,
+	xcorr: Number,
+	ycoor: Number
+});
+var Event = mongoose.model('Event', eventSchema);
+
 app.set('port', (process.env.PORT || 5000));
 
 //Setting directory structure
