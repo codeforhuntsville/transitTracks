@@ -16,7 +16,7 @@ HSV_TT.sockets.init = function() {
   function receiveUpdates() {
     console.log('Initializing location updates');
     socket.on('location update', function(data) {
-      console.log('=== New location received: ' + JSON.stringify(data));	  
+      console.log('New locations received: ' + JSON.stringify(data));	  
       updateMap(data);
     });
   }

@@ -13,7 +13,7 @@ var buses = [];
     for (var i = 0; i < buses.length; i++) { 
       if (buses[i].id === vid) { 
         rt = buses[i].marker;
-		console.log("Returning map marker...");
+		//console.log("Returning map marker...");
         retObj = rt;
       } 
     }

@@ -68,7 +68,7 @@ app.get('/api/v1/account/:id', function(req, res) {
 app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var transitId = req.params.id;
 	Transit.find({id: transitId}, function( err, transit ) {
-		//console.log('Finding if transit exists: id = ' + transitId + ": " + transit[0]);
+		console.log('location for vehicle = ' + transitId);
 		if( transit[0] ) {
 			Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
@@ -129,7 +129,7 @@ var interval = setInterval(function(){findLocations();},3000);
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
-		//console.log('location update requested ');
+		console.log('location update requested ');
 		io.emit('location update', allLocations);
 	});
     socket.on('disconnect', function() {
