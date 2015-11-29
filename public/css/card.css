@@ -1,0 +1,32 @@
+/*********************************
+ * This is a card design framework
+ * It uses a simple scheme to make
+ * a card based layout.
+ * ******************************/
+.margin-20 {
+	margin: 20px;
+}
+.card-500 {
+	float: left;
+	text-align: center;
+}
+@media all and (min-width: 0px) {
+	.card-500 {
+		width: 100%;
+	}
+}
+@media all and (min-width: 500px) {
+	.card-500 {
+		width: 50%;
+	}
+}
+@media all and (min-width: 1000px) {
+	.card-500 {
+		width: 33.33%;
+	}
+}
+@media all and (min-width: 1500px) {
+	.card-500 {
+		width: 25%;
+	}
+}
