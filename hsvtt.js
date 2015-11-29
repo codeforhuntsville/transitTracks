@@ -151,7 +151,7 @@ io.sockets.on('connection', function(socket) {
 /*************************************************
 *Admin Functionality
 *************************************************/
-app.get('/admin/', function(req, res) {
+app.get('/admin', function(req, res) {
 	res.render('pages/admin');
 });
 
