@@ -152,7 +152,7 @@ io.sockets.on('connection', function(socket) {
 *Admin Functionality
 *************************************************/
 app.get('/admin/', function(req, res) {
-	res.render('pages/admin.ejs');
+	res.render('pages/admin');
 });
 
 http.listen(app.get('port'), function() {
