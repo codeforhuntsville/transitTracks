@@ -8,7 +8,7 @@ var trolleyIcon = L.Icon.Default.extend({
 	  iconUrl: '/images/trolleyIcon2.png',
       iconSize: [25, 30],
 	  iconAnchor: [12, 30],
-	  popupAnchor: [1, 1]  
+	  popupAnchor: [1, -30]  
 	}
   });
 var testIcon = L.Icon.Default.extend({
@@ -16,7 +16,7 @@ var testIcon = L.Icon.Default.extend({
 	  iconUrl: '/images/testIcon.png',
       iconSize: [15, 20],
 	  iconAnchor: [7, 20],
-	  popupAnchor: [1, 1]  
+	  popupAnchor: [1, -20]  
 	}
   });
 var shuttleIcon = L.Icon.Default.extend({
@@ -24,7 +24,7 @@ var shuttleIcon = L.Icon.Default.extend({
 	  iconUrl: '/images/shuttleIcon.png',
       iconSize: [25, 30],
 	  iconAnchor: [12, 30],
-	  popupAnchor: [1, 1]  
+	  popupAnchor: [1, -30]  
 	}
   });
   
@@ -86,10 +86,13 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	} else {
 	  if (vid === 0) {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new trolleyIcon()}).addTo(map);
+		mm.bindPopup("Trolley id = " + vid);
 	  } else if (vid === 999) {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new testIcon()}).addTo(map);
+		mm.bindPopup("Test Vehicle id = " + vid);
 	  } else {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new shuttleIcon()}).addTo(map);
+		mm.bindPopup("Shuttle id = " + vid);
 	  }
 	  HSV_TT.putBusMapMarker(vid, mm); 	  
 	}
