@@ -1,0 +1,207 @@
+/*
+ * Color Rules:
+ * Dark Primary Color: #FFA000
+ * Primary Color: #FFC107
+ * Light Primary Color: #FFECB3
+ * Text/Icons: #212121
+ * Secondary Text: #727272
+ * Accent color (buttons, unique interactions): #448AFF
+ * Divider color: #B6B6B6
+ */
+
+
+
+
+//Header text
+h1, h2 {
+	color: #FFF;
+}
+
+//Main content text
+h3, p {
+	color: #212121;
+}
+
+li {
+	color: #212121;
+}
+
+//Actionable items color
+.button {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+}
+
+.material-fab {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	width: 60px;
+	height: 60px;
+	border-radius: 100%;
+	font-size: 36px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+	transition:.3s;  
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.material-fab:hover {
+	transform:scale(1.1);
+	transform:rotate(45deg);
+	-ms-transform: rotate(45deg);
+	-webkit-transform: rotate(45deg);
+}
+
+.icon-button {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	background: none;
+}
+
+.icon-button:hover {
+	background: none;
+}
+button:hover {
+	background: #FFA000;
+}
+
+a:hover {
+	color: #FFA000;
+}
+
+a {
+	color: #448AFF;
+	text-decoration: none;
+
+}
+
+form {
+	background-color: #FFC107;
+	color: #727272;
+}
+
+form button {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+}
+
+.input {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	border-radius: 0px;
+}
+form input {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	border-radius: 0px;
+}
+.select {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	border-radius: 0px;
+}
+form select {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	border-radius: 0px;
+}
+.textarea {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	border-radius: 0px;
+}
+form textarea {
+	color: #FFF;
+	background-color: #448AFF;
+	border: none;
+	border-color: none;
+	border-style: none;
+	outline: 0;
+	outline-color: none;
+	border-radius: 0px;
+}
+
+.dark-primary {
+	background-color: #FFA000;
+}
+
+.primary {
+	background-color: #FFC107;
+}
+
+.light-primary {
+	background-color: #FFECB3;
+}
+
+.divider {
+	background-color: #B6B6B6;
+}
+
+.item-list {
+	list-style-type: none;
+}
+
+.item-list li{
+	border-style: solid;
+	border-width: 0px 0px 1px 0px;
+	border-bottom-color: #B6B6B6;
+}
+
+.shadow {
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+/******************************
+ * Page specific CSS
+ * ****************************/
+
+//Chat CSS
+#messages li {
+	padding: 5px 10px;
+}
+#messages  li:nth-chile(odd) {
+	background-color: #FFECB3;
+}

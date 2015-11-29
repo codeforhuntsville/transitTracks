@@ -1,0 +1,42 @@
+html {
+	width: 100%;
+}
+
+body {
+	width: 100%;
+	margin: 0;
+}
+
+img.centered {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+p, h1, h2, h3, h4, a, button {
+	font-family: sans-serif;
+}
+
+p, button {
+	font-size: 16px;
+}
+
+#welcome h1 {
+	padding-top: 10%;
+	color: white;
+	font-weight: bold;
+}
+
+.menu-buffer {
+	height: 60px;
+}
+@media all and (max-width: 600px) {
+	.menu-buffer {
+		height: 94px;
+	}
+}
+@media all and (max-width: 480px) {
+	.menu-buffer {
+		height: 30px;
+	}
+}

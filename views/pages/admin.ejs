@@ -1,8 +1,149 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
-	<head>
-	</head>
-	<body>
-		<h1>This feature is coming soon.</h1>
-	</body>
+<head>
+  <% include ../partials/header.ejs %>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <link href='http://fonts.googleapis.com/css?family=PT+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='css/grid.css' rel='stylesheet' type='text/css'>
+  <link href='css/style.css' rel='stylesheet' type='text/css'>
+  <link href='css/material.css' rel='stylesheet' type='text/css'>
+  <link href='css/nav-style.css' rel='stylesheet' type='text/css'>
+  <link href='css/normalize.css' rel='stylesheet' type='text/css'>
+  <style type='text/css'>
+html, body {
+	height: 100%;
+}
+.auth-h2 {
+	text-align: center;
+	font-size: 30px;
+}
+ul {
+	padding: 0;
+}
+  </style>
+</head>
+<body>
+
+  <% include ../partials/_navauth.ejs %>
+
+  <div class='menu-buffer'></div>
+
+		  <div class='primary shadow'>
+			  <div style='height: 100%' class='shadow'>
+			  	  <div style='height: 10px;' class='light-primary shadow'></div>
+				  <div style='width: 100%; text-align: center;' class='primary'>
+					  <h1 style='font-size: 40px;'>TAG Command Center</h1>
+				  </div>
+			  </div>
+			  <div style='height: 10px;' class='divider'></div>
+		</div>
+      		<div style='textalign: center;'>
+		<div class='primary shadow margin-20'>
+		<div style='padding: 20px;'>
+			<h2 class='auth-h2'>Welcome Agent <%= username %></h2>
+		</div>
+		</div>
+      		</div
+<!-- Start of info grid -->
+<link rel="stylesheet" type="text/css" href="style.css" />
+<style type='text/css'>
+#site-grid a {
+	text-decoration: none;
+	color: black;
+}
+
+/* HOVER COLORS Template: background-color: #cccccc; color: #ffcc00;*/
+#chat-grid:hover {background-color: white;}
+#vote-grid:hover {background-color: white;}
+#minutes-grid:hover {background-color: white;}
+#bylaws-grid:hover {background-color: white;}
+#chat-grid:hover a {color: black;}
+#vote-grid:hover a {color: black;}
+#minutes-grid:hover a {color: black;}
+#bylaws-grid:hover a {color: black;}
+</style>
+
+<div id='site-grid'>
+	<div id='dynamic cards'>
+		<% if ( messages ) { %>
+		<% for (var i = 0; i < messages.length; i++ ) { %>
+      		<div class="card-500" id='chat-grid'>
+			<div class='primary shadow margin-20'>
+			<div style='padding: 20px;'>
+				<h2><%= messages[i][0] %></h2>
+				<div>
+					<p><%= messages[i][1] %></p>
+				</div>
+			</div>
+			</div>
+		</div>
+		<% } %>
+		<% } %>
+	</div>
+      <div class="card-500" id='chat-grid'>
+	<div class='primary shadow margin-20'>
+	<div style='padding: 20px;'>
+	        <h2>Control Menu</h2>
+		<div>
+			<p>
+			<a href='/changepin'><button class='button'>Change password</button></a>
+			</p>
+		</div>
+	</div>
+	</div>
+      </div>
+      <div class="card-500" id='chat-grid'>
+	<div class='primary shadow margin-20'>
+	<div style='padding: 20px;'>
+      	<a href='/chat'>
+          <img src='images/group.svg' class='centered' heigth='20%' width='20%'>
+	        <h2>Chat</h2>
+	        <p>Talking with your fellow TAG members doesn't stop once you leave TAG meetings. Continue socializing, having fun, and answering questions whenever you want through the chat application.</p>
+    	</a>
+	</div>
+	</div>
+      </div>
+      <div class="card-500" id='vote-grid'>
+	<div class='primary shadow margin-20'>
+	<div style='padding: 20px;'>
+      	<a href='/vote'>
+          <img src='images/contacts.svg' class='centered' heigth='20%' width='20%'>
+	        <h2>Vote</h2>
+	        <p>TAG is making its way into the future with a fully online voting and nomination process. With just two clicks you can nominate yourself for a position, and when the time comes, you can just as easliy vote for who you want to fill each position.</p>
+	    </a>
+	</div>
+	</div>
+      </div>
+      <div class="card-500" id='minutes-grid'>
+	<div class='primary shadow margin-20'>
+	<div style='padding: 20px;'>
+      	<a href='/minutes'>
+          <img src='images/edit.svg' class='centered' heigth='20%' width='20%'>
+	        <h2>Minutes</h2>
+	        <p>Wondering what happened at a meeting you missed? Or maybe just wanting to make sure you have a detail about an event right, the TAG minutes allow for all this and much more. You can review all digitized versions of the TAG minutes easily and simply.</p>
+    	</a>
+	</div>
+	</div>
+      </div>
+      <div class="card-500" id='bylaws-grid'>
+	<div class='primary shadow margin-20'>
+	<div style='padding: 20px;'>
+      	<a href='/bylaws'>
+          <img src='images/book.svg' class='centered' heigth='20%' width='20%'>
+	        <h2>Bylaws</h2>
+	        <p>It is important for everyone to know their rights, and you can view the full bylaws on the TAG website. Never again will have to wonder whether your actions are legal.</p>
+    	</a>
+	</div>
+	</div>
+      </div>
+</div>
+<script type='text/javascript'>
+var header = "<div class='card-500' id='chat-grid'><div class='primary shadow margin-20'><div style='padding: 20px;'>"
+var end = "</div></div>
+
+	        <h2>Control Menu</h2>
+		<div>
+</script>
+<!-- End of info grid -->
+</body>
 </html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1'>
+    <title>TAG Signup</title>
+    <link rel='stylesheet' type='text/css' href='/css/style.css' >
+    <link rel="stylesheet" type="text/css" href="/css/grid.css" >
+    <link rel='stylesheet' type='text/css' href='/css/material.css' >
+    <link rel='stylesheet' type='text/css' href='/css/form.css' >
+	</head>
+	<body>
+	<div class='form-center-container'>
+		<div class='form-center shadow primary'>
+			<form id='signup-form' class='form' method='POST' action='/signup'>
+				<div style='height: 10px;'></div>
+				<p>
+					<label for='username-login'>Name<br></br>
+					<input id='username-login' class='shadow' name='name' required autofocus></input>
+					</label>
+				</p>
+				<p>
+					<label for='password-signup'>PIN<br></br>
+					<input type='password' class='shadow' pattern='[0-9]*' maxlength='4' placeholder='1234' name='pin' id='password-signup' required></input>
+					</label>
+				</p>
+				<p>
+					<label for='email-signup'>Email<br></br>
+					<input id='email-signup' class='shadow' name='email' autofocus></input>
+					</label>
+				</p>
+				<p>
+					<label for='group-signup'>Group<br></br>
+						<select name='groupName' class='shadow' id='group-signup'>
+							<option value='Franklin County TAG'>Franklin County TAG</option>
+						</select>
+					</label>
+				</p>
+				<h4 style='text-align: center;'><button class='shadow'>Signup</button></h4>
+				<div style='height: 10px;'></div>
+			</form>
+			<p>Already have an account? <a href='/login'>Login</a></p>
+		</div>
+	</div>
+	</body>
+</html>
