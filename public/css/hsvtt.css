@@ -9,7 +9,8 @@ body {
   height: 100%; 
   width: 100%;
   font-size: 75%;
-  font-family: Arial, verdana, Helvetica, Sans-serif;
+  font-family: Sniglet;
+  /*font-family: Arial, verdana, Helvetica, Sans-serif;*/
   /*font-family: "Comic Sans MS", cursive, sans-serif;*/
   line-height: 1.88889;
   color: #555; 
@@ -52,7 +53,9 @@ a:hover, a:active {
 }
 
 #content {
-	width: 400px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
 
 #contentHead {
@@ -60,34 +63,39 @@ a:hover, a:active {
   text-align: center;
 }
 
-/*#contentBody {	
-  height: 100px;
-  width: 270px; 
-  background: #555;
-  padding: 75px;  
-}*/
+#headerText {
+  display: inline-block;
+  position: relative;
+  top: -13px;
+}
+
+#contentBody {	
+  /*height: 100px;*/
+  /*width: 100%;*/ 
+  background: #555;  
+}
 
 #hours {
-  width: 250px;
+  width: 100%;
   color: #fff;
   background: #d9201b;
-  margin: 15px;  
+  /*margin: 15px;*/  
   text-align: center;
-  margin-left: 75px;
+  /*margin-left: 75px;*/
 }
 
 #container {
-  height: 100%;
+  height: 75%;
   width: 100%; 
   color: #000;  
   background: #fff;
   float: right;
 }
 
-
+/*
 @media all and (max-width: 499px) {
 	#container {
-		height: 80%;
+		height: 75%;
 	}
 }
 
@@ -116,10 +124,63 @@ a:hover, a:active {
 		width: 1200px;
 	}
 }
+*/
+
+#logo img  {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+#logo {
+  width: 81px;
+  height: 81px;
+  display: inline-block;	
+}
 
 #transitMap { 
   width: 100%;
   height: 100%;
-  margin: 10px;
   float: right;
 }
+/*
+h1 {
+	font-family: Sniglet;
+	font-size: 24px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 26.4px;
+}
+h3 {
+	font-family: Sniglet;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 500;
+	line-height: 15.4px;
+}
+p {
+	font-family: Sniglet;
+	font-size: 14px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 20px;
+}
+blockquote {
+	font-family: Sniglet;
+	font-size: 21px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 30px;
+}
+pre {
+	font-family: Sniglet;
+	font-size: 13px;
+	font-style: normal;
+	font-variant: normal;
+	font-weight: 400;
+	line-height: 18.5714px;
+}
+*/

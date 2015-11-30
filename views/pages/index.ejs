@@ -7,24 +7,30 @@
     </script-->
   </head>
   <body>
+    <div id='contentHead'>
+	  <div id='logo'><img src='/images/HAHLogo.png'></div>
+      <div id='headerText'>	  
+	    <h1>Hop Around Huntsville</h1>
+        <br> Ride the Trolley
+	    <br> for <b>FREE</b> through Downtown!
+	  </div>
+	</div>
     <div id='container'>
       <div id="transitMap"></div>
 	</div>
-	<div id='content'>
-	  <div id='contentHead'>
-	    <h1>Hop Around Huntsville</h1>
-		<br> Ride the Trolley
-		<br> for <b>FREE</b> through Downtown!
-	  </div>
-	  <p>
+	<div id='content'>  
 	  <div id="contentBody">
 			<div id='hours'>
-			Scheduled times are on the half hour from
-			5pm 'til Midnight Fridays and Saturdays
+			  Scheduled times are on the half hour from
+			  5pm 'til Midnight<br>
+			  Fridays and Saturdays
+	        </div>
 	  </div>
-	  <div id='footer'>
-	    <% include ../partials/_footer.ejs %>
-	  </div>
+	</div>
+	<div id='footer'>
+	  <% include ../partials/_footer.ejs %>
+	</div>
+	
     <script>
 	  HSV_TT.map.init();
       HSV_TT.sockets.init();

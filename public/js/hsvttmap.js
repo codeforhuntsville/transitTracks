@@ -47,9 +47,11 @@ HSV_TT.map.init = function() {
     accessToken: 'pk.eyJ1IjoiaHN2dHJhbnNpdCIsImEiOiJjaWd4NXR5bDcwdWdiNjVtMHJqajByZ2FwIn0.MGnCx-SYksm4Ia8-4CoWMg'
   }).addTo(map);
   
-  L.geoJson(dt_route).addTo(map);
-
-  stops = L.geoJson(dt_stops, { 
+  var dtRoute = L.geoJson(dt_route).addTo(map);
+  dtRoute.bindPopup("<b>Entertainment Trolley Route</b>" +
+                     "<br><b>Hours of Operation:</b> 5pm to 12am Fridays and Saturdays");
+  
+  var stops = L.geoJson(dt_stops, { 
     pointToLayer: function( feature, latlng ) {
       return L.marker(latlng, {icon: new stopIcon()});
 	},
@@ -86,13 +88,13 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	} else {
 	  if (vid === 0) {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new trolleyIcon()}).addTo(map);
-		mm.bindPopup("Trolley id = " + vid);
+		mm.bindPopup("Entertainment Trolley");
 	  } else if (vid === 999) {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new testIcon()}).addTo(map);
 		mm.bindPopup("Test Vehicle id = " + vid);
 	  } else {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new shuttleIcon()}).addTo(map);
-		mm.bindPopup("Shuttle id = " + vid);
+		mm.bindPopup("Shuttle bus number " + vid);
 	  }
 	  HSV_TT.putBusMapMarker(vid, mm); 	  
 	}
