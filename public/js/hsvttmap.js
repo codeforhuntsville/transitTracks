@@ -29,7 +29,7 @@ var shuttleIcon = L.Icon.Default.extend({
   });
   
 HSV_TT.map.init = function() {	  
-  map = L.map('transitMap').setView([34.731, -86.586], 15);
+  map = L.map('transitMap').setView([34.731, -86.588], 15);
   var stopIcon = L.Icon.Default.extend({
 	options: {
 	  iconUrl: '/images/stopIcon4.png',

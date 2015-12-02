@@ -11,9 +11,17 @@
 	  <div id='logo'><img src='/images/HAHLogo.png'></div>
       <div id='headerText'>	  
 	    <h1>Hop Around Huntsville</h1>
-        <br> Ride the Trolley
-	    <br> for <b>FREE</b> through Downtown!
+        <br> <b>Ride the Trolley</b>
+	    <br> <b>for FREE through Downtown!</b>
 	  </div>
+	  <div id='menu'>
+	  	
+	  	<% include ../partials/_menuPanel.ejs %>
+	  </div>
+	</div>
+	<div id='slideMenu' class='closed'>
+      <% include ../partials/_menuIcon.ejs %>  
+	  <% include ../partials/_menuPanel.ejs %>
 	</div>
     <div id='container'>
       <div id="transitMap"></div>
@@ -30,7 +38,10 @@
 	<div id='footer'>
 	  <% include ../partials/_footer.ejs %>
 	</div>
-	
+	<div id='glass'></div>
+	<div id='menuPopup'>
+	  <% include ../partials/_about.ejs %>
+	  <% include ../partials/_sponsors.ejs %>
     <script>
 	  HSV_TT.map.init();
       HSV_TT.sockets.init();
