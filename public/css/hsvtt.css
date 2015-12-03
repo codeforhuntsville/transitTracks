@@ -33,17 +33,17 @@ h3 {
 
 a:link {  
   text-decoration: none; 
-  color: #433a3a;
+  color: #000;
 }
 
 a:visited {  
   text-decoration: none; 
-  color: #433a3a;
+  color: #000;
 }
 
 a:hover, a:active { 
   text-decoration: underline; 
-  color: #433a3a;
+  color: #000;
 }
 
 #content {
@@ -135,6 +135,7 @@ a:hover, a:active {
 .menuItem:hover {
   color: #fff;
   background: #888;
+  cursor: pointer;
 }
 
 #menuPopup {
@@ -153,6 +154,13 @@ a:hover, a:active {
 	float: right;
 }
 
+#menuPopup:hover img {
+	cursor: pointer;
+	
+}
+
+
+#
 .popupContent {
 	margin-left: 5px;
 }
@@ -164,8 +172,6 @@ a:hover, a:active {
 #about {
 	display: none;
 }
-
-
 
 #credit ul {
 	margin-left: -5px;
@@ -240,9 +246,9 @@ a:hover, a:active {
 		background-color: rgba(238,238,238,0);
 		margin: 10px;
 	}
-	
-	#menuPanel {
-		display: block;
+		
+	#menuIcon:hover {
+		cursor: pointer;
 	}
 	
 	.menuItem {

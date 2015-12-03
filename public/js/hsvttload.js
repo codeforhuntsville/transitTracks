@@ -1,3 +1,11 @@
+HSV_TT = {};
+
+function bus (id, marker) {
+	this.id = id;
+	this.marker = marker;
+};
+ 
+var buses = [];
 
 $(document).ready(function(){
   $('#slideMenu').click(function(){
@@ -49,16 +57,6 @@ $(document).ready(function(){
     $('#menuPopup').css('display','none');
   })
 })
-
-HSV_TT = {};
-
-function bus (id, marker) {
-	this.id = id;
-	this.marker = marker;
-};
- 
-var buses = [];
-
 
 HSV_TT.getBusMapMarker = function(vid) {
   retObj = null;
