@@ -20,8 +20,7 @@ body {
 }
 
 p { 
-  margin-top: 0; 
-  text-align: justify;
+  margin-top: 5px; 
 }
 
 h1 {
@@ -29,10 +28,7 @@ h1 {
 }
 
 h3 { 
-  font: italic normal 1.4em georgia, sans-serif;
-  letter-spacing: 1px; 
-  margin-bottom: 0; 
-  color: #7D775C;
+  margin-bottom: -15px; 
 }
 
 a:link {  
@@ -54,6 +50,7 @@ a:hover, a:active {
     position: fixed;
     bottom: 0;
     width: 100%;
+	z-index: 1100;
 }
 
 #contentHead {
@@ -140,12 +137,71 @@ a:hover, a:active {
   background: #888;
 }
 
+#menuPopup {
+	width: 80%;
+	height: 80%;
+	margin: 0 10% 15%;
+	position: fixed;
+	top: 50px;
+	background: rgba(238,238,238,.9);
+	display: none;
+	line-height: 1.4;
+	overflow-y: auto;
+}
+
+#menuPopup img {
+	float: right;
+}
+
+.popupContent {
+	margin-left: 5px;
+}
+
+.centered {
+  text-align: center;
+}
+
 #about {
 	display: none;
 }
 
+
+
+#credit ul {
+	margin-left: -5px;
+	font-weight: bold;
+}
+
+#credit ul li {
+	margin-left: 15px;
+	font-weight: normal;
+}
+
 #sponsors {
 	display: none;
+}
+
+#logoContainer {
+	float: left;
+	width: 100%;
+	height: 80px;
+}
+
+.sponsorLogo {
+	width: 50%;
+	text-align: center;
+	position: relative;
+}
+
+#rainspace {
+	float: right;
+    top: -68px;
+}
+
+#menuPopup .sponsorLogo img {
+	float: none;
+	width: 64px;
+	height: 64px;
 }
 
 @media all and (max-width: 499px) {
@@ -171,7 +227,7 @@ a:hover, a:active {
       display: block;
 	  width: 120px;
       height: 80px;
-      background-color: rgba(238,238,238,.4);
+      background-color: rgba(238,238,238,.3);
       position: fixed;
       right: -80px;
       top: 0;
@@ -198,7 +254,11 @@ a:hover, a:active {
         margin-bottom: 1px;
         width: 70px;
         text-align: center;		
-	}		
+	}
+
+    .popupContent {
+	    margin-left: 3px;
+    }	
 }
 	
 /*

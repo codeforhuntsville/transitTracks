@@ -1,13 +1,15 @@
 
 $(document).ready(function(){
   $('#slideMenu').click(function(){
+	   if ($('#menuPopup').css('display') != 'none') {
+		 $('#menuPopup').css('display','none');
+	   }
        if ($(this).hasClass('closed')) {       
         $(this).animate({right:"0"},"slow");
 		$('#menuIcon img').attr('src','/images/menuClose.png');
 		$('#menuIcon').css('margin','0');
         $(this).css('width','90px');	
-		$(this).removeClass('closed');
-                
+		$(this).removeClass('closed');        
       } else {
         $(this).animate({right:"-80px"},"slow");
         $(this).css('width','120px');	
@@ -15,6 +17,36 @@ $(document).ready(function(){
     	$('#menuIcon img').attr('src','/images/menuIcon.png');
 	    $(this).addClass('closed');
       }
+  })
+  
+  $(document).on('click', '#aboutItem', function() {
+    $('#menuPopup').css('display','block');
+	$('.leaflet-bottom').css('display','none');
+	if ($('#sponsors').css('display') != 'none') {
+		$('#sponsors').css('display','none');
+	}
+    $('#about').css('display','block');	      
+  })
+  
+  $(document).on('click', '#menuPopup img', function() {
+    $('#about').css('display','none');	      
+	$('.leaflet-bottom').css('display','block');
+    $('#menuPopup').css('display','none');
+  })
+  
+  $(document).on('click', '#sponsorsItem', function() {
+    $('#menuPopup').css('display','block');
+	$('.leaflet-bottom').css('display','none');
+	if ($('#about').css('display') != 'none') {
+		$('#about').css('display','none');
+	}
+    $('#sponsors').css('display','block');	      
+  })
+  
+  $(document).on('click', '#menuPopup img', function() {
+    $('#sponsors').css('display','none');	      
+	$('.leaflet-bottom').css('display','block');
+    $('#menuPopup').css('display','none');
   })
 })
 
