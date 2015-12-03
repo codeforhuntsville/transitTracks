@@ -56,6 +56,14 @@ $(document).ready(function(){
 	$('.leaflet-bottom').css('display','block');
     $('#menuPopup').css('display','none');
   })
+  
+  $('#rainspace').click(function() {
+   window.open('http://www.rainspace.com/','_black');
+  })
+  
+  $('#figleaf').click(function() {
+   window.open('http://www.figleafcostumes.com/','_blank');
+  })
 })
 
 HSV_TT.getBusMapMarker = function(vid) {

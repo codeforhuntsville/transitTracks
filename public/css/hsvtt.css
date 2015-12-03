@@ -159,10 +159,8 @@ a:hover, a:active {
 	
 }
 
-
-#
 .popupContent {
-	margin-left: 5px;
+	margin-left: 5%;
 }
 
 .centered {
@@ -263,7 +261,7 @@ a:hover, a:active {
 	}
 
     .popupContent {
-	    margin-left: 3px;
+	    margin: 3%;
     }	
 }
 	
