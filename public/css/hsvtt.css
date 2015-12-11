@@ -58,6 +58,10 @@ a:hover, a:active {
   margin-left: 15%;
 }
 
+#contentHead h1 {
+	margin-bottom: 0;
+}
+
 #headerText {
   display: inline-block;
   text-align: center;
@@ -76,6 +80,11 @@ a:hover, a:active {
   color: #fff;
   background: #d9201b;
   text-align: center;
+}
+
+#schedule {
+	color: #fff;
+	line-height: 1.9;
 }
 
 #container {
@@ -195,6 +204,33 @@ a:hover, a:active {
 	width: 50%;
 	text-align: center;
 	position: relative;
+}
+
+#support {
+	position: relative;
+    bottom: -10px;
+}
+
+#cohImg {
+	height: 60px;
+    width: 100px;
+	display: inline-block;
+}
+
+#cohTxt {
+	height: 60px;
+    width: 100px;
+	display: inline-block;
+}
+
+#credit h3 {
+	margin-bottom: 0;
+}
+
+.cityLogo {
+	float: none;
+    /*position: relative;
+    top: 15px;*/
 }
 
 #rainspace {

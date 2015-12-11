@@ -64,6 +64,11 @@ $(document).ready(function(){
   $('#figleaf').click(function() {
    window.open('http://www.figleafcostumes.com/','_blank');
   })
+  
+  $('#cohImg').click(function() {
+   window.open('http://www.huntsvilleal.gov/publictran/public_trans.php/','_blank');
+  })
+  
 })
 
 HSV_TT.getBusMapMarker = function(vid) {

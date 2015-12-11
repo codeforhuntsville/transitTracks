@@ -108,7 +108,7 @@ app.get('/api/v1/trolly/:id/location', function(req, res) {
 });
 
 //Gets status of trollies
-app.get('/api/v1/trollies', function(req, re) {
+app.get('/api/v1/trollies', function(req, res) {
 	res.send('Hello world!');
 });
 
