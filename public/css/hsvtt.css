@@ -248,7 +248,7 @@ a:hover, a:active {
 	height: 64px;
 }
 
-@media all and (max-width: 499px) {
+@media all and (max-width: 650px) {
 	#contentHead {
 		margin-left: 3%;
 	}

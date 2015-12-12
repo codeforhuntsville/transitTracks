@@ -17,7 +17,6 @@ HSV_TT.ui.showSchedule = function() {
 			  'Stops at &nbsp;' + dt_stops.features[i].properties.time + 
 	          '&nbsp; at ' + dt_stops.features[i].properties.stop_locat + 
 	    '</li>');
-	  
 	}
     $('#stopTimes').css('display','block');
 };

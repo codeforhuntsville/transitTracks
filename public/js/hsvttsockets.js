@@ -16,14 +16,14 @@ HSV_TT.sockets.init = function() {
   function receiveUpdates() {
     console.log('Initializing location updates');
     socket.on('location update', function(data) {
-      console.log('New locations received: ' + JSON.stringify(data));	  
+      //console.log('New locations received: ' + JSON.stringify(data));	  
       updateMap(data);
     });
   }
   receiveUpdates();
   function updateLocation() {
     socket.emit('get location');
-    console.log('Location request sent');
+    //console.log('Location request sent');
   };
   var interval = setInterval(function(){updateLocation();}, 3000);
 };

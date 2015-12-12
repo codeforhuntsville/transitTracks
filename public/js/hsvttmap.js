@@ -81,7 +81,7 @@ HSV_TT.map.init = function() {
 
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
-	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
+	//console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
 	  //console.log("Have marker object");

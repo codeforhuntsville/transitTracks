@@ -65,8 +65,16 @@ $(document).ready(function(){
    window.open('http://www.huntsvilleal.gov/publictran/public_trans.php/','_blank');
   })
   
-  //console.log("stops: " + dt_stops);
-  
+  $(window).resize(function() {
+	  var bh = $('body').height();
+	  var chh = $('#contentHead').height();
+	  var ch = $('#content').height();	  
+	  //console.log('Body height: ' + bh);
+	  //console.log('CHead height: ' + chh);
+	  //console.log('bottom height: ' + ch);	  
+	  //console.log('transitMap should be: ' + (bh - (chh+ch)));
+	  $('#transitMap').height(bh - (chh+ch));
+  })
 })
 
 closeMenu = function() {
