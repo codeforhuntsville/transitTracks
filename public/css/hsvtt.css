@@ -87,6 +87,10 @@ a:hover, a:active {
 	line-height: 1.9;
 }
 
+#schedule:hover {
+  cursor: pointer;
+}
+
 #container {
   height: 75%;
   width: 100%; 

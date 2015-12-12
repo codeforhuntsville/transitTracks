@@ -10,7 +10,7 @@ var dt_stops = {
           "stop_seque": "A",
           "fid": 442,
           "time": ":30 and :00",
-          "stop_locat": "Clinton Garage O",
+          "stop_locat": "Clinton Garage ",
           "structure": "none"
         }
      },

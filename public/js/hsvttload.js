@@ -27,36 +27,32 @@ $(document).ready(function(){
       }
   })
   
+  $(document).on('click', '#schedule', function() {
+    showSchedule();	      
+  })
+
+  $(document).on('click', '#scheduleItem', function() {
+    showSchedule();	      
+  })	  
+  
   $(document).on('click', '#aboutItem', function() {
     $('#menuPopup').css('display','block');
 	$('.leaflet-bottom').css('display','none');
-	if ($('#sponsors').css('display') != 'none') {
-		$('#sponsors').css('display','none');
-	}
+	$('.popupContent').css('display','none');
     $('#about').css('display','block');	      
   })
-  
-  $(document).on('click', '#menuPopup img', function() {
-    $('#about').css('display','none');	      
-	$('.leaflet-bottom').css('display','block');
-    $('#menuPopup').css('display','none');
-  })
-  
+    
   $(document).on('click', '#sponsorsItem', function() {
     $('#menuPopup').css('display','block');
 	$('.leaflet-bottom').css('display','none');
-	if ($('#about').css('display') != 'none') {
-		$('#about').css('display','none');
-	}
+	$('.popupContent').css('display','none');
     $('#sponsors').css('display','block');	      
   })
   
   $(document).on('click', '#menuPopup img', function() {
-    $('#sponsors').css('display','none');	      
-	$('.leaflet-bottom').css('display','block');
-    $('#menuPopup').css('display','none');
+    closeMenu();
   })
-  
+    
   $('#rainspace').click(function() {
    window.open('http://www.rainspace.com/','_black');
   })
@@ -69,7 +65,17 @@ $(document).ready(function(){
    window.open('http://www.huntsvilleal.gov/publictran/public_trans.php/','_blank');
   })
   
+  //console.log("stops: " + dt_stops);
+  
 })
+
+closeMenu = function() {
+  HSV_TT.ui.closeMenu();
+};
+
+showSchedule = function() {
+  HSV_TT.ui.showSchedule();
+}
 
 HSV_TT.getBusMapMarker = function(vid) {
   retObj = null;
