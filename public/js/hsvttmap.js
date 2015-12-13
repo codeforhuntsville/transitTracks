@@ -78,7 +78,10 @@ HSV_TT.map.init = function() {
    //----------------  
 }
 
-
+HSV_TT.map.recenterMap = function(lngLat) {
+	//console.log('long: ' + lngLat[0] + ' lat: ' + lngLat[1]);
+	map.panTo(new L.LatLng(lngLat[1], lngLat[0]));
+}
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
 	//console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);

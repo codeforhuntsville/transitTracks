@@ -35,6 +35,11 @@ $(document).ready(function(){
     showSchedule();	      
   })	  
   
+  $(document).on('click', '.aStop', function() {
+    //console.log('loc: ' + $(this).attr('data'));
+    HSV_TT.locateStop($(this).attr('data'));	
+  })
+  
   $(document).on('click', '#aboutItem', function() {
     $('#menuPopup').css('display','block');
 	$('.leaflet-bottom').css('display','none');
@@ -83,6 +88,12 @@ closeMenu = function() {
 
 showSchedule = function() {
   HSV_TT.ui.showSchedule();
+}
+
+HSV_TT.locateStop = function(data) {
+	//var cords = data.split(",");
+	//console.log('long: ' + cords[0] + ' lat: ' + cords[1]);
+	HSV_TT.map.recenterMap(data.split(","));
 }
 
 HSV_TT.getBusMapMarker = function(vid) {

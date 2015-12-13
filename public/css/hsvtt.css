@@ -248,6 +248,10 @@ a:hover, a:active {
 	height: 64px;
 }
 
+.aStop:hover {
+	cursor: pointer;
+}
+
 @media all and (max-width: 650px) {
 	#contentHead {
 		margin-left: 3%;

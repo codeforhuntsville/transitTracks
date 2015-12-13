@@ -13,9 +13,9 @@ HSV_TT.ui.showSchedule = function() {
 	$('#stopList').empty();
 	for (var i = 0; i < dt_stops.features.length; i++) {
 	  //console.log('Stops ' + dt_stops.features[i].properties.time);
-	  $('#stopList').append('<li>' + 
-			  'Stops at &nbsp;' + dt_stops.features[i].properties.time + 
-	          '&nbsp; at ' + dt_stops.features[i].properties.stop_locat + 
+	  $('#stopList').append('<li class="aStop" data="'+ dt_stops.features[i].geometry.coordinates +'">' + 
+			  'Stops at &nbsp;' + dt_stops.features[i].properties.stop_locat + 
+	          '&nbsp; at ' + dt_stops.features[i].properties.time + 
 	    '</li>');
 	}
     $('#stopTimes').css('display','block');
