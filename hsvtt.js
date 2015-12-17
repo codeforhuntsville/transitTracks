@@ -16,6 +16,7 @@ var transitSchema = new mongoose.Schema({
 	lat: Number,
 });
 var Transit = mongoose.model('Transit', transitSchema);
+
 var allLocations = [];
 
 //Event DB structure
