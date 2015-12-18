@@ -9,6 +9,7 @@ var routeNames = [['Downtown','green']];
 //                ['Route 8',someColor],['Route 9',someColor],['UAH',someColor];
 //----------------------------------------------
 var routeLayers = [];
+var stopLocationCircle = null;
 				  
 var trolleyHomeLocation = {latlng: {lat: 34.73689, lng: -86.59192} };
 var locationOfQuery = null;
@@ -98,6 +99,18 @@ HSV_TT.map.init = function() {
 HSV_TT.map.recenterMap = function(lngLat) {
 	//DEBUG console.log('long: ' + lngLat[0] + ' lat: ' + lngLat[1]);
 	map.panTo(new L.LatLng(lngLat[1], lngLat[0]));
+	HSV_TT.map.stopLocateMark(lngLat);
+}
+
+HSV_TT.map.stopLocateMark = function(lngLat) {
+  if (stopLocationCircle) {
+    map.removeLayer(stopLocationCircle);
+  }
+  stopLocationCircle = L.circle([lngLat[1], lngLat[0]], 15, {
+    color: 'red',
+    fillColor: '#f03',
+    fillOpacity: 0.8
+  }).addTo(map);
 }
 
 HSV_TT.map.updateLocation = function (vid, latlng) {

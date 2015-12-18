@@ -252,6 +252,10 @@ a:hover, a:active {
 	cursor: pointer;
 }
 
+.link:hover {
+	cursor: pointer;
+}
+
 @media all and (max-width: 650px) {
 	#contentHead {
 		margin-left: 3%;

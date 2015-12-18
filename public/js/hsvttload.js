@@ -56,27 +56,32 @@ $(document).ready(function(){
   $(document).on('click', '#menuPopup img', function() {
     HSV_TT.closeMenu();
   })
-    
-  $('#rainspace').click(function() {
-   window.open('http://www.rainspace.com/','_black');
+ 
+  $('.link').click(function() {
+   window.open($(this).attr("data"),'_black');
+   HSV_TT.closeMenu();
   })
+   
+  //$('#rainspace').click(function() {
+  // window.open('http://www.rainspace.com/','_black');
+  //})
   
-  $('#figleaf').click(function() {
-   window.open('http://www.figleafcostumes.com/','_blank');
-  })
+  //$('#figleaf').click(function() {
+  // window.open('http://www.figleafcostumes.com/','_blank');
+  //})
   
-  $('#cohImg').click(function() {
-   window.open('http://www.huntsvilleal.gov/publictran/public_trans.php/','_blank');
-  })
+  //$('#cohImg').click(function() {
+  // window.open('http://www.huntsvilleal.gov/publictran/public_trans.php/','_blank');
+  //})
   
   $(window).resize(function() {
 	  var bh = $('body').height();
 	  var chh = $('#contentHead').height();
 	  var ch = $('#content').height();	  
-	  //console.log('Body height: ' + bh);
-	  //console.log('CHead height: ' + chh);
+	  //DEBUG console.log('Body height: ' + bh);
+	  //DEBUG console.log('CHead height: ' + chh);
 	  //console.log('bottom height: ' + ch);	  
-	  //console.log('transitMap should be: ' + (bh - (chh+ch)));
+	  //DEBUG cDEBUG onsole.log('transitMap should be: ' + (bh - (chh+ch)));
 	  $('#transitMap').height(bh - (chh+ch));
   })
 })
@@ -93,6 +98,7 @@ HSV_TT.locateStop = function(data) {
 	//var cords = data.split(",");
 	//console.log('long: ' + cords[0] + ' lat: ' + cords[1]);
 	HSV_TT.map.recenterMap(data.split(","));
+	HSV_TT.ui.closeMenu();
 }
 
 HSV_TT.getBusMapMarker = function(vid) {
