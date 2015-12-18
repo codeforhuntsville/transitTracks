@@ -74,13 +74,13 @@ HSV_TT.map.init = function() {
    });
    stops.addTo(map);
    map.addLayer(overlayMaps['Downtown']);
+   L.control.locate().addTo(map);
    // experimental ---  TODO
    /*
    L.control.layers(null, overlayMaps).addTo(map); THIS ALL works... will implement w/ full system
    map.addLayer(overlayMaps['Red Coreloop']); 
    map.addLayer(overlayMaps['Blue Coreloop']);
    map.removeLayer(overlayMaps['Blue Coreloop']);  
-   L.control.locate().addTo(map);
    // experiment ---  TODO
    map.locate();
    
