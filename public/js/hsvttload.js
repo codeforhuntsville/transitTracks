@@ -28,15 +28,14 @@ $(document).ready(function(){
   })
   
   $(document).on('click', '#schedule', function() {
-    showSchedule();	      
+    HSV_TT.showSchedule();	
   })
 
   $(document).on('click', '#scheduleItem', function() {
-    showSchedule();	      
+    HSV_TT.showSchedule();	      
   })	  
   
   $(document).on('click', '.aStop', function() {
-    //console.log('loc: ' + $(this).attr('data'));
     HSV_TT.locateStop($(this).attr('data'));	
   })
   
@@ -55,7 +54,7 @@ $(document).ready(function(){
   })
   
   $(document).on('click', '#menuPopup img', function() {
-    closeMenu();
+    HSV_TT.closeMenu();
   })
     
   $('#rainspace').click(function() {
@@ -82,11 +81,11 @@ $(document).ready(function(){
   })
 })
 
-closeMenu = function() {
+HSV_TT.closeMenu = function() {
   HSV_TT.ui.closeMenu();
 };
 
-showSchedule = function() {
+HSV_TT.showSchedule = function() {
   HSV_TT.ui.showSchedule();
 }
 

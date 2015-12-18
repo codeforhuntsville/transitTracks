@@ -1,6 +1,15 @@
 HSV_TT.map = {};
 
 var map = null;
+// this needs to go in JSON file.. ------------
+var routeNames = [['Downtown','green']];
+//                ['Blue Coreloop','blue'],
+//                ['Red Coreloop','red'],['Route 3',someColor],['Route 4',someColor],
+//                ['Route 5',someColor],['Route 6',someColor],['Route 7',someColor],
+//                ['Route 8',someColor],['Route 9',someColor],['UAH',someColor];
+//----------------------------------------------
+var routeLayers = [];
+				  
 var trolleyHomeLocation = {latlng: {lat: 34.73689, lng: -86.59192} };
 var locationOfQuery = null;
 var trolleyIcon = L.Icon.Default.extend({
@@ -46,24 +55,31 @@ HSV_TT.map.init = function() {
     id: 'hsvtransit.cigx5tx9c0u474mm3jqvacywa',
     accessToken: 'pk.eyJ1IjoiaHN2dHJhbnNpdCIsImEiOiJjaWd4NXR5bDcwdWdiNjVtMHJqajByZ2FwIn0.MGnCx-SYksm4Ia8-4CoWMg'
   }).addTo(map);
-  
-  var dtRoute = L.geoJson(dt_route).addTo(map);
-  dtRoute.bindPopup("<b>Entertainment Trolley Route</b>" +
+
+  var overlayMaps = HSV_TT.map.createRouteLayers(routeNames);
+  // TODO this is ackward - change at some point ------
+  overlayMaps['Downtown'].bindPopup("<b>Entertainment Trolley Route</b>" +
                      "<br><b>Hours of Operation:</b> 5pm to 12am Fridays and Saturdays");
-  
-  var stops = L.geoJson(dt_stops, { 
+  //---------------------------------------------------
+  var stops = L.geoJson(HSV_TT.ui.getStops('Downtown'), { 
     pointToLayer: function( feature, latlng ) {
       return L.marker(latlng, {icon: new stopIcon()});
 	},
    	onEachFeature: function (feature, layer) {
-	  layer.bindPopup("<b>Stop:</b> " + feature.properties.stop_seque + 
+	  layer.bindPopup("<b>Stop:</b> " + feature.properties.stop_sequence + 
 		              "<br><b>Scheduled Time:</b> " + feature.properties.time +
-					  "<br><b>Location:</b> " + feature.properties.stop_locat );
+					  "<br><b>Location:</b> " + feature.properties.stop_location );
 	}  
    });
    stops.addTo(map);
+   map.addLayer(overlayMaps['Downtown']);
+   // experimental ---  TODO
+   /*
+   L.control.layers(null, overlayMaps).addTo(map); THIS ALL works... will implement w/ full system
+   map.addLayer(overlayMaps['Red Coreloop']); 
+   map.addLayer(overlayMaps['Blue Coreloop']);
+   map.removeLayer(overlayMaps['Blue Coreloop']);  
    L.control.locate().addTo(map);
-   
    // experiment ---  TODO
    map.locate();
    
@@ -75,19 +91,20 @@ HSV_TT.map.init = function() {
 	 console.log("location of query = " + locationOfQuery.lat + ", " + locationOfQuery.lng);
 	 // TODO when we have sessions set up save this location with the session ID.
    });
+   */
    //----------------  
 }
 
 HSV_TT.map.recenterMap = function(lngLat) {
-	//console.log('long: ' + lngLat[0] + ' lat: ' + lngLat[1]);
+	//DEBUG console.log('long: ' + lngLat[0] + ' lat: ' + lngLat[1]);
 	map.panTo(new L.LatLng(lngLat[1], lngLat[0]));
 }
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
-	//console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
+	//DEBUG console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
-	  //console.log("Have marker object");
+	  //DEBUG console.log("Have marker object");
 	  mm.setLatLng(latlng).update();
 	} else {
 	  if (vid === 0) {
@@ -101,5 +118,37 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 		mm.bindPopup("Shuttle bus number " + vid);
 	  }
 	  HSV_TT.putBusMapMarker(vid, mm); 	  
-	}
+	}	
+}
+
+HSV_TT.map.createRouteLayers = function(routeNames) {
+	var obj = {};
+	for (var i = 0; i < routeNames.length; i++) {
+	  console.log('layer: ' + routeNames[i][0]);
+	  
+	  var rnom = routeNames[i][0];
+	  obj[rnom] = L.geoJson(HSV_TT.ui.getRoutes(routeNames[i][0]),{
+	    style: {
+	             //weight: 2,
+                 opacity: .6,
+                 color: routeNames[i][1]
+                 //dashArray: '3',
+                 //fillOpacity: 0.3,
+                 //fillColor: '#ff0000'
+			   }
+	  })
+	}	
+	//DEBUG console.log('layers: ' + obj.length);;
+	return obj;
+}
+
+// this function does not order the routes correctly don't use
+HSV_TT.map.getRouteNames = function() {
+  var flags = [], output = [], l = allRoutes.features.length, i;
+    for( i=0; i<l; i++) {
+      if( flags[allRoutes.features[i].properties.routename]) continue;
+      flags[allRoutes.features[i].properties.routename] = true;
+      output.push(allRoutes.features[i].properties.routename);
+  }
+  console.log('Names: ' + output);
 }
