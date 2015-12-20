@@ -1,13 +1,16 @@
 HSV_TT.map = {};
 
 var map = null;
-// this needs to go in JSON file.. ------------
+
+// this needs to go in JSON file... ------------
 var routeNames = [['Downtown','green']];
-//                ['Blue Coreloop','blue'],
-//                ['Red Coreloop','red'],['Route 3',someColor],['Route 4',someColor],
-//                ['Route 5',someColor],['Route 6',someColor],['Route 7',someColor],
-//                ['Route 8',someColor],['Route 9',someColor],['UAH',someColor];
+//                need to coordinate route color scheme with city transit scheme....   
+//                ['Blue Coreloop','blue'],['Red Coreloop','red'],['Route 3',someColor],
+//                ['Route 4',someColor],['Route 5',someColor],['Route 6',someColor],
+//                ['Route 7',someColor],['Route 8',someColor],['Route 9',someColor],
+//                ['UAH',someColor];
 //----------------------------------------------
+
 var routeLayers = [];
 var stopLocationCircle = null;
 				  
@@ -15,7 +18,7 @@ var trolleyHomeLocation = {latlng: {lat: 34.73689, lng: -86.59192} };
 var locationOfQuery = null;
 var trolleyIcon = L.Icon.Default.extend({
 	options: {
-	  iconUrl: '/images/trolleyIcon2.png',
+	  iconUrl: '/images/trolleyIcon3.png',
       iconSize: [25, 30],
 	  iconAnchor: [12, 30],
 	  popupAnchor: [1, -30]  
@@ -73,15 +76,16 @@ HSV_TT.map.init = function() {
 	}  
    });
    stops.addTo(map);
-   map.addLayer(overlayMaps['Downtown']);
+   map.addLayer(overlayMaps['Downtown']); // will work with an array of route names
    L.control.locate().addTo(map);
-   // experimental ---  TODO
+   // Full sytem  ---  TODO
    /*
-   L.control.layers(null, overlayMaps).addTo(map); THIS ALL works... will implement w/ full system
-   map.addLayer(overlayMaps['Red Coreloop']); 
-   map.addLayer(overlayMaps['Blue Coreloop']);
-   map.removeLayer(overlayMaps['Blue Coreloop']);  
+   
+   THIS ALL works... will implement w/ full system
+   L.control.layers(null, overlayMaps).addTo(map); // check box control for turning on route maps
+   
    // experiment ---  TODO
+
    map.locate();
    
    map.on('locationfound', function(e) {
@@ -137,10 +141,11 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 HSV_TT.map.createRouteLayers = function(routeNames) {
 	var obj = {};
 	for (var i = 0; i < routeNames.length; i++) {
-	  console.log('layer: ' + routeNames[i][0]);
+	  //DEBUG console.log('layer: ' + routeNames[i][0]);
 	  
 	  var rnom = routeNames[i][0];
-	  obj[rnom] = L.geoJson(HSV_TT.ui.getRoutes(routeNames[i][0]),{
+	  //obj[rnom] = L.geoJson(HSV_TT.ui.getRoutes(routeNames[i][0]),{ 
+	  obj[rnom] = L.geoJson(HSV_TT.ui.getRoutes(rnom),{
 	    style: {
 	             //weight: 2,
                  opacity: .6,

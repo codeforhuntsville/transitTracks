@@ -22,6 +22,8 @@ HSV_TT.ui.showSchedule = function() {
     $('#stopTimes').css('display','block');
 };
 
+// I think we need a HSV_TT.data javascript js... of data manipulation functions the two function below should go there...
+
 HSV_TT.ui.getStops = function(routename) {
 	var _stops = $.grep(allStops.features, function(o, i) {
 		return o.properties.routename === routename;
