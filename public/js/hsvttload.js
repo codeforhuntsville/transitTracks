@@ -53,6 +53,13 @@ $(document).ready(function(){
     $('#sponsors').css('display','block');	      
   })
   
+  $(document).on('click', '#disPage', function() {
+    $('#menuPopup').css('display','block');
+	$('.leaflet-bottom').css('display','none');
+	$('.popupContent').css('display','none');
+    $('#terms').css('display','block');	      
+  })
+  
   $(document).on('click', '#menuPopup img', function() {
     HSV_TT.closeMenu();
   })
@@ -63,7 +70,7 @@ $(document).ready(function(){
   })
    
   //$('#rainspace').click(function() {
-  // window.open('http://www.rainspace.com/','_black');
+  // window.open('http://www.rainspace.com/','_blank');
   //})
   
   //$('#figleaf').click(function() {
@@ -74,7 +81,12 @@ $(document).ready(function(){
   // window.open('http://www.huntsvilleal.gov/publictran/public_trans.php/','_blank');
   //})
   
-  $(window).resize(function() {
+  $(window).resize(HSV_TT.fitWindow);
+  
+  HSV_TT.fitWindow();
+})
+
+HSV_TT.fitWindow = function() {
 	  var bh = $('body').height();
 	  var chh = $('#contentHead').height();
 	  var ch = $('#content').height();	  
@@ -83,8 +95,7 @@ $(document).ready(function(){
 	  //console.log('bottom height: ' + ch);	  
 	  //DEBUG cDEBUG onsole.log('transitMap should be: ' + (bh - (chh+ch)));
 	  $('#transitMap').height(bh - (chh+ch));
-  })
-})
+};
 
 HSV_TT.closeMenu = function() {
   HSV_TT.ui.closeMenu();

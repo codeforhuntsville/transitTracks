@@ -75,11 +75,19 @@ a:hover, a:active {
   background: #555;  
 }
 
-#hours {
+#disPage {
   width: 100%;
   color: #fff;
   background: #d9201b;
   text-align: center;
+}
+
+#disPage:hover {
+	cursor: pointer;
+}
+
+.disclaimer {
+	margin: 25px;
 }
 
 #schedule {
