@@ -213,9 +213,10 @@ a:hover, a:active {
 }
 
 .sponsorLogo {
-	width: 50%;
+	width: 33%;
 	text-align: center;
-	position: relative;
+	/*position: relative;*/
+	display: inline-block;
 }
 
 #support {
@@ -245,10 +246,10 @@ a:hover, a:active {
     top: 15px;*/
 }
 
-#rainspace {
+/*#rainspace {
 	float: right;
     top: -68px;
-}
+}*/
 
 #menuPopup .sponsorLogo img {
 	float: none;
