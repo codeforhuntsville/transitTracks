@@ -8,5 +8,5 @@ The Rocket Hatch Creative Community Web app
 Our Open source prototype project is now on **Heroku**<br>
 **[Hop Around Huntsville] (http://HopAroundHuntsville.com)**<p>
 
-<i><b>This open source project for **[Code for Hntsville] (http://CodeForHuntsville.com)** is looking for project team members.</b></i>  
+<i><b>This open source project for **[Code for Huntsville] (http://CodeForHuntsville.org)** is looking for project team members.</b></i>  
 
