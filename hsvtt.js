@@ -10,6 +10,7 @@ var bodyParser = require('body-parser');
 //Setup DB
 mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
 
+//Shuttle/trolly/auto DB setup
 var transitSchema = new mongoose.Schema({
 	id: Number,
 	long: Number,
@@ -59,7 +60,7 @@ app.post('/api/v1/account', function(req, res) {
 		if( transit[0] ) {
 			res.send('Account already created');
 		} else {
-			newTransit = new Transit( {id: transitId, lat: 0, long: 0} ); 
+			newTransit = new Transit( {id: transitId, lat: 0, long: 0} );
 			newTransit.save();
 			res.send('Account created');
 		}
@@ -95,7 +96,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 				}
 			});
 		} else {
-			newTransit = new Transit( {id: transitId, long: req.body.lon, lat: req.body.lat} ); 
+			newTransit = new Transit( {id: transitId, long: req.body.lon, lat: req.body.lat} );
 			newTransit.save();
 			//console.log('New bus added');
 		}
@@ -151,7 +152,9 @@ io.sockets.on('connection', function(socket) {
 
 /*************************************************
 *Admin Functionality
+*WARNING: Suspending development of section indefinitely
 *************************************************/
+/*
 app.get('/admin', function(req, res) {
 	var updates = [];
 	res.render('pages/admin', {messages: updates});
@@ -160,7 +163,9 @@ app.get('/admin', function(req, res) {
 app.get('/admin/addevent', function(req, res) {
 	res.render('pages/eventadd');
 });
+*/
 
+// Opening server to requests
 http.listen(app.get('port'), function() {
 	console.log('Node app is running on port ', app.get('port'));
 	var d = new Date();
