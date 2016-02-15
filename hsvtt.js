@@ -2,6 +2,7 @@
 var express = require('express.io');
 var app = express();
 var mongoose = require('mongoose');
+var postmark = require("postmark")(process.env.POSTMARK_API_KEY);
 
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
@@ -171,3 +172,12 @@ http.listen(app.get('port'), function() {
 	var d = new Date();
 	console.log('Time: ', + d.getTime() + ', Day:' + d.getDay() + ', Hour:' + d.getHours());
 });
+
+//--- Test stuff ---------------------------------------
+var testsend = require('./modules/sendNotification');
+var to = "contact@hoparoundhuntsville.com"
+var subject = "Message from user on Hop Around Huntsville"
+var message = "This is a test message... hoparoundhuntsville on larry/local has fired up"
+var response = null;
+testsend.send(to, subject, message, response);
+//----------------------------------------------------------------------------------
