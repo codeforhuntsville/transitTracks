@@ -168,7 +168,11 @@ var interval = setInterval(function(){findLocations();},3000);
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 		console.log('location update requested ');
-		io.emit('location update', allLocations);
+    if(allLocations.lat == 34.7368 && allLocations.long == -86.59192) {
+      io.emit('trolley off', []);
+    } else {
+		  io.emit('location update', allLocations);
+    }
 	});
     socket.on('disconnect', function() {
       console.log('User disconnected');
