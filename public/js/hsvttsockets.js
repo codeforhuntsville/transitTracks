@@ -3,6 +3,7 @@ HSV_TT.sockets = {};
 HSV_TT.sockets.init = function() {
   var socket = io.connect();
   var location = {'lat': null, 'lng': null}; // this was reversed... Western Hemisphere is negative...
+  var trolleyOn = true;
 
   function updateMap(data) {
     //console.log(location['lat'] + ':' + location['lng']);
@@ -20,12 +21,15 @@ HSV_TT.sockets.init = function() {
       updateMap(data);
     });
     socket.on('trolley off', function(data) {
-      alert('Trolley is off');
+      trolleyOn = false;
+      alert('Trolley is off. Come back during times it is running.');
     });
   }
   receiveUpdates();
   function updateLocation() {
-    socket.emit('get location');
+    if( trolleyOn ) {
+      socket.emit('get location');
+    }
     //console.log('Location request sent');
   };
   var interval = setInterval(function(){updateLocation();}, 3000);
