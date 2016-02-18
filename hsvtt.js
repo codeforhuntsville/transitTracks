@@ -66,8 +66,17 @@ app.get('/', function(req, res) {
 app.get('/test', function(req, res) {
     io.emit('location update', [34.73172, -86.58979]);
     res.send('Success');
-    newStat = new Stats( {id: 0, hits: 0} );
-    newStat.save();
+});
+
+
+app.get('/stats', function(req, res) {
+  Stats.find({id: 0}, function(err, stat) {
+    if( stat[0] ) {
+      res.send('Hits: ' + stat[0].hits);
+    } else {
+      res.send('Error getting stats.');
+    }
+  });
 });
 
 //Adds account
