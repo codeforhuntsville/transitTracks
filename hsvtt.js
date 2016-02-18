@@ -170,8 +170,10 @@ io.sockets.on('connection', function(socket) {
 		console.log('location update requested ');
     console.log(allLocations);
     if(allLocations[0].lat == 34.7368 && allLocations[0].long == -86.59192) {
+      console.log('Sending dormant signal');
       io.emit('trolley off', []);
     } else {
+      console.log('Sending coordinates');
 		  io.emit('location update', allLocations);
     }
 	});
