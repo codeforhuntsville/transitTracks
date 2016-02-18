@@ -21,8 +21,10 @@ HSV_TT.sockets.init = function() {
       updateMap(data);
     });
     socket.on('trolley off', function(data) {
+      if( trolleyOn ) {
+        alert('Trolley is off. Come back during times it is running.');
+      }
       trolleyOn = false;
-      alert('Trolley is off. Come back during times it is running.');
     });
   }
   receiveUpdates();
