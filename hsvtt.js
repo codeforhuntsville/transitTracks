@@ -8,6 +8,9 @@ var http = require('http').Server(app)
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 
+var dtRouteLatExt = {max:34.74,min:34.7225};
+var dtRouteLngExt = {max:-86.57433,min:-86.59767}
+
 //Setup DB
 mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
 
@@ -110,11 +113,24 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 		if( transit[0] ) {
 			Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
+					var ok = true;
 					console.log('Recording location to DB: ' + transit[0].id);
 					transit[0].id = req.params.id;
-					transit[0].lat = req.body.lat;
-					transit[0].long = req.body.lon;
-					transit[0].save();
+					if (transit[0].lat && 
+					    transit[0].lat <= dtRouteLatExt.max && 
+						transit[0].lat >= dtRouteLatExt.min) {
+					    transit[0].lat = req.body.lat;
+					} else { 
+					   ok = false
+					}
+					if (transit[0].lon && 
+					    transit[0].lon <= dtRouteLngExt.max && 
+						transit[0].lon >= dtRouteLngExt.min) {
+					    transit[0].long = req.body.lon;
+					} else {
+						ok = false;
+					}
+					if (ok) transit[0].save();
 				} else {
 					console.log('Invalid credentials in location update');
 					res.send('Invalid credentials');
