@@ -169,7 +169,7 @@ io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 		console.log('location update requested ');
     console.log(allLocations);
-    if(allLocations.lat == 34.7368 && allLocations.long == -86.59192) {
+    if(allLocations[0].lat == 34.7368 && allLocations[0].long == -86.59192) {
       io.emit('trolley off', []);
     } else {
 		  io.emit('location update', allLocations);
