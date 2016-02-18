@@ -33,6 +33,13 @@ var eventSchema = new mongoose.Schema({
 });
 var Event = mongoose.model('Event', eventSchema);
 
+//Statistics DB structure
+var statsSchema = new mongoose.Schema({
+  id: Number,
+  hits: Number
+});
+var Stats = mongoose.model('Stats', statsSchema);
+
 app.set('port', (process.env.PORT || 5000));
 
 //Setting directory structure
@@ -48,11 +55,18 @@ app.http().io();
 
 app.get('/', function(req, res) {
 	res.render('pages/index');
+  Stats.find({id: 0}, function(err, stat) {
+    if( stat[0] ) {
+      stat[0].hits += 1;
+      stat[0].save();
+    }
+  });
 });
 
 app.get('/test', function(req, res) {
     io.emit('location update', [34.73172, -86.58979]);
     res.send('Success');
+    newStat = new Stat( {id: 0, hits: 0} );
 });
 
 //Adds account
