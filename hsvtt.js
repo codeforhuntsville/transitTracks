@@ -116,15 +116,15 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 					var ok = true;
 					console.log('Recording location to DB: ' + transit[0].id);
 					transit[0].id = req.params.id;
-					if (transit[0].lat && 
-					    transit[0].lat <= dtRouteLatExt.max && 
+					if (transit[0].lat &&
+					    transit[0].lat <= dtRouteLatExt.max &&
 						transit[0].lat >= dtRouteLatExt.min) {
 					    transit[0].lat = req.body.lat;
-					} else { 
+					} else {
 					   ok = false
 					}
-					if (transit[0].lon && 
-					    transit[0].lon <= dtRouteLngExt.max && 
+					if (transit[0].lon &&
+					    transit[0].lon <= dtRouteLngExt.max &&
 						transit[0].lon >= dtRouteLngExt.min) {
 					    transit[0].long = req.body.lon;
 					} else {
@@ -185,13 +185,13 @@ io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 		console.log('location update requested ');
     console.log(allLocations);
-    if(allLocations[0].lat == 34.7368 && allLocations[0].long == -86.59192) {
-      console.log('Sending dormant signal');
-      io.emit('trolley off', []);
-    } else {
+//    if(allLocations[0].lat == 34.7368 && allLocations[0].long == -86.59192) {
+  //    console.log('Sending dormant signal');
+    //  io.emit('trolley off', []);
+  //  } else {
       console.log('Sending coordinates');
 		  io.emit('location update', allLocations);
-    }
+//    }
 	});
     socket.on('disconnect', function() {
       console.log('User disconnected');
