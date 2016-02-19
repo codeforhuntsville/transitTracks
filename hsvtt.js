@@ -116,20 +116,20 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 					var ok = true;
 					console.log('Recording location to DB: ' + transit[0].id);
 					transit[0].id = req.params.id;
-					if (transit[0].lat &&
-					    transit[0].lat <= dtRouteLatExt.max &&
-						transit[0].lat >= dtRouteLatExt.min) {
+//					if (transit[0].lat &&
+//					    transit[0].lat <= dtRouteLatExt.max &&
+//						transit[0].lat >= dtRouteLatExt.min) {
 					    transit[0].lat = req.body.lat;
-					} else {
-					   ok = false
-					}
-					if (transit[0].lon &&
-					    transit[0].lon <= dtRouteLngExt.max &&
-						transit[0].lon >= dtRouteLngExt.min) {
+//					} else {
+	//				   ok = false
+//					}
+//					if (transit[0].lon &&
+//					    transit[0].lon <= dtRouteLngExt.max &&
+//						transit[0].lon >= dtRouteLngExt.min) {
 					    transit[0].long = req.body.lon;
-					} else {
-						ok = false;
-					}
+//					} else {
+//						ok = false;
+//					}
 					if (ok) transit[0].save();
 				} else {
 					console.log('Invalid credentials in location update');
