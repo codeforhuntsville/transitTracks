@@ -221,12 +221,12 @@ http.listen(app.get('port'), function() {
 });
 
 //--- Test stuff ---------------------------------------
-
-var testsend = require('sendNotification');
-var to = "contact@hoparoundhuntsville.com"
-var subject = "Message from user on Hop Around Huntsville"
-var message = "This is a test message... hoparoundhuntsville on transittracks-dev has fired up"
-var response = null;
-testsend.send(to, subject, message, response);
+//
+//var testsend = require('sendNotification');
+//var to = "contact@hoparoundhuntsville.com"
+//var subject = "Message from user on Hop Around Huntsville"
+//var message = "This is a test message... hoparoundhuntsville on transittracks-dev has fired up"
+//var response = null;
+//testsend.send(to, subject, message, response);
 
 //----------------------------------------------------------------------------------
