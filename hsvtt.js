@@ -7,6 +7,7 @@ var mongoose = require('mongoose');
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
+var geoUtils = require('geoutils');
 
 var dtRouteLatExt = {max:34.74,min:34.7225};
 var dtRouteLngExt = {max:-86.57433,min:-86.59767}
@@ -107,42 +108,51 @@ app.get('/api/v1/account/:id', function(req, res) {
 
 //Adds location
 app.post('/api/v1/trolly/:id/location', function(req, res) {
+	var returnStr = "record added";
 	var transitId = req.params.id;
 	Transit.find({id: transitId}, function( err, transit ) {
 		console.log('location for vehicle = ' + transitId);
+
 		if( transit[0] ) {
 			Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
 					var ok = true;
 					console.log('Recording location to DB: ' + transit[0].id);
+					console.log(typeof transit[0].lat);
 					transit[0].id = req.params.id;
-//					if (transit[0].lat &&
-//					    transit[0].lat <= dtRouteLatExt.max &&
-//						transit[0].lat >= dtRouteLatExt.min) {
-					    transit[0].lat = req.body.lat;
-//					} else {
-	//				   ok = false
-//					}
-//					if (transit[0].lon &&
-//					    transit[0].lon <= dtRouteLngExt.max &&
-//						transit[0].lon >= dtRouteLngExt.min) {
-					    transit[0].long = req.body.lon;
-//					} else {
-//						ok = false;
-//					}
-					if (ok) transit[0].save();
+					if (geoUtils.between(req.body.lat,dtRouteLatExt.min,dtRouteLatExt.max)) {
+					      transit[0].lat = req.body.lat;
+						  console.log("set lat: " + req.body.lat)
+					} else {
+					   ok = false
+					   console.log("lat failed");
+					}
+					if (ok && geoUtils.between(req.body.lng, dtRouteLngExt.min,dtRouteLngExt.max)) {
+					      transit[0].long = req.body.lng;
+						  console.log("set long : " + req.body.lng);
+					} else {
+						ok = false;
+						console.log('lng failed');
+					}
+					if (ok) {
+						transit[0].save();
+						returnStr = "db updated";
+					} else {
+					    returnStr = "db not updated";
+					}
 				} else {
 					console.log('Invalid credentials in location update');
 					res.send('Invalid credentials');
 				}
 			});
 		} else {
-			newTransit = new Transit( {id: transitId, long: req.body.lon, lat: req.body.lat} );
+			newTransit = new Transit( {id: transitId, long: req.body.lng, lat: req.body.lat} );
 			newTransit.save();
-			//console.log('New bus added');
+			returnStr = "bus location added";
+			console.log(returnStr);
 		}
 	});
-	res.send('Location added');
+	res.send(returnStr);
 });
 
 //Reads location
@@ -183,20 +193,22 @@ var interval = setInterval(function(){findLocations();},3000);
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
-		console.log('location update requested ');
-    console.log(allLocations);
+	//console.log('location update requested ');
+    //console.log(allLocations);
 //    if(allLocations[0].lat == 34.7368 && allLocations[0].long == -86.59192) {
-  //    console.log('Sending dormant signal');
-    //  io.emit('trolley off', []);
-  //  } else {
-      console.log('Sending coordinates');
-		  io.emit('location update', allLocations);
+//      console.log('Sending dormant signal');
+//      io.emit('trolley off', []);
+//    } else {
+      //console.log('Sending coordinates');
+		io.emit('location update', allLocations);
 //    }
 	});
     socket.on('disconnect', function() {
       console.log('User disconnected');
     });
 });
+
+
 
 /*************************************************
 *Admin Functionality
@@ -220,13 +232,15 @@ http.listen(app.get('port'), function() {
 	console.log('Time: ', + d.getTime() + ', Day:' + d.getDay() + ', Hour:' + d.getHours());
 });
 
-//--- Test stuff ---------------------------------------
-//
-//var testsend = require('sendNotification');
-//var to = "contact@hoparoundhuntsville.com"
-//var subject = "Message from user on Hop Around Huntsville"
-//var message = "This is a test message... hoparoundhuntsville on transittracks-dev has fired up"
-//var response = null;
-//testsend.send(to, subject, message, response);
 
+
+//--- Test stuff ---------------------------------------
+/*
+var testsend = require('sendNotification');
+var to = "contact@hoparoundhuntsville.com"
+var subject = "Message from user on Hop Around Huntsville"
+var message = "This is a test message... hoparoundhuntsville on transittracks-dev has fired up"
+var response = null;
+testsend.send(to, subject, message, response);
+*/
 //----------------------------------------------------------------------------------
