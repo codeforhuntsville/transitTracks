@@ -3,14 +3,15 @@ var express = require('express.io');
 var app = express();
 var mongoose = require('mongoose');
 //var postmark = require("postmark")(process.env.POSTMARK_API_KEY);
-
+var geoConst = require('geoConst.json');
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var geoUtils = require('geoutils');
 
-var dtRouteLatExt = {max:34.74,min:34.7225};
-var dtRouteLngExt = {max:-86.57433,min:-86.59767}
+//var pastStop = 0;
+var nextStopSeq = 1;
+
 
 //Setup DB
 mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
@@ -112,33 +113,21 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var transitId = req.params.id;
 	Transit.find({id: transitId}, function( err, transit ) {
 		console.log('location for vehicle = ' + transitId);
-
 		if( transit[0] ) {
 			Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
-					var ok = true;
-					console.log('Recording location to DB: ' + transit[0].id);
-					console.log(typeof transit[0].lat);
-					transit[0].id = req.params.id;
-					if (geoUtils.between(req.body.lat,dtRouteLatExt.min,dtRouteLatExt.max)) {
-					      transit[0].lat = req.body.lat;
-						  console.log("set lat: " + req.body.lat)
-					} else {
-					   ok = false
-					   console.log("lat failed");
-					}
-					if (ok && geoUtils.between(req.body.lng, dtRouteLngExt.min,dtRouteLngExt.max)) {
-					      transit[0].long = req.body.lng;
-						  console.log("set long : " + req.body.lng);
-					} else {
-						ok = false;
-						console.log('lng failed');
-					}
-					if (ok) {
+					//console.log('Recording location to DB: ' + transit[0].id);
+					transit[0].id = req.params.id;		
+					if (geoUtils.contains([req.body.lat,req.body.lng], geoConst.dtBounds)) {
+						transit[0].lat = req.body.lat;
+					    transit[0].long = req.body.lng;
+						checkStops([req.body.lat,req.body.lng])
 						transit[0].save();
 						returnStr = "db updated";
+						//console.log('0: ' + returnStr);
 					} else {
-					    returnStr = "db not updated";
+						returnStr = "db update failed";
+						//console.log('1: ' + returnStr);
 					}
 				} else {
 					console.log('Invalid credentials in location update');
@@ -174,7 +163,7 @@ var latLng = [];
 var locations;
 var latLongs = {};
 
-var homeLatLng = [34.73689, -86.592192];
+
 
 function findLocations() {
 	//console.log('Updating current location');
@@ -186,6 +175,31 @@ function findLocations() {
 			console.log('DB credentials supplied incorrect');
 		}
 	});
+}
+
+function checkStops(curPnt) {
+	console.log("checking to see if near stop: nextStop = " + nextStopSeq + " : " + curPnt);
+	//for each in stop array
+	var sb = null //--geoUtils.setStopBounds(nextStopSeq -1);
+	var ns = nextStopSeq;
+	var len = geoConst.dtStopArray.length - 1;
+	//console.log("num stops = " + len);
+	for (var i = 0; i < len; ++i) {
+	  var test_b = geoUtils.setStopBounds(ns - 1);
+      //console.log("testing: " + ns);	  
+	  if (geoUtils.contains(curPnt, test_b)) {
+	    nextStopSeq = ns + 1;
+        //nextStopBounds = geoUtils.setStopBounds(nextStopSeq -1);
+	    console.log("advancing stop seq = " + nextStopSeq);
+	    var data = {seq:nextStopSeq,route:'Downtown',id:0}
+	    io.emit('next stop', data);
+		return;
+	  } else {
+		  ns = ns < len ? ++ns : 1;
+		  //console.log("next test: " + ns);
+	  }
+      console.log("nextStop now = " + nextStopSeq);
+	}
 }
 
 var interval = setInterval(function(){findLocations();},3000);
@@ -248,6 +262,10 @@ http.listen(app.get('port'), function() {
 
 
 //--- Test stuff ---------------------------------------
+
+console.log("Trolley Home " + geoConst.trolleyHome);
+
+//console.log('read array ' + geoConst.dtStopArray[seq1][1]);
 /*
 var testsend = require('sendNotification');
 var to = "contact@hoparoundhuntsville.com"

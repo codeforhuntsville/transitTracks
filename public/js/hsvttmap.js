@@ -13,6 +13,7 @@ var routeNames = [['Downtown','green']];
 
 var routeLayers = [];
 var stopLocationCircle = null;
+var nextStopMark = null;
 				  
 var trolleyHomeLocation = {latlng: {lat: 34.73689, lng: -86.59192} };
 var locationOfQuery = null;
@@ -65,7 +66,7 @@ HSV_TT.map.init = function() {
   overlayMaps['Downtown'].bindPopup("<b>Entertainment Trolley Route</b>" +
                      "<br><b>Hours of Operation:</b> 5pm to 12am Fridays and Saturdays");
   //---------------------------------------------------
-  var stops = L.geoJson(HSV_TT.ui.getStops('Downtown'), { 
+  var stops = L.geoJson(HSV_TT.ui.getStops('Downtown'), {    
     pointToLayer: function( feature, latlng ) {
       return L.marker(latlng, {icon: new stopIcon()});
 	},
@@ -78,6 +79,8 @@ HSV_TT.map.init = function() {
    stops.addTo(map);
    map.addLayer(overlayMaps['Downtown']); // will work with an array of route names
    L.control.locate().addTo(map);
+   //HSV_TT.map.nextStopMark([34.73146324046631,-86.58602399965186]);
+   
    // Full sytem  ---  TODO
    /*
    
@@ -116,6 +119,22 @@ HSV_TT.map.stopLocateMark = function(lngLat) {
     fillOpacity: 0.8
   }).addTo(map);
 }
+
+HSV_TT.map.nextStopMark = function(latLng) {
+  if (nextStopMark) {
+    map.removeLayer(nextStopMark);
+  }
+  nextStopMark = L.polygon(getStopBounds(lngLat), {
+    color: 'blue',
+    fillColor: '#0aa',
+    fillOpacity: 0.8
+  }).addTo(map);
+}
+
+function getStopBounds(pnt){
+	return rtnBounds = [ [pnt[1]+.00018,pnt[0]-.00018],[pnt[1]+.00018,pnt[0]+.00018],
+	                     [pnt[1]-.00018,pnt[0]+.00018],[pnt[1]-.00018,pnt[0]-.00018] ]
+};
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
 	//DEBUG console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
