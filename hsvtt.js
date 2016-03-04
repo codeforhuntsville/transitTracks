@@ -190,18 +190,31 @@ function findLocations() {
 
 var interval = setInterval(function(){findLocations();},3000);
 
+function checkTime() {
+  var date = Date();
+  if ( date.getHours > 23 || date.getHours < 6 ) {
+    if ( 5 == date.getDay() || 6 == date.getDay() ) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    return false;
+  }
+}
+
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
-	//console.log('location update requested ');
-    //console.log(allLocations);
-//    if(allLocations[0].lat == 34.7368 && allLocations[0].long == -86.59192) {
-//      console.log('Sending dormant signal');
-//      io.emit('trolley off', []);
-//    } else {
-      //console.log('Sending coordinates');
+	  console.log('location update requested ');
+    console.log(allLocations);
+    if(checkTime()) {
+      console.log('Sending dormant signal');
+      io.emit('trolley off', []);
+    } else {
+      console.log('Sending coordinates');
 		io.emit('location update', allLocations);
-//    }
+    }
 	});
     socket.on('disconnect', function() {
       console.log('User disconnected');
