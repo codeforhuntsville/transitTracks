@@ -219,6 +219,7 @@ function checkTime() {
 
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
+	io.emit('made connect', {nextSeq:nextStopSeq,greet:'hello there'});
 	socket.on('get location', function( data ) {
 	  console.log('location update requested ');
     console.log(allLocations);
