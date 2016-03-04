@@ -194,12 +194,12 @@ function checkTime() {
   var date = Date();
   if ( date.getHours > 23 || date.getHours < 6 ) {
     if ( 5 == date.getDay() || 6 == date.getDay() ) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   } else {
-    return false;
+    return true;
   }
 }
 
@@ -213,7 +213,7 @@ io.sockets.on('connection', function(socket) {
       io.emit('trolley off', []);
     } else {
       console.log('Sending coordinates');
-		io.emit('location update', allLocations);
+		  io.emit('location update', allLocations);
     }
 	});
     socket.on('disconnect', function() {
