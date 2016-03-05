@@ -99,6 +99,10 @@ a:hover, a:active {
   cursor: pointer;
 }
 
+#noavail {
+	margin-top: 25%;
+}
+
 #container {
   height: 75%;
   width: 100%; 

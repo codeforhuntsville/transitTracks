@@ -28,7 +28,8 @@ HSV_TT.sockets.init = function() {
     });
     socket.on('trolley off', function(data) {
       if( trolleyOn ) {
-	alert("The Trolley is currently not operating. \n\nNormal hours of operation:\nFriday - Saturday\n5:00pm - Midnight");
+	    //alert("The Trolley is currently not operating. \n\nNormal hours of operation:\nFriday - //Saturday\n5:00pm - Midnight");
+	    HSV_TT.ui.showNotAvail();
       }
       trolleyOn = false;
     });

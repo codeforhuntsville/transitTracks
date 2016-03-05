@@ -29,6 +29,14 @@ HSV_TT.ui.showSchedule = function() {
 	}
 };
 
+HSV_TT.ui.showNotAvail = function() {
+    $('#menuPopup').css('display','block');
+	$('.leaflet-bottom').css('display','none');
+	$('.popupContent').css('display','none');
+	$('#stopList').empty();
+    $('#noavail').css('display','block');
+
+};
 // I think we need a HSV_TT.data javascript js... of data manipulation functions the two function below should go there...
 HSV_TT.ui.setNextStop = function(seqNum, routeName, busId) {
     console.log("in the UI: " + seqNum + " : " + routeName + " : " + busId);
