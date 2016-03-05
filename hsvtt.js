@@ -259,7 +259,7 @@ app.get('/admin/addevent', function(req, res) {
 http.listen(app.get('port'), function() {
 	console.log('Node app is running on port ', app.get('port'));
 	var d = new Date();
-	d.setHours(d.getHours() - 2);
+	d.setHours(d.getHours() - 6);
 	console.log('Time: ', + d.getTime() + ', Day:' + d.getDay() + ', Hour:' + d.getHours());
 });
 
