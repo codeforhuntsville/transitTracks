@@ -38,7 +38,7 @@ HSV_TT.ui.setNextStop = function(seqNum, routeName, busId) {
     //console.log("Next Stop: " + stopTable[seqNum-1].properties.stop_location); 
 	HSV_TT.ui.nextStop = seqNum-1;
     $('#st_'+HSV_TT.ui.nextStop).css({'background':'#555','color':'#fff'});
-    HSV_TT.map.nextStopMark(stopTable[seqNum-1].geometry.coordinates);	
+    //HSV_TT.map.nextStopMark(stopTable[seqNum-1].geometry.coordinates);	
 }
 
 HSV_TT.ui.getStops = function(routename) {
