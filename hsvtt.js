@@ -210,9 +210,9 @@ function checkTime() {
   console.log("hour: " + date.getHours() + ", day: " + date.getDay());
   if ( date.getHours() <= 24 && date.getHours() >= 22  ) {
     if ( 5 == date.getDay() || 6 == date.getDay() ) {
-      return true;
-    } else {
       return false;
+    } else {
+      return true;
     }
   } else {
     return true;
