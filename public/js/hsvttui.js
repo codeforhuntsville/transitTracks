@@ -32,6 +32,8 @@ HSV_TT.ui.showSchedule = function() {
 // I think we need a HSV_TT.data javascript js... of data manipulation functions the two function below should go there...
 HSV_TT.ui.setNextStop = function(seqNum, routeName, busId) {
     console.log("in the UI: " + seqNum + " : " + routeName + " : " + busId);
+	routename = (routeName) ? routeName : 'Downtown';
+	busId = (busId) ? busId : 0;
     var stopTable =  HSV_TT.ui.getStops(routeName);
     console.log("Next Stop: " + stopTable[seqNum-1].properties.stop_location); 
 	HSV_TT.ui.nextStop = seqNum-1;
