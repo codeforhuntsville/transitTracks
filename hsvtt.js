@@ -209,10 +209,10 @@ function checkTime() {
   date.setHours(date.getHours() - 6);
   console.log("hour: " + date.getHours() + ", day: " + date.getDay());
   if ( date.getHours() <= 24 && date.getHours() >= 22  ) {
-    if ( 5 == ourDate.getDay() || 6 == ourDate.getDay() ) {
-      return false;
-    } else {
+    if ( 5 == date.getDay() || 6 == date.getDay() ) {
       return true;
+    } else {
+      return false;
     }
   } else {
     return true;
