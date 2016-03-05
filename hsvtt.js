@@ -206,6 +206,7 @@ var interval = setInterval(function(){findLocations();},3000);
 
 function checkTime() {
   var date = Date();
+  console.log("hour: " + date.getHours + ", day: " + date.getDay);
   if ( date.getHours > 23 || date.getHours < 6 ) {
     if ( 5 == date.getDay() || 6 == date.getDay() ) {
       return false;
