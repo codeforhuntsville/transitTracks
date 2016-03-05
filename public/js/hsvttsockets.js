@@ -33,8 +33,10 @@ HSV_TT.sockets.init = function() {
       trolleyOn = false;
     });
 	socket.on('next stop', function(data) {
-      console.log("next stop changed: " + data.seq + " : " + data.route + " : " + data.id);
-	  HSV_TT.ui.setNextStop(data.seq, data.route, data.id);
+	  if (data) {
+		console.log("next stop changed: " + data.seq + " : " + data.route + " : " + data.id);
+	    HSV_TT.ui.setNextStop(data.seq, data.route, data.id);
+	  }
 	});
   }
   

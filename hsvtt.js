@@ -121,7 +121,9 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 					if (geoUtils.contains([req.body.lat,req.body.lng], geoConst.dtBounds)) {
 						transit[0].lat = req.body.lat;
 					    transit[0].long = req.body.lng;
-						checkStops([req.body.lat,req.body.lng])
+						if (req.body.lat && req.body.lng) {
+						  checkStops([req.body.lat,req.body.lng])
+						}
 						transit[0].save();
 						returnStr = "db updated";
 						//console.log('0: ' + returnStr);
@@ -205,18 +207,49 @@ function checkStops(curPnt) {
 var interval = setInterval(function(){findLocations();},3000);
 
 function checkTime() {
+  // TODO: REPLACE this function with isTrolleyInactive();
+  // would like to extend this to start at 4pm and end at 1am following morning... of course
+  // that complicates the testing 
+  var trolleyInactive = true;
   var date = new Date();
   date.setHours(date.getHours() - 6);
   console.log("hour: " + date.getHours() + ", day: " + date.getDay());
-  if ( date.getHours() <= 24 && date.getHours() >= 22  ) {
+  if ( date.getHours() <= 24 && date.getHours() >= 17  ) {
     if ( 5 == date.getDay() || 6 == date.getDay() ) {
-      return false;
+      trolleyInactive = false;
     } else {
-      return true;
+      trolleyInactive = true;
     }
   } else {
-    return true;
+    trolleyInactive = true;
   }
+  return trolleyInactive;
+}
+//Trolley Service Schedule - Will need schedule for each route
+function isTrolleyInactive() {
+  // would like to extend this to start at 4pm and end at 1am following morning... of course
+  // that complicates the testing 
+  var trolleInactive = true; // named the variable for readability
+  var date = new Date();
+  date.setHours(date.getHours() - 6); // minus 6 from UTC time - CHANGE for DAYLIGHT/STANDARD TIME
+  console.log("hour: " + date.getHours() + ", day: " + date.getDay());
+
+  if ( date.getDay() == 5 && date.getHours() <= 24 && date.getHours() >= 16 ) {
+      console.log("first test: " + trolleInactive);
+	  trolleInactive = false; 
+  }
+  
+  if ( trolleInactive && date.getDay() == 6 && ( (date.getHours() <= 24 && 
+       date.getHours() >= 17) || (date.getHours() == 0)) ) {
+	    console.log("second test: " + trolleInactive);	  
+	    trolleInactive = false;
+  }
+  
+  if ( trolleInactive && date.getDay() == 0 && date.getHours() == 0 ) {
+      console.log("third test: " + trolleInactive);
+	  trolleInactive = false;
+  } 
+  return trolleInactive;
 }
 
 //Everything socket.io related
