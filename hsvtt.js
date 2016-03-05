@@ -229,27 +229,27 @@ function checkTime() {
 function isTrolleyInactive() {
   // would like to extend this to start at 4pm and end at 1am following morning... of course
   // that complicates the testing 
-  var trolleInactive = true; // named the variable for readability
+  var trolleyInactive = true; // named the variable for readability
   var date = new Date();
   date.setHours(date.getHours() - 6); // minus 6 from UTC time - CHANGE for DAYLIGHT/STANDARD TIME
   console.log("hour: " + date.getHours() + ", day: " + date.getDay());
 
   if ( date.getDay() == 5 && date.getHours() <= 24 && date.getHours() >= 16 ) {
-      console.log("first test: " + trolleInactive);
-	  trolleInactive = false; 
+      console.log("first test: " + trolleyInactive);
+	  trolleyInactive = false; 
   }
   
-  if ( trolleInactive && date.getDay() == 6 && ( (date.getHours() <= 24 && 
+  if ( trolleyInactive && date.getDay() == 6 && ( (date.getHours() <= 24 && 
        date.getHours() >= 17) || (date.getHours() == 0)) ) {
-	    console.log("second test: " + trolleInactive);	  
-	    trolleInactive = false;
+	    console.log("second test: " + trolleyInactive);	  
+	    trolleyInactive = false;
   }
   
-  if ( trolleInactive && date.getDay() == 0 && date.getHours() == 0 ) {
-      console.log("third test: " + trolleInactive);
-	  trolleInactive = false;
+  if ( trolleyInactive && date.getDay() == 0 && date.getHours() == 0 ) {
+      console.log("third test: " + trolleyInactive);
+	  trolleyInactive = false;
   } 
-  return trolleInactive;
+  return trolleyInactive;
 }
 
 //Everything socket.io related
