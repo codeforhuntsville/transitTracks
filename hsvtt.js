@@ -208,7 +208,7 @@ function checkTime() {
   var date = new Date();
   date.setHours(date.getHours - 6);
   console.log("hour: " + date.getHours() + ", day: " + date.getDay());
-  if ( ourDate.getHours() <= 24 && ourDate.getHours() >= 22  ) {
+  if ( date.getHours() <= 24 && date.getHours() >= 22  ) {
     if ( 5 == ourDate.getDay() || 6 == ourDate.getDay() ) {
       return false;
     } else {
