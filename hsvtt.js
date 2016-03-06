@@ -122,7 +122,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 						transit[0].lat = req.body.lat;
 					    transit[0].long = req.body.lng;
 						//if (req.body.lat && req.body.lng) {
-						  checkStops([req.body.lat,req.body.lng])
+						  checkStops([transit[0].transit[0].long])
 						//}
 						transit[0].save();
 						returnStr = "db updated";
