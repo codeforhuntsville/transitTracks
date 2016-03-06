@@ -121,9 +121,9 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 					if (geoUtils.contains([req.body.lat,req.body.lng], geoConst.dtBounds)) {
 						transit[0].lat = req.body.lat;
 					    transit[0].long = req.body.lng;
-						if (req.body.lat && req.body.lng) {
+						//if (req.body.lat && req.body.lng) {
 						  checkStops([req.body.lat,req.body.lng])
-						}
+						//}
 						transit[0].save();
 						returnStr = "db updated";
 						//console.log('0: ' + returnStr);
