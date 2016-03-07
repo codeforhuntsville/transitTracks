@@ -119,7 +119,8 @@ a:hover, a:active {
 #logo {
   width: 81px;
   height: 81px;
-  display: inline-block;	
+  display: inline-block;
+  z-index: 100;
 }
 
 #menu {
