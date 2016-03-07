@@ -112,7 +112,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var returnStr = "location api called ";
 	var transitId = req.params.id;
 	console.log('attempt 1 (transitId) = ' + transitId);
-	returnStr = returnStr.concat(transitId," ",req.body.lat,":",req.body.lng);
+	returnStr = returnStr.concat(transitId," ",req.body.lat,":",req.body.lon);
 	Transit.find({id: transitId}, function( err, transit ) {
 		res.send = "location for vehicle";
 		if( transit[0] ) {
