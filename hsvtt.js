@@ -116,12 +116,12 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	Transit.find({id: transitId}, function( err, transit ) {
 		returnStr = "location for vehicle";
 		if( transit[0] ) {
-			//returnStr = 'Recording location to DB: ' + transit[0].id;
+			returnStr = 'Recording location to DB: ' + transit[0].id;
 			Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
-					returnStr = 'Recording location to DB: ' + transit[0].id);
+					//returnStr = 'Recording location to DB: ' + transit[0].id);
 					transit[0].id = req.params.id;
-                    console.log('attempt 2a (lat & lng) = ' + req.body.lat + ":" +req.body.lng);           console.log('attempt 2b (lat & lon) = ' + req.body.lat + ":" +req.body.lon);returnStr =returnStr = ;					
+                    console.log('attempt 2a (lat & lng) = ' + req.body.lat + ":" +req.body.lng);           console.log('attempt 2b (lat & lon) = ' + req.body.lat + ":" +req.body.lon);returnStr =//returnStr = ;					
 					if (geoUtils.contains([req.body.lat,req.body.lng], geoConst.dtBounds)) {
 						transit[0].lat = req.body.lat;
 					    transit[0].long = req.body.lng;
