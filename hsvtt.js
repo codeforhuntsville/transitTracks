@@ -116,7 +116,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	Transit.find({id: transitId}, function( err, transit ) {
 		returnStr = "updating location";
 		if( transit[0] ) {
-			returnStr = 'Recording location into DB: ' + transit[0].id;
+			returnStr = 'Recording location into DB: ' + transit[0].id + " - ";
 			//Transit.find({id: transitId}, function( err, transit ) {
 				//if( transit[0] ) {
 					//returnStr = 'Recording location to DB: ' + transit[0].id);
@@ -148,8 +148,8 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 			returnStr = "bus location added";
 			console.log(returnStr);
 		}
+		res.send(returnStr);
 	});
-	res.send(returnStr);
 });
 
 //Reads location
