@@ -120,7 +120,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 				if( transit[0] ) {
 					//console.log('Recording location to DB: ' + transit[0].id);
 					transit[0].id = req.params.id;
-                    console.log('attempt 2a (lat & lng) = ' + req.body.lat + ":" +req.body.lng);           console.log('attempt 2b (lat & lon) = ' + req.body.lat + ":" +req.body.lon);					
+                    console.log('attempt 2a (lat & lng) = ' + req.body.lat + ":" +req.body.lng);           console.log('attempt 2b (lat & lon) = ' + req.body.lat + ":" +req.body.lon);returnStr =returnStr.concat(" ",req.body.lat," ",req.body.lon);					
 					if (geoUtils.contains([req.body.lat,req.body.lng], geoConst.dtBounds)) {
 						transit[0].lat = req.body.lat;
 					    transit[0].long = req.body.lng;
