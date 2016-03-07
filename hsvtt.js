@@ -123,11 +123,11 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 					transit[0].id = req.params.id;
                     //console.log('attempt 2a (lat & lng) = ' + req.body.lat + ":"+req.body.lng);           
 					console.log('attempt 2b (lat & lon) = ' + req.body.lat + ":" +req.body.lon);//returnStr = ;					
-					if (geoUtils.contains([req.body.lat,req.body.lng], geoConst.dtBounds)) {
+					if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
 						transit[0].lat = req.body.lat;
-					    transit[0].long = req.body.lng;
+					    transit[0].long = req.body.lon;
 						//if (req.body.lat && req.body.lng) {
-						  checkStops([transit[0].transit[0].long])
+						  checkStops([transit[0].lat,transit[0].long])
 						//}
 						transit[0].save();
 						returnStr = "db updated";
