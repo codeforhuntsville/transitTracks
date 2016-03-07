@@ -116,7 +116,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	Transit.find({id: transitId}, function( err, transit ) {
 		returnStr = "location for vehicle";
 		if( transit[0] ) {
-			returnStr = 'Recording location to DB: ' + transit[0].id;
+			//returnStr = 'Recording location to DB: ' + transit[0].id;
 			Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
 					//returnStr = 'Recording location to DB: ' + transit[0].id);
