@@ -114,10 +114,10 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	console.log('attempt 1 (transitId) = ' + transitId);
 	returnStr = returnStr.concat(transitId," ",req.body.lat,":",req.body.lon);
 	Transit.find({id: transitId}, function( err, transit ) {
-		res.send = "location for vehicle";
+		returnStr = "updating location";
 		if( transit[0] ) {
 			returnStr = 'Recording location to DB: ' + transit[0].id;
-			Transit.find({id: transitId}, function( err, transit ) {
+			//Transit.find({id: transitId}, function( err, transit ) {
 				if( transit[0] ) {
 					//returnStr = 'Recording location to DB: ' + transit[0].id);
 					transit[0].id = req.params.id;
@@ -139,7 +139,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 					console.log('Invalid credentials in location update');
 					res.send('Invalid credentials');
 				}
-			});
+			//});
 		} else {
 			newTransit = new Transit( {id: transitId, long: req.body.lng, lat: req.body.lat} );
 			newTransit.save();
