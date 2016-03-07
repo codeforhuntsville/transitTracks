@@ -130,10 +130,10 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 						  checkStops([transit[0].lat,transit[0].long])
 						//}
 						transit[0].save();
-						returnStr = "db updated";
+						returnStr = returnStr.concat(returnStr,"db updated");
 						//console.log('0: ' + returnStr);
 					} else {
-						returnStr = "db update failed";
+						returnStr = returnStr.concat(returnStr,"db update failed");
 						//console.log('1: ' + returnStr);
 						console.log('Invalid credentials in location update');
 					    //res.send('Invalid credentials');
@@ -145,7 +145,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 		} else {
 			newTransit = new Transit( {id: transitId, long: req.body.lng, lat: req.body.lat} );
 			newTransit.save();
-			returnStr = "bus location added";
+			returnStr = "new bus location added";
 			console.log(returnStr);
 		}
 		res.send(returnStr);
