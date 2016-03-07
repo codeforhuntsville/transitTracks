@@ -109,9 +109,10 @@ app.get('/api/v1/account/:id', function(req, res) {
 
 //Adds location
 app.post('/api/v1/trolly/:id/location', function(req, res) {
-	var returnStr = "record added";
+	var returnStr = "location api called ";
 	var transitId = req.params.id;
 	console.log('attempt 1 (transitId) = ' + transitId);
+	returnStr = returnStr.concat(transitId);
 	Transit.find({id: transitId}, function( err, transit ) {
 		console.log('location for vehicle = ' + transitId);
 		if( transit[0] ) {
