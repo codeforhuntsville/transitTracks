@@ -99,6 +99,11 @@ a:hover, a:active {
   cursor: pointer;
 }
 
+.stopActive {
+  background: #555;
+  color: #fff;	
+}
+
 #noavail {
 	margin-top: 25%;
 }
