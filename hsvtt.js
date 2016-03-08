@@ -111,37 +111,20 @@ app.get('/api/v1/account/:id', function(req, res) {
 app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var returnStr = "location api called ";
 	var transitId = req.params.id;
-	console.log('attempt 1 (transitId) = ' + transitId);
-	returnStr = returnStr.concat(transitId," ",req.body.lat,":",req.body.lon);
 	Transit.find({id: transitId}, function( err, transit ) {
 		returnStr = "updating location";
 		if( transit[0] ) {
-			returnStr = 'Recording location into DB: ' + transit[0].id + " - ";
-			//Transit.find({id: transitId}, function( err, transit ) {
-				//if( transit[0] ) {
-					//returnStr = 'Recording location to DB: ' + transit[0].id);
-					transit[0].id = req.params.id;
-                    //console.log('attempt 2a (lat & lng) = ' + req.body.lat + ":"+req.body.lng);           
-					console.log('attempt 2b (lat & lon) = ' + req.body.lat + ":" +req.body.lon);//returnStr = ;					
-					if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
-						transit[0].lat = req.body.lat;
-					    transit[0].long = req.body.lon;
-						//if (req.body.lat && req.body.lng) {
-						  checkStops([transit[0].lat,transit[0].long])
-						//}
-						transit[0].save();
-						returnStr = returnStr.concat(returnStr,"db updated");
-						//console.log('0: ' + returnStr);
-					} else {
-						returnStr = returnStr.concat(returnStr,"db update failed");
-						//console.log('1: ' + returnStr);
-						console.log('Invalid credentials in location update');
-					    //res.send('Invalid credentials');
-					}
-				//} else {
-					
-				//}
-			//});
+		  returnStr = 'Recording location into DB: ' + transit[0].id + " - ";				
+		  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
+		    transit[0].lat = req.body.lat;
+			transit[0].long = req.body.lon;
+			checkStops([transit[0].lat,transit[0].long])
+			transit[0].save();
+			returnStr = returnStr.concat("db updated");
+		  } else {
+			returnStr = returnStr.concat("db update failed");
+			console.log('Invalid credentials in location update');
+		  }
 		} else {
 			newTransit = new Transit( {id: transitId, long: req.body.lng, lat: req.body.lat} );
 			newTransit.save();
@@ -307,7 +290,7 @@ http.listen(app.get('port'), function() {
 
 //--- Test stuff ---------------------------------------
 
-console.log("Trolley Home " + geoConst.trolleyHome);
+console.log("Trolley Home: " + geoConst.trolleyHome);
 
 //console.log('read array ' + geoConst.dtStopArray[seq1][1]);
 /*
