@@ -27,6 +27,11 @@ $(document).ready(function(){
       }
   })
   
+  //$('#transitMap').on('click', function(e) {
+	//  console.log("event: " + Object.keys(e.originalEvent));
+	//  HSV_TT.map.onMapClick(e.);  
+  //})
+  
   $(document).on('click', '#schedule', function() {
     HSV_TT.showSchedule();	
   })
@@ -85,6 +90,10 @@ $(document).ready(function(){
   
   HSV_TT.fitWindow();
 })
+
+function onMapClick(e) {
+   console.log("[" + e.latlng.toString() + "]");
+}
 
 HSV_TT.fitWindow = function() {
 	  var bh = $('body').height();

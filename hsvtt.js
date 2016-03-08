@@ -214,6 +214,7 @@ function checkTime() {
   }
   return trolleyInactive;
 }
+
 //Trolley Service Schedule - Will need schedule for each route
 function isTrolleyInactive() {
   // would like to extend this to start at 4pm and end at 1am following morning... of course

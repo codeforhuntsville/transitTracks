@@ -52,6 +52,7 @@ HSV_TT.map.init = function() {
 	  popupAnchor: [0, -15],
       shadowSize: [0,0]	  
 	}
+	
   });
   
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
@@ -100,8 +101,14 @@ HSV_TT.map.init = function() {
 	 // TODO when we have sessions set up save this location with the session ID.
    });
    */
-   //----------------  
+   // Record clicks-----------------------
+   //   map.on('click', HSV_TT.map.onMapClick);
+   //----------------------------------end   
 }
+
+//HSV_TT.map.onMapClick = function(e) {
+//   console.log("[" + e.latlng.lat + "," + e.latlng.lng + "]");
+//}
 
 HSV_TT.map.recenterMap = function(lngLat) {
 	//DEBUG console.log('long: ' + lngLat[0] + ' lat: ' + lngLat[1]);
@@ -120,7 +127,7 @@ HSV_TT.map.stopLocateMark = function(lngLat) {
   }).addTo(map);
 }
 
-HSV_TT.map.nextStopMark = function(latLng) {
+HSV_TT.map.nextStopMark = function(lngLat) {
   if (nextStopMark) {
     map.removeLayer(nextStopMark);
   }
@@ -137,10 +144,10 @@ function getStopBounds(pnt){
 };
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
-	//DEBUG console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
+	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
-	  //DEBUG console.log("Have marker object");
+	  console.log("Have marker object");
 	  mm.setLatLng(latlng).update();
 	} else {
 	  if (vid === 0) {

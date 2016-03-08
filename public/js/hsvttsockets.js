@@ -31,7 +31,8 @@ HSV_TT.sockets.init = function() {
 	    //alert("The Trolley is currently not operating. \n\nNormal hours of operation:\nFriday - //Saturday\n5:00pm - Midnight");
 	    HSV_TT.ui.showNotAvail();
       }
-      trolleyOn = false;
+      //trolleyOn = false;
+	  trolleyOn = true; // temp
     });
 	socket.on('next stop', function(data) {
 	  if (data) {
@@ -44,7 +45,7 @@ HSV_TT.sockets.init = function() {
   receiveUpdates();
   
   function updateLocation() {
-    if( trolleyOn ) {
+    if( /*trolleyOn*/ true ) {
       socket.emit('get location');
     }
     //console.log('Location request sent');
