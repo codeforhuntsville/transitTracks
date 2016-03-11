@@ -25,8 +25,9 @@ HSV_TT.ui.showSchedule = function() {
 	}
     $('#stopTimes').css('display','block');
 	if (HSV_TT.ui.nextStop) {
-      $('.stopActive').removeClass("stopActive");		
-	  $('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
+	  // Disabled for time being...
+      //$('.stopActive').removeClass("stopActive");		
+	  //$('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
 	}
 };
 
@@ -40,18 +41,15 @@ HSV_TT.ui.showNotAvail = function() {
 };
 // I think we need a HSV_TT.data javascript js... of data manipulation functions the two function below should go there...
 HSV_TT.ui.setNextStop = function(seqNum, routeName, busId) {
-    console.log("in the UI: " + seqNum + " : " + routeName + " : " + busId);
 	routeName = (routeName) ? routeName : 'Downtown';
 	busId = (busId) ? busId : 0;
-	console.log("in the UI2: " + seqNum + " : " + routeName + " : " + busId);
     var stopTable =  HSV_TT.ui.getStops(routeName);
-	console.log("Stop table: " + stopTable.length);
     console.log("Next Stop: " + stopTable[seqNum-1].properties.stop_location); 
 	HSV_TT.ui.nextStop = seqNum-1;
-	$('.stopActive').removeClass("stopActive");
-    $('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
+	//$('.stopActive').removeClass("stopActive");
+    //$('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
 	
-    HSV_TT.map.nextStopMark(stopTable[seqNum-1].geometry.coordinates);	
+    //HSV_TT.map.nextStopMark(stopTable[seqNum-1].geometry.coordinates); disable until we make it smoother
 }
 
 HSV_TT.ui.getStops = function(routename) {

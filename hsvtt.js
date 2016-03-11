@@ -169,7 +169,7 @@ function findLocations() {
 }
 
 function checkStops(curPnt) {
-	console.log("checking to see if near stop: nextStop = " + nextStopSeq + " : " + curPnt);
+	//console.log("checking to see if near stop: nextStop = " + nextStopSeq + " : " + curPnt);
 	//for each in stop array
 	var sb = null //--geoUtils.setStopBounds(nextStopSeq -1);
 	var ns = nextStopSeq;
@@ -202,7 +202,7 @@ function checkTime() {
   var trolleyInactive = true;
   var date = new Date();
   date.setHours(date.getHours() - 6);
-  console.log("hour: " + date.getHours() + ", day: " + date.getDay());
+  //console.log("hour: " + date.getHours() + ", day: " + date.getDay());
   if ( date.getHours() <= 24 && date.getHours() >= 17  ) {
     if ( 5 == date.getDay() || 6 == date.getDay() ) {
       trolleyInactive = false;
@@ -246,8 +246,8 @@ function isTrolleyInactive() {
 io.sockets.on('connection', function(socket) {
 	io.emit('made connect', {nextSeq:nextStopSeq,greet:'hello there'});
 	socket.on('get location', function( data ) {
-	  console.log('location update requested ');
-    console.log(allLocations);
+	//console.log('location update requested ');
+    //console.log(allLocations);
     if(checkTime()) {
       console.log('Sending dormant signal');
       //io.emit('trolley off', []);
