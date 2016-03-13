@@ -209,7 +209,7 @@ function checkTime() {
   // that complicates the testing 
   var trolleyInactive = true;
   var date = new Date();
-  date.setHours(date.getHours() - 6);
+  date.setHours(date.getHours());
   //console.log("hour: " + date.getHours() + ", day: " + date.getDay());
   if ( date.getHours() <= 24 && date.getHours() >= 17  ) {
     if ( 5 == date.getDay() || 6 == date.getDay() ) {
@@ -229,7 +229,7 @@ function isTrolleyInactive() {
   // that complicates the testing 
   var trolleyInactive = true; // named the variable for readability
   var date = new Date();
-  date.setHours(date.getHours() - 6); // minus 6 from UTC time - CHANGE for DAYLIGHT/STANDARD TIME
+  date.setHours(date.getHours()); // minus 6 from UTC time - CHANGE for DAYLIGHT/STANDARD TIME
   console.log("hour: " + date.getHours() + ", day: " + date.getDay());
 
   if ( date.getDay() == 5 && date.getHours() <= 24 && date.getHours() >= 16 ) {
@@ -252,8 +252,8 @@ function isTrolleyInactive() {
 
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
-	//Object.keys(socket["conn"]).forEach(function (key) {
-	//	console.log("key (conn): " + key + " value: " + (socket["conn"])[key]);
+	//Object.keys(socket).forEach(function (key) {
+	//	console.log("key (socket): " + key + " value: " + (socket)[key]);
 	//	console.log("address: " + socket.handshake.address);
 	// });
 	console.log("id: " + socket.id + " address: " + socket.handshake.address);
@@ -263,10 +263,10 @@ io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 	//console.log('location update requested ');
     //console.log(allLocations);
-    if(checkTime()) {
+    if(isTrolleyInactive()) {
       console.log('Sending dormant signal');
-      //io.emit('trolley off', []);
-	  io.emit('location update', allLocations);
+      io.emit('trolley off', []);
+	  //io.emit('location update', allLocations); need to change this when running simulation
     } else {
       console.log('Sending coordinates');
 		  io.emit('location update', allLocations);
@@ -310,7 +310,7 @@ app.get('/admin/addevent', function(req, res) {
 http.listen(app.get('port'), function() {
 	console.log('Node app is running on port ', app.get('port'));
 	var d = new Date();
-	d.setHours(d.getHours() - 6);
+	d.setHours(d.getHours());
 	console.log('Time: ', + d.getTime() + ', Day:' + d.getDay() + ', Hour:' + d.getHours());
 });
 
