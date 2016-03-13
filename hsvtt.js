@@ -45,6 +45,14 @@ var statsSchema = new mongoose.Schema({
 });
 var Stats = mongoose.model('Stats', statsSchema);
 
+var userConnSchema = new mongoose.Schema({
+  id: String,
+  cipaddr: String,
+  connStart: { type: Date, default: Date.now },
+  connEnd: Date
+});
+var UserConn = mongoose.model('UserConn', userConnSchema);
+
 app.set('port', (process.env.PORT || 5000));
 
 //Setting directory structure
@@ -244,6 +252,13 @@ function isTrolleyInactive() {
 
 //Everything socket.io related
 io.sockets.on('connection', function(socket) {
+	//Object.keys(socket["conn"]).forEach(function (key) {
+	//	console.log("key (conn): " + key + " value: " + (socket["conn"])[key]);
+	//	console.log("address: " + socket.handshake.address);
+	// });
+	console.log("id: " + socket.id + " address: " + socket.handshake.address);
+	newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
+	newConnect.save();
 	io.emit('made connect', {nextSeq:nextStopSeq,greet:'hello there'});
 	socket.on('get location', function( data ) {
 	//console.log('location update requested ');
@@ -259,7 +274,19 @@ io.sockets.on('connection', function(socket) {
 	});
     socket.on('disconnect', function() {
       console.log('User disconnected');
-    });
+	  UserConn.find({id: socket.id}, function( err, uc ) {
+		returnStr = "updating connection";
+		if( uc[0] ) {
+		  returnStr = 'Recording user connection diconnect: ' + uc[0].cipaddr + " - ";
+          uc[0].connEnd = new Date();	  
+		  uc[0].save();
+		  returnStr = returnStr.concat("db updated");
+		} else {
+		  returnStr = returnStr.concat("db update failed");
+		  console.log('Invalid credentials in connection update');
+		}
+      });
+	});
 });
 
 

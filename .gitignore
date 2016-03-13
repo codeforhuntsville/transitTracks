@@ -13,3 +13,8 @@ node_modules/postmark/
 node_modules/socket.io/
 node_modules/socket-io-client/
 
+test.js
+*.txt
+runTransitPlayback.js
+public/js/recording.json
+node_modules/recording.json

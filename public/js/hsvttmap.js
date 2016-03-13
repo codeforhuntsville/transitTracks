@@ -144,10 +144,10 @@ function getStopBounds(pnt){
 };
 
 HSV_TT.map.updateLocation = function (vid, latlng) {
-	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
+	//console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
-	  console.log("Have marker object");
+	  //console.log("Have marker object");
 	  mm.setLatLng(latlng).update();
 	} else {
 	  if (vid === 0) {
