@@ -136,7 +136,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 		  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
         vehicles[i]['lat'] = req.body.lat;
         vehicles[i]['long'] = req.body.lon;
-        checkStops([vehicles[i]['lat'],vehicles[i]['long']])
+        checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
         returnStr = returnStr.concat("db updated");
       } else {
         returnStr = returnStr.concat("db update failed");
@@ -145,7 +145,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
     }
   }
   if(vehicleFound == false) {
-    vehicles.push({'id': transitId, 'lat': req.body.lat, 'lon': req.body.lon});
+    vehicles.push({'id': transitId, 'lat': req.body.lat, 'long': req.body.lon});
     returnStr = "new bus location added";
     console.log(returnStr);
   }
