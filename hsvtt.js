@@ -127,13 +127,13 @@ app.get('/api/v1/account/:id', function(req, res) {
 
 //Adds location
 app.post('/api/v1/trolly/:id/location', function(req, res) {
-	var returnStr = "location api called ";
-	var transitId = req.params.id;
+  var returnStr = "location api called ";
+  var transitId = req.params.id;
   var vehicleFound = false;
   for(var i = 0; i < vehicles.length; i++) {
     if(vehicles[i]['id']==transitId) {
       vehicleFound = true;
-		  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
+	  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
         vehicles[i]['lat'] = req.body.lat;
         vehicles[i]['long'] = req.body.lon;
         checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
