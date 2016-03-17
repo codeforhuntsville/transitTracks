@@ -59,9 +59,10 @@ HSV_TT.ui.getStops = function(routename) {
 	var orderedStops = _stops.sort(function(a,b) {
 		return a.properties.stop_sequence-b.properties.stop_sequence;
 	});
+	/*
 	for (var i = 0; i < _stops.length; i++) {
 		console.log(orderedStops[i].properties.stop_location + " : " + orderedStops[i].properties.stop_sequence + " //: " + orderedStops[i].properties.geo_point_2d[0]);
-	}
+	}*/
     return _stops;	
 }
 

@@ -20,6 +20,7 @@ HSV_TT.sockets.init = function() {
     console.log('Initializing location updates');
 	socket.on('made connect', function(data) {
 	  console.log(data.greet + ', next stop is: ' + data.nextSeq);
+	  console.log("---> url: " + window.location.href);
       HSV_TT.ui.setNextStop(data.nextSeq, data.route, data.id);	  
 	});
     socket.on('location update', function(data) {
