@@ -53,6 +53,13 @@ var userConnSchema = new mongoose.Schema({
 });
 var UserConn = mongoose.model('UserConn', userConnSchema);
 
+var userSchema = new mongoose.Schema({
+  email: String,
+  name: String,
+  pass: String
+});
+var User = mongoose.model('User', userSchema);
+
 app.set('port', (process.env.PORT || 5000));
 
 //Setting directory structure
@@ -122,7 +129,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	Transit.find({id: transitId}, function( err, transit ) {
 		returnStr = "updating location";
 		if( transit[0] ) {
-		  returnStr = 'Recording location into DB: ' + transit[0].id + " - ";				
+		  returnStr = 'Recording location into DB: ' + transit[0].id + " - ";
 		  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
 		    transit[0].lat = req.body.lat;
 			transit[0].long = req.body.lon;
@@ -185,7 +192,7 @@ function checkStops(curPnt) {
 	//console.log("num stops = " + len);
 	for (var i = 0; i < len; ++i) {
 	  var test_b = geoUtils.setStopBounds(ns - 1);
-      //console.log("testing: " + ns);	  
+      //console.log("testing: " + ns);
 	  if (geoUtils.contains(curPnt, test_b)) {
 	    nextStopSeq = ns + 1;
         //nextStopBounds = geoUtils.setStopBounds(nextStopSeq -1);
@@ -206,7 +213,7 @@ var interval = setInterval(function(){findLocations();},3000);
 function checkTime() {
   // TODO: REPLACE this function with isTrolleyInactive();
   // would like to extend this to start at 4pm and end at 1am following morning... of course
-  // that complicates the testing 
+  // that complicates the testing
   var trolleyInactive = true;
   var date = new Date();
   date.setHours(date.getHours());
@@ -226,7 +233,7 @@ function checkTime() {
 //Trolley Service Schedule - Will need schedule for each route
 function isTrolleyInactive() {
   // would like to extend this to start at 4pm and end at 1am following morning... of course
-  // that complicates the testing 
+  // that complicates the testing
   var trolleyInactive = true; // named the variable for readability
   var date = new Date();
   date.setHours(date.getHours()); // minus 6 from UTC time - CHANGE for DAYLIGHT/STANDARD TIME
@@ -234,19 +241,19 @@ function isTrolleyInactive() {
 
   if ( date.getDay() == 5 && date.getHours() <= 24 && date.getHours() >= 16 ) {
       console.log("first test: " + trolleyInactive);
-	  trolleyInactive = false; 
+	  trolleyInactive = false;
   }
-  
-  if ( trolleyInactive && date.getDay() == 6 && ( (date.getHours() <= 24 && 
+
+  if ( trolleyInactive && date.getDay() == 6 && ( (date.getHours() <= 24 &&
        date.getHours() >= 17) || (date.getHours() == 0)) ) {
-	    console.log("second test: " + trolleyInactive);	  
+	    console.log("second test: " + trolleyInactive);
 	    trolleyInactive = false;
   }
-  
+
   if ( trolleyInactive && date.getDay() == 0 && date.getHours() == 0 ) {
       console.log("third test: " + trolleyInactive);
 	  trolleyInactive = false;
-  } 
+  }
   return trolleyInactive;
 }
 
@@ -278,7 +285,7 @@ io.sockets.on('connection', function(socket) {
 		returnStr = "updating connection";
 		if( uc[0] ) {
 		  returnStr = 'Recording user connection diconnect: ' + uc[0].cipaddr + " - ";
-          uc[0].connEnd = new Date();	  
+          uc[0].connEnd = new Date();
 		  uc[0].save();
 		  returnStr = returnStr.concat("db updated");
 		} else {
