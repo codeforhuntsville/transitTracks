@@ -12,6 +12,9 @@ var geoUtils = require('geoutils');
 //var pastStop = 0;
 var nextStopSeq = 1;
 
+//ALL the vehicles
+var vehicles = [];
+
 
 //Setup DB
 mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
@@ -126,6 +129,28 @@ app.get('/api/v1/account/:id', function(req, res) {
 app.post('/api/v1/trolly/:id/location', function(req, res) {
 	var returnStr = "location api called ";
 	var transitId = req.params.id;
+  var vehicleFound = false;
+  for(var i = 0; i < vehicles.length; i++) {
+    if(vehicles[i]['id']==transitId) {
+      vehicleFound = true;
+		  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
+        vehicles[i]['lat'] = req.body.lat;
+        vehicles[i]['long'] = req.body.lon;
+        checkStops([vehicles[i]['lat'],vehicles[i]['long']])
+        returnStr = returnStr.concat("db updated");
+      } else {
+        returnStr = returnStr.concat("db update failed");
+        console.log('Invalid credentials in location update');
+		  }
+    }
+  }
+  if(vehicleFound == false) {
+    vehicles.push({'id': transitId, 'lat': req.body.lat, 'lon': req.body.lon});
+    returnStr = "new bus location added";
+    console.log(returnStr);
+  }
+  res.send(returnStr);
+  /*
 	Transit.find({id: transitId}, function( err, transit ) {
 		returnStr = "updating location";
 		if( transit[0] ) {
@@ -148,6 +173,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 		}
 		res.send(returnStr);
 	});
+  */
 });
 
 //Reads location
@@ -170,7 +196,7 @@ var locations;
 var latLongs = {};
 
 
-
+/*
 function findLocations() {
 	//console.log('Updating current location');
 	Transit.find({},{id:1,lat:1,long:1,_id:0}, function(err, transit) {
@@ -182,6 +208,7 @@ function findLocations() {
 		}
 	});
 }
+*/
 
 function checkStops(curPnt) {
 	//console.log("checking to see if near stop: nextStop = " + nextStopSeq + " : " + curPnt);
@@ -208,7 +235,7 @@ function checkStops(curPnt) {
 	}
 }
 
-var interval = setInterval(function(){findLocations();},3000);
+//var interval = setInterval(function(){findLocations();},3000);
 
 function checkTime() {
   // TODO: REPLACE this function with isTrolleyInactive();
@@ -276,7 +303,7 @@ io.sockets.on('connection', function(socket) {
 	  //io.emit('location update', allLocations); need to change this when running simulation
     } else {
       console.log('Sending coordinates');
-		  io.emit('location update', allLocations);
+		  io.emit('location update', vehicles);
     }
 	});
     socket.on('disconnect', function() {
