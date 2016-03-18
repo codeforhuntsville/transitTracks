@@ -150,10 +150,10 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	  //console.log("Have marker object");
 	  mm.setLatLng(latlng).update();
 	} else {
-	  if (vid === 0) {
+	  if (vid === "0") {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new trolleyIcon()}).addTo(map);
 		mm.bindPopup("Entertainment Trolley");
-	  } else if (vid === 999) {
+	  } else if (vid === "999") {
 		var mm = L.marker([latlng.lat,latlng.lng], {icon: new testIcon()}).addTo(map);
 		mm.bindPopup("Test Vehicle id = " + vid);
 	  } else {
