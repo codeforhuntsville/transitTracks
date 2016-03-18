@@ -16,6 +16,7 @@ var nextStopSeq = 1;
 var vehicles = [];
 
 
+
 //Setup DB
 mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
 
@@ -137,10 +138,10 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
         vehicles[i]['lat'] = req.body.lat;
         vehicles[i]['long'] = req.body.lon;
         checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
-        returnStr = returnStr.concat("db updated");
+        returnStr = returnStr.concat("location updated");
       } else {
-        returnStr = returnStr.concat("db update failed");
-        console.log('Invalid credentials in location update');
+        returnStr = returnStr.concat("location update failed");
+        console.log('Invalid location update');
 		  }
     }
   }
@@ -231,7 +232,7 @@ function checkStops(curPnt) {
 		  ns = ns < len ? ++ns : 1;
 		  //console.log("next test: " + ns);
 	  }
-      console.log("nextStop now = " + nextStopSeq);
+      //console.log("nextStop now = " + nextStopSeq);
 	}
 }
 
@@ -297,7 +298,7 @@ io.sockets.on('connection', function(socket) {
 	socket.on('get location', function( data ) {
 	//console.log('location update requested ');
     //console.log(allLocations);
-    if(isTrolleyInactive()) {
+    if(false) {
       console.log('Sending dormant signal');
       io.emit('trolley off', []);
 	  //io.emit('location update', allLocations); need to change this when running simulation
