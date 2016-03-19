@@ -273,7 +273,7 @@ function isTrolleyInactive() {
   }
 
   if ( trolleyInactive && date.getDay() == 6 && ( (date.getHours() <= 24 &&
-       date.getHours() >= 17) || (date.getHours() == 0)) ) {
+       date.getHours() >= 16) || (date.getHours() == 0)) ) {
 	    console.log("second test: " + trolleyInactive);
 	    trolleyInactive = false;
   }
