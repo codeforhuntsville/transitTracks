@@ -133,9 +133,27 @@ HSV_TT.getBusMapMarker = function(vid) {
   return retObj;
 };
 
+HSV_TT.getBusIndexMarker = function(vid) {
+  var retn = null;
+  for (var i = 0; i < buses.length; i++) { 
+    if (buses[i].id === vid) { 
+	  retn = i;
+    } 
+  }
+  return retn;
+};
+
 HSV_TT.putBusMapMarker = function (vid, mapMarker) {
   buses.push(new bus(vid, mapMarker));
   console.log("added a bus...");
+};
+
+HSV_TT.removeBusMapMarker = function (vid) {
+  var indx = HSV_TT.getBusIndexMarker(vid);
+  if (indx > -1) {
+    buses.splice(indx, 1);  
+  }
+  console.log("removed a bus...");
 };
 
 HSV_TT.getBusesOnRoute = function (routeId) {

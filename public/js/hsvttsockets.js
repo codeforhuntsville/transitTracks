@@ -9,11 +9,16 @@ HSV_TT.sockets.init = function() {
   function updateMap(data) {
     //console.log(location['lat'] + ':' + location['lng']);
 	for (var i = 0, len = data.length; i < len; i++) {
-	  location.lat = data[i].lat;
-	  location.lng = data[i].long;
-	  HSV_TT.map.updateLocation(data[i].id, location);
+      if(data[i].lat && data[i].long) {		
+	    location.lat = data[i].lat;
+	    location.lng = data[i].long;
+	    HSV_TT.map.updateLocationMarker(data[i].id, location);
+	  } else {
+		console.log(location['lat'] + ':' + location['lng'] + " remove marker: " + data[i].id);
+		HSV_TT.map.removeLocationMarker(data[i].id);
+		HSV_TT.removeBusMapMarker(data[i].id);
+	  }
 	}
-
   };
   
   function receiveUpdates() {

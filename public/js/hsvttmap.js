@@ -143,7 +143,7 @@ function getStopBounds(pnt){
 	                     [pnt[1]-.00018,pnt[0]+.00018],[pnt[1]-.00018,pnt[0]-.00018] ]
 };
 
-HSV_TT.map.updateLocation = function (vid, latlng) {
+HSV_TT.map.updateLocationMarker = function (vid, latlng) {
 	console.log("Bus number: " + vid + " has new location: " + latlng.lat +", " + latlng.lng);
 	var mm = HSV_TT.getBusMapMarker(vid); 
 	if (mm) {
@@ -162,6 +162,14 @@ HSV_TT.map.updateLocation = function (vid, latlng) {
 	  }
 	  HSV_TT.putBusMapMarker(vid, mm); 	  
 	}	
+}
+
+HSV_TT.map.removeLocationMarker = function(vid) {
+	var mm = HSV_TT.getBusMapMarker(vid); 
+	if (mm) {
+	  //mm.clearLayers();
+	  map.removeLayer(mm);
+	}
 }
 
 HSV_TT.map.createRouteLayers = function(routeNames) {

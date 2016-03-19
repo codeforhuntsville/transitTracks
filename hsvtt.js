@@ -299,6 +299,7 @@ io.sockets.on('connection', function(socket) {
 	//console.log('location update requested ');
     //console.log(allLocations);
     if(isTrolleyInactive()) {
+    //if(false) {
       console.log('Sending dormant signal');
       io.emit('trolley off', []);
 	  //io.emit('location update', allLocations); need to change this when running simulation
