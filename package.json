@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "body-parser": "^1.3.5",
+    "cron": "^1.1.0",
     "ejs": "^2.3.1",
     "express-session": "^1.11.3",
     "express.io": "^1.1.13",
