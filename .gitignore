@@ -12,9 +12,13 @@ node_modules/node-gyp/
 node_modules/postmark/
 node_modules/socket.io/
 node_modules/socket-io-client/
+node_modules/cron/
+node_modules/googleapis/
+node_modules/google-auth-library/
 
 test.js
 *.txt
 runTransitPlayback.js
 public/js/recording.json
 node_modules/recording.json
+
