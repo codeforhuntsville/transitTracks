@@ -65,9 +65,14 @@ $(document).ready(function(){
     $('#terms').css('display','block');	      
   })
   
-  $(document).on('click touchstart', '#menuPopup img', function() {
+  $(document).on('click tap', '#menuPopup img', function() {
     HSV_TT.closeMenu();
   })
+  
+  $(document).on('swipeleft swiperight', '#menuPopup', function() {
+    HSV_TT.closeMenu();
+  })
+
  
   $('.link').click(function() {
    window.open($(this).attr("data"),'_blank');
