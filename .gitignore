@@ -1,20 +1,5 @@
 scratch/
-node_modules/.bin/
-node_modules/body-parser/
-node_modules/ejs/
-node_modules/express/
-node_modules/express.io/
-node_modules/express-session/
-node_modules/express-sessions/
-node_modules/jade/
-node_modules/mongoose/
-node_modules/node-gyp/
-node_modules/postmark/
-node_modules/socket.io/
-node_modules/socket-io-client/
-node_modules/cron/
-node_modules/googleapis/
-node_modules/google-auth-library/
+node_modules
 
 test.js
 *.txt
