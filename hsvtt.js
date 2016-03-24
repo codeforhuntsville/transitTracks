@@ -3,11 +3,11 @@ var express = require('express.io');
 var app = express();
 var mongoose = require('mongoose');
 //var postmark = require("postmark")(process.env.POSTMARK_API_KEY);
-var geoConst = require('data/geoConst.json');
+var geoConst = require('./data/geoConst.json');
 var http = require('http').Server(app)
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
-var geoUtils = require('lib/geoutils');
+var geoUtils = require('./lib/geoutils');
 
 //var pastStop = 0;
 var nextStopSeq = 1;
@@ -358,7 +358,7 @@ console.log("Trolley Home: " + geoConst.trolleyHome);
 
 //console.log('read array ' + geoConst.dtStopArray[seq1][1]);
 /*
-var testsend = require('lib/sendNotification');
+var testsend = require('./lib/sendNotification');
 var to = "contact@hoparoundhuntsville.com"
 var subject = "Message from user on Hop Around Huntsville"
 var message = "This is a test message... hoparoundhuntsville on transittracks-dev has fired up"
