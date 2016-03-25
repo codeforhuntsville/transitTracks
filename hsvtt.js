@@ -8,6 +8,7 @@ var http = require('http').Server(app)
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var geoUtils = require('./lib/geoutils');
+var schedule = require('./lib/cronSchedules')
 
 //var pastStop = 0;
 var nextStopSeq = 1;
