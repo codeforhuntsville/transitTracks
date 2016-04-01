@@ -1,0 +1,30 @@
+{
+    "root": true,
+    "rules": {
+        "indent": [2, 4],
+        "consistent-return": [0],
+        "id-length": [0],
+        "no-param-reassign": [0],
+        "no-shadow": [0],
+        "spaced-comment": [0],
+        "comma-dangle": [0],
+        "func-names": [0],
+        "padded-blocks": [0]
+    },
+    "ecmaFeatures": {
+        "experimentalObjectRestSpread": [0]
+    },
+    "env": {
+        "mongo": true,
+        "node": true,
+        "jquery": true
+    },
+    "globals": {
+        "$": 1,
+        "L": 1,
+        "HSV_TT": 1,
+        "io": 1
+    },
+    "extends": "airbnb/legacy"
+}
+
