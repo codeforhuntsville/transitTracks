@@ -104,6 +104,7 @@ app.get('/stats', function(req, res) {
   });
 });
 
+// IS THIS API USED????--------------------------------------
 //Adds account
 app.post('/api/v1/account', function(req, res) {
 	Transit.find({id: transitId}, function( err, transit ) {
@@ -117,15 +118,16 @@ app.post('/api/v1/account', function(req, res) {
 	});
 });
 
+//Reads account ----- TOBE REMOVED -----------------
 //Updates account
-app.post('/api/v1/account/:id', function(req, res) {
-	res.send('Hello world!');
-});
+//app.post('/api/v1/account/:id', function(req, res) {
+//	res.send('Hello world!');
+//});
 
-//Reads account
-app.get('/api/v1/account/:id', function(req, res) {
-	res.send('Hello world!');
-});
+//Reads account ----- TOBE REMOVED -----------------
+//app.get('/api/v1/account/:id', function(req, res) {
+//	res.send('Hello world!');
+//});
 
 //Adds location
 app.post('/api/v1/trolly/:id/location', function(req, res) {
@@ -178,20 +180,23 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
   */
 });
 
+//Reads account ----- TOBE REMOVED -----------------
 //Reads location
-app.get('/api/v1/trolly/:id/location', function(req, res) {
-	res.send('Hello world!');
-});
+//app.get('/api/v1/trolly/:id/location', function(req, res) {
+//	res.send('Hello world!');
+//});
 
+//Reads account ----- TOBE REMOVED -----------------
 //Gets status of trollies
-app.get('/api/v1/trollies', function(req, res) {
-	res.send('Hello world!');
-});
+//app.get('/api/v1/trollies', function(req, res) {
+//	res.send('Hello world!');
+//});
 
+//Reads account ----- TOBE REMOVED -----------------
 //Gets stops for a single trolley
-app.get('/api/v1/trollies/:id/stops', function(req, res) {
-	res.send('Hello world!');
-});
+//app.get('/api/v1/trollies/:id/stops', function(req, res) {
+//	res.send('Hello world!');
+//});
 
 var latLng = [];
 var locations;
@@ -238,7 +243,7 @@ function checkStops(curPnt) {
 }
 
 //var interval = setInterval(function(){findLocations();},3000);
-
+/*// TOBE REMOVED --------------------------------------------------
 function checkTime() {
   // TODO: REPLACE this function with isTrolleyInactive();
   // would like to extend this to start at 4pm and end at 1am following morning... of course
@@ -258,6 +263,7 @@ function checkTime() {
   }
   return trolleyInactive;
 }
+--------------------------------------------------------------------*/
 
 //Trolley Service Schedule - Will need schedule for each route
 function isTrolleyInactive() {
@@ -293,16 +299,27 @@ io.sockets.on('connection', function(socket) {
 	//	console.log("address: " + socket.handshake.address);
 	// });
 	console.log("id: " + socket.id + " address: " + socket.handshake.address);
-	newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
-	newConnect.save();
-	io.emit('made connect', {nextSeq:nextStopSeq,greet:'hello there'});
+	//newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
+	//newConnect.save();
+	// TODO will need an flag set if the connection is from beacon or client user --- 
+	io.emit('made connect', {nextSeq:nextStopSeq,greet:'hello there'}); // sent to client user
+	// TODO these listerns won't hear anything until sockets on the beacon are implementation-----
+	socket.on('bus:connect', function(data) {
+	  console.log('bus connected: ' + data.id + " : " + data.pw);
+	  //console.log('bus connected: ' + socket.id + " address: " + socket.handshake.address);	
+	});
+	socket.on('bus:location', function(data) {
+	  console.log('location update: ' + data.id + " : " + data.lat + " - " + data.lon);
+	  //TODO update vehicles here...;	
+	});
+    //--------------------------------------------------------------------------------------------
 	socket.on('get location', function( data ) {
 	//console.log('location update requested ');
     //console.log(allLocations);
-    if(isTrolleyInactive()) {
-    //if(false) {
+    //if(isTrolleyInactive()) {
+    if(false) {
       console.log('Sending dormant signal');
-      io.emit('trolley off', []);
+      io.emit('trolley off', [0,0]);
 	  //io.emit('location update', allLocations); need to change this when running simulation
     } else {
       console.log('Sending coordinates');
