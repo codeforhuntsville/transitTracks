@@ -50,6 +50,7 @@ HSV_TT.ui.setNextStop = function(seqNum, routeName, busId) {
     $('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
 	
     //HSV_TT.map.nextStopMark(stopTable[seqNum-1].geometry.coordinates); //disable until we make it smoother
+	//
 }
 
 HSV_TT.ui.getStops = function(routename) {
