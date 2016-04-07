@@ -29,7 +29,7 @@ HSV_TT.sockets.init = function() {
       HSV_TT.ui.setNextStop(data.nextSeq, data.route, data.id);	  
 	});
     socket.on('location update', function(data) {
-      console.log('New locations received: ' + JSON.stringify(data));
+      //console.log('New locations received: ' + JSON.stringify(data));
       updateMap(data);
     });
     socket.on('trolley off', function(data) {

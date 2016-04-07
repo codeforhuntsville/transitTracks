@@ -10,8 +10,9 @@ var bodyParser = require('body-parser');
 var geoUtils = require('./lib/geoutils');
 var schedule = require('./lib/cronSchedules')
 
-//var pastStop = 0;
-var nextStopSeq = 1;
+var pastStopSeq = 18;
+var nextStopSeq = 0;
+var possibleSkip = false;
 
 //ALL the vehicles
 var vehicles = [];
@@ -104,6 +105,8 @@ app.get('/stats', function(req, res) {
   });
 });
 
+
+
 // IS THIS API USED????--------------------------------------
 //Adds account
 app.post('/api/v1/account', function(req, res) {
@@ -140,7 +143,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
         vehicles[i]['lat'] = req.body.lat;
         vehicles[i]['long'] = req.body.lon;
-        checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
+        //checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
         returnStr = returnStr.concat("location updated");
       } else {
         returnStr = returnStr.concat("location update failed");
@@ -223,17 +226,29 @@ function checkStops(curPnt) {
 	var sb = null //--geoUtils.setStopBounds(nextStopSeq -1);
 	var ns = nextStopSeq;
 	var len = geoConst.dtStopArray.length - 1;
-	//console.log("num stops = " + len);
-	for (var i = 0; i < len; ++i) {
+	var advance = false;
+	var fin = false;
+	//while (!advance && !fin) {
+      //var cnt = ns;		
+	for (var i = 0; i < len && !advance; ++i) {
 	  var test_b = geoUtils.setStopBounds(ns - 1);
       //console.log("testing: " + ns);
 	  if (geoUtils.contains(curPnt, test_b)) {
-	    nextStopSeq = ns + 1;
-        //nextStopBounds = geoUtils.setStopBounds(nextStopSeq -1);
-	    console.log("advancing stop seq = " + nextStopSeq);
-	    var data = {seq:nextStopSeq,route:'Downtown',id:0}
-	    io.emit('next stop', data);
-		return;
+		//if (nextStopSeq === pastStopSeq + 1 ) {
+			advance = (nextStopSeq === i);
+		//} else {
+		//	advance = false;
+		//} 
+		if (advance) {
+			pastStopSeq = i;
+	        nextStopSeq = i + 1;
+            //nextStopBounds = geoUtils.setStopBounds(nextStopSeq -1);
+	        console.log("advancing stop seq = " + nextStopSeq + " : " + pastStopSeq);
+	        var data = {seq:nextStopSeq,route:'Downtown',id:0}
+	        io.emit('next stop', data);
+			return;
+		}
+		
 	  } else {
 		  ns = ns < len ? ++ns : 1;
 		  //console.log("next test: " + ns);
@@ -264,6 +279,31 @@ function checkTime() {
   return trolleyInactive;
 }
 --------------------------------------------------------------------*/
+function locationRecieved(data) {
+  var returnStr = "location socket called: ";
+  var transitId = data.id;
+  var vehicleFound = false;
+  for(var i = 0; i < vehicles.length; i++) {
+    if(vehicles[i]['id']==transitId) {
+      vehicleFound = true;
+	  if (geoUtils.contains([data.lat,data.lon], geoConst.dtBounds)) {
+        vehicles[i]['lat'] = data.lat;
+        vehicles[i]['long'] = data.lon;
+        //checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
+        returnStr = returnStr.concat("location updated");
+      } else {
+        returnStr = returnStr.concat("location update failed");
+        console.log('Invalid location update');
+	  }
+    }
+  }
+  if(vehicleFound == false) {
+    vehicles.push({'id': transitId, 'lat': data.lat, 'long': data.lon});
+    returnStr = "new bus location added";
+    console.log(returnStr);
+  }
+  return returnStr;
+});
 
 //Trolley Service Schedule - Will need schedule for each route
 function isTrolleyInactive() {
@@ -302,17 +342,22 @@ io.sockets.on('connection', function(socket) {
 	//newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
 	//newConnect.save();
 	// TODO will need an flag set if the connection is from beacon or client user --- 
+	
 	io.emit('made connect', {nextSeq:nextStopSeq,greet:'hello there'}); // sent to client user
-	// TODO these listerns won't hear anything until sockets on the beacon are implementation-----
+	
+	
+	//BEACON listerns won't hear anything until sockets on the beacon is implementation-----
 	socket.on('bus:connect', function(data) {
 	  console.log('bus connected: ' + data.id + " : " + data.pw);
-	  //console.log('bus connected: ' + socket.id + " address: " + socket.handshake.address);	
+	  console.log('bus connected: ' + socket.id + " address: " + socket.handshake.address);	
 	});
 	socket.on('bus:location', function(data) {
+	  locationRecieved(data);
 	  console.log('location update: ' + data.id + " : " + data.lat + " - " + data.lon);
 	  //TODO update vehicles here...;	
 	});
     //--------------------------------------------------------------------------------------------
+	
 	socket.on('get location', function( data ) {
 	//console.log('location update requested ');
     //console.log(allLocations);
