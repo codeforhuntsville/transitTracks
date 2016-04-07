@@ -283,7 +283,7 @@ function locationRecieved(data) {
   var returnStr = "location socket called: ";
   var transitId = data.id;
   var vehicleFound = false;
-  console.log( data.id + " : " + data.lat + " : " + data.lon );
+  console.log("here: " data.id + " : " + data.lat + " - " + data.lon );
   for(var i = 0; i < vehicles.length; i++) {
     if(vehicles[i]['id']==transitId) {
       vehicleFound = true;
@@ -352,9 +352,9 @@ io.sockets.on('connection', function(socket) {
 	  console.log('bus connected: ' + data.id + " : " + data.pw);
 	  console.log('bus connected: ' + socket.id + " address: " + socket.handshake.address);	
 	});
-	socket.on('bus:location', function(data) {
-	  locationRecieved(data);
+	socket.on('bus:location', function(data) {  //bus:location
 	  console.log('location update: ' + data.id + " : " + data.lat + " - " + data.lon);
+	  locationRecieved(data);
 	  //TODO update vehicles here...;	
 	});
     //--------------------------------------------------------------------------------------------
