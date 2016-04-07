@@ -303,7 +303,7 @@ function locationRecieved(data) {
     console.log(returnStr);
   }
   return returnStr;
-});
+}
 
 //Trolley Service Schedule - Will need schedule for each route
 function isTrolleyInactive() {
