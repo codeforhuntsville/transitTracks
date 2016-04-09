@@ -8,6 +8,7 @@ function bus (id, marker) {
 var buses = [];
 
 $(document).ready(function(){
+  HSV_TT.fitWindow();
   $('#slideMenu').click(function(){
 	   if ($('#menuPopup').css('display') != 'none') {
 		 $('#menuPopup').css('display','none');
