@@ -10,8 +10,8 @@ var bodyParser = require('body-parser');
 var geoUtils = require('./lib/geoutils');
 var schedule = require('./lib/cronSchedules')
 
-var pastStopSeq = 18;
-var nextStopSeq = 0;
+var lastStop = 17;
+var nextStop = 18;
 var possibleSkip = false;
 
 //ALL the vehicles
@@ -21,7 +21,12 @@ var vehicles = [];
 
 
 //Setup DB
-mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
+//mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
+var uri = "mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@localhost:27017/hsvtransit"
+mongoose.connect(uri, function (error) {
+
+    console.log("Mongo Error Returned: " + error);
+});
 
 //Shuttle/trolly/auto DB setup
 var transitSchema = new mongoose.Schema({
@@ -144,7 +149,7 @@ app.post('/api/v1/trolly/:id/location', function(req, res) {
 	  if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
         vehicles[i]['lat'] = req.body.lat;
         vehicles[i]['long'] = req.body.lon;
-        //checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
+        checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
         returnStr = returnStr.concat("location updated");
       } else {
         returnStr = returnStr.concat("location update failed");
@@ -222,44 +227,28 @@ function findLocations() {
 */
 
 function checkStops(curPnt) {
-	//console.log("checking to see if near stop: nextStop = " + nextStopSeq + " : " + curPnt);
-	//for each in stop array
-	var sb = null //--geoUtils.setStopBounds(nextStopSeq -1);
-	var ns = nextStopSeq;
-	var len = geoConst.dtStopArray.length - 1;
-	var advance = false;
-	var fin = false;
-	//while (!advance && !fin) {
-      //var cnt = ns;		
-	for (var i = 0; i < len && !advance; ++i) {
-	  var test_b = geoUtils.setStopBounds(ns - 1);
-      //console.log("testing: " + ns);
-	  if (geoUtils.contains(curPnt, test_b)) {
-		//if (nextStopSeq === pastStopSeq + 1 ) {
-			advance = (nextStopSeq === i);
-		//} else {
-		//	advance = false;
-		//} 
-		if (advance) {
-			pastStopSeq = i;
-	        nextStopSeq = i + 1;
-            //nextStopBounds = geoUtils.setStopBounds(nextStopSeq -1);
-	        console.log("advancing stop seq = " + nextStopSeq + " : " + pastStopSeq);
-	        var data = {seq:nextStopSeq,route:'Downtown',id:0}
-	        io.emit('next stop', data);
-			return;
-		}
-		
-	  } else {
-		  ns = ns < len ? ++ns : 1;
-		  //console.log("next test: " + ns);
-	  }
-      //console.log("nextStop now = " + nextStopSeq);
+	//var pastStop = 18;
+    //var nextStop = 1;
+    //var possibleSkip = false;
+	//var advance = false;
+	var currentLoc = geoUtils.checkPoint(curPnt);
+	if (currentLoc === 0 || currentLoc === lastStop) { return }
+    if (currentLoc === nextStop || possibleSkip) { 
+	  lastStop = currentLoc;
+	  nextStop = (currentLoc + 1 > geoConst.dtStopArray.length) ? 1 : currentLoc + 1;
+	  possibleSkip = false;
+      //nextStopBounds = geoUtils.setStopBounds(nextStopSeq -1);
+	  console.log("advancing stop seq = " + nextStop + " : " + lastStop);
+	  var data = {seq:nextStop,route:'Downtown',id:0}
+	  io.emit('next stop', data);		
+	} else {
+	  lastStop = currentLoc;
+	  possibleSkip = true;	
 	}
 }
 
 //var interval = setInterval(function(){findLocations();},3000);
-/*// TOBE REMOVED --------------------------------------------------
+/* TOBE REMOVED --------------------------------------------------
 function checkTime() {
   // TODO: REPLACE this function with isTrolleyInactive();
   // would like to extend this to start at 4pm and end at 1am following morning... of course
@@ -291,7 +280,7 @@ function locationRecieved(data) {
 	  if (geoUtils.contains([data.lat,data.lon], geoConst.dtBounds)) {
         vehicles[i]['lat'] = data.lat;
         vehicles[i]['long'] = data.lon;
-        //checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
+        checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
         returnStr = returnStr.concat("location updated");
       } else {
         returnStr = returnStr.concat("location update failed");
@@ -341,13 +330,13 @@ io.sockets.on('connection', function(socket) {
 	//	console.log("address: " + socket.handshake.address);
 	// });
 	console.log("id: " + socket.id + " address: " + socket.handshake.address);
-	//newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
-	//newConnect.save();
+	newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
+	newConnect.save();
 	// TODO will need an flag set if the connection is from beacon or client user --- 
 	
-	io.emit('made connect', {nextSeq:nextStopSeq,greet:'hello there'}); // sent to client user
+	io.emit('made connect', {nextSeq:nextStop,greet:'hello there'}); // sent to client user
 	
-	
+	//-------------------------------------------------------------------------------------------
 	//BEACON listerns won't hear anything until sockets on the beacon is implementation-----
 	socket.on('bus:connect', function(data) {
 	  console.log('bus connected: ' + data.id + " : " + data.pw);

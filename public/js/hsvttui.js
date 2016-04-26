@@ -26,8 +26,8 @@ HSV_TT.ui.showSchedule = function() {
     $('#stopTimes').css('display','block');
 	if (HSV_TT.ui.nextStop) {
 	  // Disabled for time being...
-      //$('.stopActive').removeClass("stopActive");		
-	  //$('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
+      $('.stopActive').removeClass("stopActive");		
+	  $('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
 	}
 };
 
@@ -49,7 +49,7 @@ HSV_TT.ui.setNextStop = function(seqNum, routeName, busId) {
 	$('.stopActive').removeClass("stopActive");
     $('#st_'+HSV_TT.ui.nextStop).addClass("stopActive");
 	
-    //HSV_TT.map.nextStopMark(stopTable[seqNum-1].geometry.coordinates); //disable until we make it smoother
+    HSV_TT.map.nextStopMark(stopTable[seqNum-1].geometry.coordinates); //disable until we make it smoother
 	//
 }
 
