@@ -22,7 +22,7 @@ var vehicles = [];
 
 //Setup DB
 //mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
-var uri = "mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@localhost:27017/hsvtransit"
+var uri = 'mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@localhost:27017/hsvtransit';
 mongoose.connect(uri, function (error) {
 
     console.log("Mongo Error Returned: " + error);
