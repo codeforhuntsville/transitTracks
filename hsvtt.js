@@ -20,7 +20,12 @@ var vehicles = [];
 
 
 //Setup DB
-mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
+//mongoose.connect('mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@ds053164.mongolab.com:53164/hsvtransit');
+var uri = "mongodb://' + process.env.MONGO_USERNAME + ':' + process.env.MONGO_PASSWORD + '@localhost:27017/hsvtransit"
+mongoose.connect(uri, function (error) {
+
+    console.log("Mongo Error Returned: " + error);
+});
 
 //Shuttle/trolly/auto DB setup
 var transitSchema = new mongoose.Schema({
@@ -242,7 +247,7 @@ function checkStops(curPnt) {
 }
 
 //var interval = setInterval(function(){findLocations();},3000);
-/*// TOBE REMOVED --------------------------------------------------
+/* TOBE REMOVED --------------------------------------------------
 function checkTime() {
   // TODO: REPLACE this function with isTrolleyInactive();
   // would like to extend this to start at 4pm and end at 1am following morning... of course
@@ -324,8 +329,8 @@ io.sockets.on('connection', function(socket) {
 	//	console.log("address: " + socket.handshake.address);
 	// });
 	console.log("id: " + socket.id + " address: " + socket.handshake.address);
-	//newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
-	//newConnect.save();
+	newConnect = new UserConn ( {id: socket.id, cipaddr: socket.handshake.address, connStart: new Date(), connEnd: null} )
+	newConnect.save();
 	// TODO will need an flag set if the connection is from beacon or client user --- 
 	
 	io.emit('made connect', {nextSeq:nextStop,greet:'hello there'}); // sent to client user
