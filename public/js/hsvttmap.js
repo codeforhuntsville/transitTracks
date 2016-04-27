@@ -40,7 +40,20 @@ var shuttleIcon = L.Icon.Default.extend({
 	  iconAnchor: [12, 30],
 	  popupAnchor: [1, -30]  
 	}
-  });
+});
+// custom marker's icon styles
+var tinyIcon = L.Icon.extend({
+    options: {
+        shadowUrl: '/images/marker-shadow.png',
+        iconSize: [25, 39],
+        iconAnchor: [12, 36],
+        shadowSize: [41, 41],
+        shadowAnchor: [12, 38],
+        popupAnchor: [0, -30]
+    }
+});
+var redIcon = new tinyIcon({ iconUrl: '/images/marker-red.png' });
+var yellowIcon = new tinyIcon({ iconUrl: '/images/marker-yellow.png' });
   
 HSV_TT.map.init = function() {	  
   map = L.map('transitMap').setView([34.731, -86.588], 15);
@@ -53,7 +66,8 @@ HSV_TT.map.init = function() {
       shadowSize: [0,0]	  
 	}
 	
-  });
+    });
+    
   
   L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -203,4 +217,21 @@ HSV_TT.map.getRouteNames = function() {
       output.push(allRoutes.features[i].properties.routename);
   }
   console.log('Names: ' + output);
+}
+
+HSV_TT.map.markUserPosition = function (lat,lng, userId) {
+    var userMarker = L.marker([lat, lng], {
+        icon: redIcon
+    });
+   
+    userMarker.addTo(map);
+    userMarker.bindPopup('<p>You are there! Your ID is ' + userId + '</p>').openPopup();
+}
+
+HSV_TT.map.setMarker = function (data) {
+    for (var i = 0; i < data.coords.length; i++) {
+        var marker = L.marker([data.coords[i].lat, data.coords[i].lng], { icon: yellowIcon }).addTo(map);
+        marker.bindPopup('<p>One more external user is here!</p>');
+        markers[data.id] = marker;
+    }
 }

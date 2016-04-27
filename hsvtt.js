@@ -376,7 +376,16 @@ io.sockets.on('connection', function(socket) {
 		  console.log('Invalid credentials in connection update');
 		}
       });
-	});
+    });
+
+    // start listening for coords for user markers
+    socket.on('send:coords', function (data) {
+        
+        // broadcast your coordinates to everyone except you
+        socket.broadcast.emit('load:coords', data);
+    });
+
+   
 });
 
 
