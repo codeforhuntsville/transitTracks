@@ -18,7 +18,7 @@
     "cron": "^1.1.0",
     "ejs": "^2.3.1",
     "express-session": "^1.11.3",
-    "express.io": "^1.1.13",
+    "express": "^4.13.4",
     "google-auth-library": "^0.9.7",
     "googleapis": "^2.1.6",
     "jade": "^1.11.0",
