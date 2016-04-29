@@ -1,8 +1,16 @@
 import urllib
 
-x = urllib.urlopen("http://data.huntsvilleal.opendata.arcgis.com/datasets/8df7fd62753f4d618f54e33a5f59a758_0.geojson").read()
+x = urllib.urlopen("http://maps.huntsvilleal.gov/geojson/HuntsvilleShuttleBusRoutesPanoply2016.geojson").read()
 data_file = file("transit-service-routes.geojson", "w")
 
 x = 'var allRoutes = ' + x
 print x
 data_file.write(x)
+
+
+y = urllib.urlopen("http://maps.huntsvilleal.gov/geojson/HuntsvilleShuttleBusStopsPanoply2016.geojson").read()
+data_file = file("transit-service-stops.geojson", "w")
+
+y = 'var allStops = ' + y
+print y
+data_file.write(y)

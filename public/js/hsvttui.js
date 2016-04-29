@@ -19,8 +19,8 @@ HSV_TT.ui.showSchedule = function() {
 	for (var i = 0; i < dtStops.length; i++) {
 	  //console.log('Stops ' + dt_stops.features[i].properties.time);
 	  $('#stopList').append('<li id="st_' + i + '" class="aStop" data="'+ dtStops[i].geometry.coordinates +'">' + 
-			  dtStops[i].properties.stop_location + 
-	          '&nbsp; at ' + dtStops[i].properties.time + 
+			  dtStops[i].properties.Stop_Location + 
+	          '&nbsp; at ' + dtStops[i].properties.Time_ + 
 	    '</li>');
 	}
     $('#stopTimes').css('display','block');
@@ -55,10 +55,10 @@ HSV_TT.ui.setNextStop = function(seqNum, routeName, busId) {
 
 HSV_TT.ui.getStops = function(routename) {
 	var _stops = $.grep(allStops.features, function(o, i) {
-		return o.properties.routename === routename;
+		return o.properties.RouteName === routename;
 	});
 	var orderedStops = _stops.sort(function(a,b) {
-		return a.properties.stop_sequence-b.properties.stop_sequence;
+		return a.properties.Stop_Sequence-b.properties.Stop_Sequence;
 	});
 	/*
 	for (var i = 0; i < _stops.length; i++) {
@@ -68,10 +68,8 @@ HSV_TT.ui.getStops = function(routename) {
 }
 
 HSV_TT.ui.getRoutes = function(routename) {
-	console.log("object exp : " + allRoutes.features.length + " : " + routename);
 	var _routes = $.grep(allRoutes.features, function(o, i) {
 		return o.properties.RouteName === routename;
 	});
-	console.log("object exp : " + _routes);
     return _routes;	
 }
