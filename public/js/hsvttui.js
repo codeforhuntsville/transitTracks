@@ -68,9 +68,10 @@ HSV_TT.ui.getStops = function(routename) {
 }
 
 HSV_TT.ui.getRoutes = function(routename) {
-	//console.log("object exp : " + exp.features.length);
+	console.log("object exp : " + allRoutes.features.length + " : " + routename);
 	var _routes = $.grep(allRoutes.features, function(o, i) {
-		return o.properties.routename === routename;
+		return o.properties.RouteName === routename;
 	});
+	console.log("object exp : " + _routes);
     return _routes;	
 }
