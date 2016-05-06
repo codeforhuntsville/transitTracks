@@ -56,5 +56,5 @@ HSV_TT.sockets.init = function() {
     }
     //console.log('Location request sent');
   };
-  var interval = setInterval(function(){updateLocation();}, 3000);
+  var interval = setInterval(function(){updateLocation();}, 2000);
 };
