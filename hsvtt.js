@@ -1,5 +1,5 @@
 //Getting all dependencies
-var express = require('express.io');
+var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 //var postmark = require("postmark")(process.env.POSTMARK_API_KEY);
@@ -83,7 +83,7 @@ app.use( bodyParser.urlencoded({extended: false }));
 app.use( bodyParser.json());
 
 //Setup socket.io
-app.http().io();
+//app.http().io();
 
 app.get('/', function(req, res) {
 	res.render('pages/index');

@@ -86,9 +86,9 @@ HSV_TT.map.init = function() {
       return L.marker(latlng, {icon: new stopIcon()});
 	},
    	onEachFeature: function (feature, layer) {
-	  layer.bindPopup("<b>Stop:</b> " + feature.properties.stop_sequence + 
-		              "<br><b>Scheduled Time:</b> " + feature.properties.time +
-					  "<br><b>Location:</b> " + feature.properties.stop_location );
+	  layer.bindPopup("<b>Stop:</b> " + feature.properties.Stop_Sequence + 
+		              "<br><b>Scheduled Time:</b> " + feature.properties.Time_ +
+					  "<br><b>Location:</b> " + feature.properties.Stop_Location );
 	}  
    });
    stops.addTo(map);
