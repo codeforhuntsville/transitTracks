@@ -8,7 +8,14 @@ var http = require('http').Server(app)
 var io = require('socket.io')(http);
 var bodyParser = require('body-parser');
 var geoUtils = require('./lib/geoutils');
-var schedule = require('./lib/cronSchedules')
+var schedule = require('./lib/cronSchedules');
+
+
+// Proper logging
+const bunyan = require('bunyan');
+const log = bunyan.createLogger({ name: 'transitTracks' });
+log.info('Bunyan initialized.');
+
 
 var pastStopSeq = 18;
 var nextStopSeq = 0;
