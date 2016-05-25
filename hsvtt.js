@@ -28,7 +28,7 @@ var vehicles = [];
 // Setup DB
 const mongoUser = process.env.MONGO_USERNAME;
 const mongoPass = process.env.MONGO_PASSWORD;
-const mongoUrl = `mongodb://  ${mongoUser}:${mongoPass}@ds053164.mongolab.com:53164/hsvtransit`;
+const mongoUrl = `mongodb://${mongoUser}:${mongoPass}@localhost:27017/hsvtransit`;
 mongoose.connect(mongoUrl);
 
 // Shuttle/trolly/auto DB setup
