@@ -152,7 +152,8 @@ app.post('/api/v1/trolly/:id/location', (req, res) => {
   for (var i = 0; i < vehicles.length; i++) {
     if (vehicles[i].id === transitId) {
       vehicleFound = true;
-      if (geoUtils.contains([req.body.lat, req.body.lon], geoConst.dtBounds)) {
+      //if (geoUtils.contains([req.body.lat, req.body.lon], geoConst.dtBounds)) {
+      if(true) {
         vehicles[i].lat = req.body.lat;
         vehicles[i].long = req.body.lon;
         //  checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
@@ -383,7 +384,7 @@ io.sockets.on('connection', function(socket) {
       io.emit('trolley off', [0,0]);
     //  io.emit('location update', allLocations); need to change this when running simulation
     } else {
-      console.log('Sending coordinates');
+      console.log('Sending coordinates ' + vehicles);
       io.emit('location update', vehicles);
     }
   });
