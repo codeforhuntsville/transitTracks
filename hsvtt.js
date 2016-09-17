@@ -78,9 +78,9 @@ const User = mongoose.model('User', userSchema);
 app.set('port', (process.env.PORT || 5000));
 
 // Setting directory structure
-app.set('views', `${__dirname}/views`);
+app.set('views', __dirname+'/views');
 app.set('view engine', 'ejs');
-app.use(express.static(`${__dirname}/public`));
+app.use(express.static(__dirname+'/public'));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -108,7 +108,7 @@ app.get('/test', (req, res) => {
 app.get('/stats', (req, res) => {
   Stats.find({ id: 0 }, (err, stat) => {
     if (stat[0]) {
-      res.send(`Hits:${stat[0].hits}`);
+      res.send('Hits: ' +stat[0].hits);
     } else {
       res.send('Error getting stats.');
     }
@@ -258,7 +258,7 @@ function checkStops(curPnt) {
         pastStopSeq = i;
         nextStopSeq = i + 1;
           //  nextStopBounds = geoUtils.setStopBounds(nextStopSeq -1);
-        console.log(`advancing stop seq = ${nextStopSeq} : ${pastStopSeq}`);
+        console.log('advancing stop seq = ' + nextStopSeq + ' : ' + pastStopSeq);
         var data = {seq:nextStopSeq,  route:'Downtown', id:0 }
         io.emit('next stop', data);
         return;
@@ -297,7 +297,7 @@ function locationRecieved(data) {
   var returnStr = 'location socket called: ';
   var transitId = data.id;
   var vehicleFound = false;
-  console.log(`here: ${data.id} : ${data.lat} - ${data.lon}`);
+  console.log('here: ' + data.id + ' : ' + data.lat + ' - ' + data.lon);
   for (var i = 0; i < vehicles.length; i++) {
     if(vehicles[i]['id']==transitId) {
       vehicleFound = true;
@@ -336,7 +336,7 @@ function isTrolleyInactive() {
 
   if (trolleyInactive && date.getDay() === 6 && ( (date.getHours() <= 24 &&
        date.getHours() >= 16) || (date.getHours() === 0))) {
-    console.log(`second test: ${trolleyInactive}`);
+    console.log('second test: ' + trolleyInactive);
     trolleyInactive = false;
   }
 
@@ -427,14 +427,14 @@ http.listen(app.get('port'), () => {
   console.log('Node app is running on port ', app.get('port'));
   var d = new Date();
   d.setHours(d.getHours());
-  log.info(`Time: ${d.getTime()}, Day: ${d.getDay()}, Hour: ${d.getHours()}`);
+  log.info('Time: ' + d.getTime() + ', Day: ' + d.getDay() + ', Hour: ' + d.getHours());
 });
 
 
 
 //  --- Test stuff ---------------------------------------
 
-log.info(`Trolley Home: ${geoConst.trolleyHome}`);
+log.info('Trolley Home: ' + geoConst.trolleyHome);
 
 //  console.log('read array ' + geoConst.dtStopArray[seq1][1]);
 /*
