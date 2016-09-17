@@ -423,7 +423,7 @@ app.get('/admin/addevent', function(req, res) {
 */
 
 // Opening server to requests
-http.listen(app.get('port'), () => {
+http.listen(app.get('port'), function() {
   console.log('Node app is running on port ', app.get('port'));
   var d = new Date();
   d.setHours(d.getHours());
