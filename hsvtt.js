@@ -88,9 +88,9 @@ app.use(bodyParser.json());
 // Setup socket.io
 // app.http().io();
 
-app.get('/', (req, res) => {
+app.get('/', function(req, res) {
   res.render('pages/index');
-  Stats.find({id: 0}, (err, stat) => {
+  Stats.find({id: 0}, function(err, stat) {
     var statContents = stat;
     if (statContents[0]) {
       statContents[0].hits += 1;
@@ -99,14 +99,14 @@ app.get('/', (req, res) => {
   });
 });
 
-app.get('/test', (req, res) => {
+app.get('/test', function(req, res) {
   io.emit('location update', [34.73172, -86.58979]);
   res.send('Success');
 });
 
 
-app.get('/stats', (req, res) => {
-  Stats.find({ id: 0 }, (err, stat) => {
+app.get('/stats', function(req, res) {
+  Stats.find({ id: 0 }, function(err, stat) {
     if (stat[0]) {
       res.send('Hits: ' +stat[0].hits);
     } else {
@@ -145,7 +145,7 @@ app.post('/api/v1/account', (req, res) => {
 // });
 
 // Adds location
-app.post('/api/v1/trolly/:id/location', (req, res) => {
+/*app.post('/api/v1/trolly/:id/location', (req, res) => {
   var returnStr = 'location api called ';
   var transitId = req.params.id;
   var vehicleFound = false;
@@ -170,7 +170,7 @@ app.post('/api/v1/trolly/:id/location', (req, res) => {
     console.log(returnStr);
   }
   res.send(returnStr);
-  /*
+  
   Transit.find({id: transitId}, function( err, transit ) {
     returnStr = "updating location";
     if( transit[0] ) {
@@ -193,8 +193,8 @@ app.post('/api/v1/trolly/:id/location', (req, res) => {
     }
     res.send(returnStr);
   });
-  */
-});
+  
+});*/
 
 /*
 Reads account ----- TOBE REMOVED -----------------
