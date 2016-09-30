@@ -187,7 +187,7 @@ function locationRecieved(data) {
 function isTrolleyInactive() {
   // would like to extend this to start at 4pm and end at 1am following morning... of course
   // that complicates the testing
-  var trolleyInactive = true; // named the variable for readability
+  var trolleyInactive = false; // named the variable for readability
   var date = new Date();
   date.setHours(date.getHours()); // minus 6 from UTC time - CHANGE for DAYLIGHT/STANDARD TIME
   console.log("hour: " + date.getHours() + ", day: " + date.getDay());
