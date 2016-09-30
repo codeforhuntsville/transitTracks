@@ -116,124 +116,9 @@ app.get('/stats', function(req, res) {
 });
 
 
-
-// IS THIS API USED????--------------------------------------
-// Adds account
-/*
-app.post('/api/v1/account', (req, res) => {
-  Transit.find({ id: transitId }, (err, transit) => {
-    if (transit[0]) {
-      res.send('Account already created');
-    } else {
-      var newTransit = new Transit({ id: transitId, lat: 0, long: 0});
-      newTransit.save();
-      res.send('Account created');
-    }
-  });
-});
-*/
-
-// Reads account ----- TOBE REMOVED -----------------
-// Updates account
-// app.post('/api/v1/account/:id', function(req, res) {
-//   res.send('Hello world!');
-// });
-
-// Reads account ----- TOBE REMOVED -----------------
-// app.get('/api/v1/account/:id', function(req, res) {
-//   res.send('Hello world!');
-// });
-
-// Adds location
-/*app.post('/api/v1/trolly/:id/location', (req, res) => {
-  var returnStr = 'location api called ';
-  var transitId = req.params.id;
-  var vehicleFound = false;
-  for (var i = 0; i < vehicles.length; i++) {
-    if (vehicles[i].id === transitId) {
-      vehicleFound = true;
-      //if (geoUtils.contains([req.body.lat, req.body.lon], geoConst.dtBounds)) {
-      if(true) {
-        vehicles[i].lat = req.body.lat;
-        vehicles[i].long = req.body.lon;
-        //  checkStops([vehicles[i]['lat'],vehicles[i]['long']]);
-        returnStr = returnStr.concat('location updated');
-      } else {
-        returnStr = returnStr.concat('location update failed');
-        console.log('Invalid location update');
-      }
-    }
-  }
-  if (vehicleFound === false) {
-    vehicles.push({ id: transitId, lat: req.body.lat, long: req.body.lon });
-    returnStr = 'new bus location added';
-    console.log(returnStr);
-  }
-  res.send(returnStr);
-  
-  Transit.find({id: transitId}, function( err, transit ) {
-    returnStr = "updating location";
-    if( transit[0] ) {
-      returnStr = 'Recording location into DB: ' + transit[0].id + " - ";
-      if (geoUtils.contains([req.body.lat,req.body.lon], geoConst.dtBounds)) {
-        transit[0].lat = req.body.lat;
-      transit[0].long = req.body.lon;
-      checkStops([transit[0].lat,transit[0].long])
-      transit[0].save();
-      returnStr = returnStr.concat("db updated");
-      } else {
-      returnStr = returnStr.concat("db update failed");
-      console.log('Invalid credentials in location update');
-      }
-    } else {
-      newTransit = new Transit( {id: transitId, long: req.body.lng, lat: req.body.lat} );
-      newTransit.save();
-      returnStr = "new bus location added";
-      console.log(returnStr);
-    }
-    res.send(returnStr);
-  });
-  
-});*/
-
-/*
-Reads account ----- TOBE REMOVED -----------------
-Reads location
-app.get('/api/v1/trolly/:id/location', function(req, res) {
-  res.send('Hello world!');
-});
-
-Reads account ----- TOBE REMOVED -----------------
-Gets status of trollies
-app.get('/api/v1/trollies', function(req, res) {
-  res.send('Hello world!');
-});
-
-Reads account ----- TOBE REMOVED -----------------
-Gets stops for a single trolley
-app.get('/api/v1/trollies/:id/stops', function(req, res) {
-  res.send('Hello world!');
-});
-*/
-
 var latLng = [];
 var locations;
 var latLongs = {};
-
-
-/*
-function findLocations() {
-  //  console.log('Updating current location');
-  Transit.find({},{id:1,lat:1,long:1,_id:0}, function(err, transit) {
-    //  console.log("Getting coords for " + transit.length)
-    if( transit.length > 0 ) {
-      allLocations = transit;
-    } else {
-      console.log('DB credentials supplied incorrect');
-    }
-  });
-}
-*/
 
 function checkStops(curPnt) {
   // console.log("checking to see if near stop: nextStop = " + nextStopSeq + " : " + curPnt);
@@ -271,28 +156,6 @@ function checkStops(curPnt) {
   }
 }
 
-// var interval = setInterval(function(){findLocations();},3000);
-/* TO BE REMOVED --------------------------------------------------
-function checkTime() {
-   TODO: REPLACE this function with isTrolleyInactive();
-   would like to extend this to start at 4pm and end at 1am following morning... of course
-   that complicates the testing
-  var trolleyInactive = true;
-  var date = new Date();
-  date.setHours(date.getHours());
-  console.log("hour: " + date.getHours() + ", day: " + date.getDay());
-  if ( date.getHours() <= 24 && date.getHours() >= 17  ) {
-    if ( 5 == date.getDay() || 6 == date.getDay() ) {
-      trolleyInactive = false;
-    } else {
-      trolleyInactive = true;
-    }
-  } else {
-    trolleyInactive = true;
-  }
-  return trolleyInactive;
-}
---------------------------------------------------------------------*/
 function locationRecieved(data) {
   var returnStr = 'location socket called: ';
   var transitId = data.id;
